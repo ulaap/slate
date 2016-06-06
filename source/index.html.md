@@ -18,7 +18,7 @@ search: true
 
 # Introduction
 
-Purpose
+## Purpose
 
 With an easy to use smartphone app, a web portal and a fully interoperable Application Program Interface (API), Ulaap facilitates dispatching a service provider (driver, technician, mobile service worker, etc.) to complete a series of tasks related to a service.  The first release of Ulaap is focused at truckload and less-than-truckload transportation services but future iterations plan to provide solutions for field service technicians, home healthcare providers as well as other mobile workforces.  
 Ulaap on iOS and Android enables the end-user to update statuses and provide other information related to task performance.  Common workflow processes such as signature verification, barcode, QR code and document scanning functionality are exchanged in real-time with other validation services.  
@@ -26,20 +26,20 @@ Our Representational State Transfer (RESTful) API provides responses in JSON for
 Subsequent releases of Ulaap’s transportation app will include “onboarding” services such as: carrier confirmation forms, rate confirmations, WSIB/W9 data, insurance (i.e. auto, GL, cargo limits and expiry dates) as well as other critical verification and compliance information.
 
 
-Integration
+## Integration
 
 RESTful APIs have proven to be more efficient, manageable, scalable and provide high availability.  Many of the leading companies in the world provide RESTful API’s including: Google, Facebook, Amazon, EBay, Twitter and others. 
 Our Ulaap REST API offers: 
-- Enhanced security through a unique token;
-- Quicker, lighter transaction processes that eliminate parsing or handling unnecessary headers;
-- Flexible call architecture that do not sacrifice data integrity;
-- Interoperability with independently developed, owned and/or purchased dispatch (TMS) systems, inventory systems, accounting solutions and so on.  
+* Enhanced security through a unique token;
+* Quicker, lighter transaction processes that eliminate parsing or handling unnecessary headers;
+* Flexible call architecture that do not sacrifice data integrity;
+* Interoperability with independently developed, owned and/or purchased dispatch (TMS) systems, inventory systems, accounting solutions and so on.  
 
 Usage guidelines behind the API support:
-- Ancillary services and requirements affecting payment for cartage (i.e. automated validation to third-parties payees);
-- Information related to insurance and/or bonding processes;
-- Permit related services;
-- Service value-adds beyond the functionality of what legacy EDI
+* Ancillary services and requirements affecting payment for cartage (i.e. automated validation to third-parties payees);
+* Information related to insurance and/or bonding processes;
+* Permit related services;
+* Service value-adds beyond the functionality of what legacy EDI
 
 # Authentication
 
