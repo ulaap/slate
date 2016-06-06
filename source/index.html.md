@@ -56,116 +56,234 @@ Designed as a unified platform, Ulaap keeps your development and deployment reso
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
+```php
+// Setup cURL
+$ch = curl_init();
+curl_setopt_array($ch, array(
+CURLOPT_URL => "https://example.com/app/api/5/api_key?username={$username}&password={$password}",
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+```
+> The above command returns JSON structured like this:
+
+```json
+[
+"result": {
+"domain_uuid": "",
+"carrier_contact_uuid": "",
+"user_uuid": "",
+"api_key": ""
+}
+]
 ```
 
-```python
-import kittn
+> Make sure to replace `$username` and `$passord` with your username and password.
 
-api = kittn.authorize('meowmeowmeow')
-```
+Ulaap uses API keys to allow access to the API. You can fetch your API key by passing your username and password in a GET request.
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+Ulaap expects for the API key to be included in all API requests to the server in a URL parameter that looks like the following:
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`?key=api_key`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>api_key</code> with your personal API key.
 </aside>
 
-# Kittens
+# Ladings
 
-## Get All Kittens
+## Get All Ladings
 
-```ruby
-require 'kittn'
+```php
+// Setup cURL
+$ch = curl_init();
+curl_setopt_array($ch, array(
+CURLOPT_URL => "https://example.com/app/api/5/ladings_list?key={$api_key}",
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
 
 > The above command returns JSON structured like this:
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
+{
+"shipper_region": null,
+"consignee_name": null,
+"pay_advance": null,
+"lading_status_updated": null,
+"load_pieces": "3",
+"seal_number": null,
+"equipment_options": null,
+"rated_miles": null,
+"consignee_locality": null,
+"consignee_region": null,
+"load_pallets": null,
+"carrier_mc": null,
+"domain_uuid": "",
+"load_length": null,
+"carrier_trailer": null,
+"shipper_locality": null,
+"alternate_reference": "202740-01",
+"brokered_date": null,
+"load_special_info": "",
+"damage_note": null,
+"trip_number": "",
+"shipper_name": null,
+"consignee_contact_uuid": "",
+"shipment_number": null,
+"load_value": null,
+"lading_number": "",
+"load_weight_actual": "516",
+"payment_reference": null,
+"broker_mc": null,
+"load_start": "2015-04-23 00:00:00",
+"pro_bill": "4288109750",
+"truckstop_post": null,
+"carrier_tractor": null,
+"lading_status": "0",
+"damage_photo": null,
+"user_uuid": null,
+"type_of_equipment": null,
+"rate_pay": null,
+"load_weight": "516",
+"lading_uuid": "",
+"load_details": "PIECES-(3) MS701 SMOOTH #50175",
+"rate_confirmation": null,
+"partial_or_full": null,
+"load_end": "2015-04-29 00:00:00",
+"shipper_contact_uuid": "",
+"carrier_contact_uuid": ""
+},
+{
+"shipper_region": null,
+"consignee_name": null,
+"pay_advance": null,
+"lading_status_updated": null,
+"load_pieces": "15",
+"seal_number": null,
+"equipment_options": null,
+"rated_miles": null,
+"consignee_locality": null,
+"consignee_region": null,
+"load_pallets": null,
+"carrier_mc": null,
+"domain_uuid": "",
+"load_length": null,
+"carrier_trailer": null,
+"shipper_locality": null,
+"alternate_reference": "203252-01",
+"brokered_date": null,
+"load_special_info": "",
+"damage_note": null,
+"trip_number": "",
+"shipper_name": null,
+"consignee_contact_uuid": "",
+"shipment_number": null,
+"load_value": null,
+"lading_number": "212689",
+"load_weight_actual": "83",
+"payment_reference": null,
+"broker_mc": null,
+"load_start": "2015-05-08 00:00:00",
+"pro_bill": "1013994898",
+"truckstop_post": null,
+"carrier_tractor": null,
+"lading_status": "21",
+"damage_photo": null,
+"user_uuid": null,
+"type_of_equipment": null,
+"rate_pay": null,
+"load_weight": "83",
+"lading_uuid": "",
+"load_details": "PIECES",
+"rate_confirmation": null,
+"partial_or_full": null,
+"load_end": "2015-05-14 00:00:00",
+"shipper_contact_uuid": "",
+"carrier_contact_uuid": ""
+}
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all ladings.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://example.com/app/api/5/ladings_list`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+carrier_contact_uuid |  | If set to contact_uuid of a carrier, it will pass all the ladings with that carrier. 
+pro_bill |  | If set to a pro bill number, it will pass the lading with that pro bill number.
+lading_status |  | If set to a lading status integer value, it will pass all the ladings with that status.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<aside class="notice">
+You can see the integer values for lading statuses by looking under `int enum values`.
 </aside>
 
-## Get a Specific Kitten
+## Get a Specific Lading
 
-```ruby
-require 'kittn'
+```php
+// Setup cURL
+$ch = curl_init();
+curl_setopt_array($ch, array(
+CURLOPT_URL => "https://example.com/app/api/5/ladings/{$lading_uuid}?key={$api_key}",
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+));
 
-```python
-import kittn
+// Send the request
+$response = curl_exec($ch);
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+// Decode the response
+$responseData = json_decode($response, TRUE);
 ```
 
 > The above command returns JSON structured like this:
@@ -180,17 +298,16 @@ curl "http://example.com/api/kittens/2"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves a specific lading.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://example.com/app/api/5/ladings/{lading_uuid}/key={api_key}`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+lading_uuid | The UUID of the lading to retrieve
+key | The API key
 
