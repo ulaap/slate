@@ -5,7 +5,6 @@ language_tabs:
   - php
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -28,7 +27,7 @@ Subsequent releases of Ulaap’s transportation app will include “onboarding�
 
 ## Intergration
 
-RESTful APIs have proven to be more efficient, manageable, scalable and provide high availability.  Many of the leading companies in the world provide RESTful API’s including: Google, Facebook, Amazon, EBay, Twitter and others.
+RESTful APIs have proven to be more efficient, manageable, scalable and provide high availability.  Many of the leading companies in the world provide RESTful API’s including: Google, Facebook, Amazon, eBay, Twitter and others.
 
 ### Our Ulaap REST API offers:
 * Enhanced security through a unique token;
@@ -55,6 +54,7 @@ Designed as a unified platform, Ulaap keeps your development and deployment reso
 > To authorize, use this code:
 
 ```php
+<?php
 // Setup cURL
 $ch = curl_init();
 curl_setopt_array($ch, array(
@@ -78,6 +78,7 @@ die(curl_error($ch));
 
 // Decode the response
 $responseData = json_decode($response, TRUE);
+?>
 ```
 > The above command returns JSON structured like this:
 
@@ -292,12 +293,104 @@ $responseData = json_decode($response, TRUE);
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+"shipper_region": null,
+"consignee_name": null,
+"pay_advance": null,
+"lading_status_updated": null,
+"load_pieces": "3",
+"seal_number": null,
+"equipment_options": null,
+"rated_miles": null,
+"consignee_locality": null,
+"consignee_region": null,
+"load_pallets": null,
+"carrier_mc": null,
+"domain_uuid": "",
+"load_length": null,
+"carrier_trailer": null,
+"shipper_locality": null,
+"alternate_reference": "202740-01",
+"brokered_date": null,
+"load_special_info": "Consignee notes: RECEIVING HOURS ARE FROM 7AM TO16:30PM",
+"damage_note": null,
+"trip_number": "",
+"shipper_name": null,
+"consignee_contact_uuid": "",
+"shipment_number": null,
+"load_value": null,
+"lading_number": "",
+"load_weight_actual": "516",
+"payment_reference": null,
+"broker_mc": null,
+"load_start": "2015-04-23 00:00:00",
+"pro_bill": "4288109750",
+"truckstop_post": null,
+"carrier_tractor": null,
+"lading_status": "0",
+"damage_photo": null,
+"user_uuid": null,
+"lading_tasks": [
+{
+"signature_uuid": null,
+"domain_uuid": "",
+"task_note": null,
+"good_type": null,
+"contact_uuid": "",
+"load_start": null,
+"lading_uuid": "",
+"date": null,
+"lading_task_uuid": "",
+"load_end": null,
+"scan_document_uuid": null,
+"task_type": "1",
+"scan_uuid": null
+},
+{
+"signature_uuid": null,
+"domain_uuid": "",
+"task_note": null,
+"good_type": null,
+"contact_uuid": "",
+"load_start": null,
+"lading_uuid": "",
+"date": null,
+"lading_task_uuid": "",
+"load_end": null,
+"scan_document_uuid": null,
+"task_type": "2",
+"scan_uuid": null
+},
+{
+"signature_uuid": null,
+"domain_uuid": "",
+"task_note": null,
+"good_type": null,
+"contact_uuid": "",
+"load_start": null,
+"lading_uuid": "",
+"date": null,
+"lading_task_uuid": "",
+"load_end": null,
+"scan_document_uuid": null,
+"task_type": "6",
+"scan_uuid": null
 }
+],
+"type_of_equipment": null,
+"rate_pay": null,
+"load_weight": "516",
+"lading_uuid": "",
+"load_details": "PIECES-(3) MS701 SMOOTH #50175",
+"rate_confirmation": null,
+"partial_or_full": null,
+"load_end": "2015-04-29 00:00:00",
+"shipper_contact_uuid": "",
+"carrier_contact_uuid": "",
+"lading_logs": [
+
+]
+}
+
 ```
 
 This endpoint retrieves a specific lading.
