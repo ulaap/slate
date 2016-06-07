@@ -507,73 +507,39 @@ This endpoint creates a lading.
 
 `{
 "pay_advance": "",
-
 "load_pieces": "20",
-
 "seal_number": null,
-
 "equipment_options": "", 
-
 "rated_miles": "",
-
 "load_pallets": "",
-
 "carrier_mc": "",
-
 "load_length": "",
-
 "carrier_trailer": "", 
-
 "shipper_locality": "", 
-
 "alternate_reference": "", 
-
 "brokered_date": "January 24, 2014", 
-
 "load_special_info": "",
-
 "damage_note": "",
-
 "trip_number": "174744",
-
 "shipment_number": "915439",
-
 "load_value": "",
-
 "lading_number": "",
-
 "load_weight_actual": "",
-
 "payment_reference": "",
-
 "broker_mc": "",
-
 "load_start": "January 24, 2014",
-
 "pro_bill": "915439",
-
 "truckstop_post": "",
-
 "carrier_tractor": "",
-
 "lading_status": "13",
-
 "damage_photo": "",
-
 "type_of_equipment": "",
-
 "rate_pay": "",
-
 "load_weight": "294",
-
 "load_details": "",
-
 "rate_confirmation": “",
-
 "carrier_contact_uuid": “",
-
 "partial_or_full": "",
-
 "load_end": "January 24, 2014" 
 }`
 
@@ -582,4 +548,397 @@ This endpoint creates a lading.
 Parameter | Description
 --------- | -----------
 key | The API key
+
+# Contacts
+
+## Get All Contacts
+
+```php
+<?php
+// Setup cURL
+$ch = curl_init();
+curl_setopt_array($ch, array(
+CURLOPT_URL => "https://example.com/app/api/5/contacts?key={$api_key}",
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+?>
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+{
+"legal_name": null,
+"contact_email": null,
+"contact_name_suffix": null,
+"us_dot_no": null,
+"active": null,
+"domain_uuid": "",
+"contact_nickname": null,
+"contact_role": null,
+"contact_note": null,
+"contact_time_zone": null,
+"contact_uuid": "",
+"contact_category": null,
+"contact_name_prefix": null,
+"contact_type": "1",
+"contact_organization": "Example Organization",
+"contact_url": null,
+"contact_parent_uuid": null,
+"contact_name_given": null,
+"last_mod_user": null,
+"contact_title": null,
+"created_by": null,
+"last_mod_date": null,
+"contact_name_middle": null,
+"created": null,
+"contact_name_family": null
+},
+{
+"legal_name": null,
+"contact_email": null,
+"contact_name_suffix": null,
+"us_dot_no": null,
+"active": null,
+"domain_uuid": "",
+"contact_nickname": null,
+"contact_role": null,
+"contact_note": null,
+"contact_time_zone": null,
+"contact_uuid": "",
+"contact_category": null,
+"contact_name_prefix": null,
+"contact_type": "2",
+"contact_organization": "Example Organization 2",
+"contact_url": null,
+"contact_parent_uuid": null,
+"contact_name_given": null,
+"last_mod_user": null,
+"contact_title": null,
+"created_by": null,
+"last_mod_date": null,
+"contact_name_middle": null,
+"created": null,
+"contact_name_family": null
+}
+]
+```
+
+This endpoint retrieves all contacts.
+
+### HTTP Request
+
+`GET https://example.com/app/api/5/contacts?key=<api_key>`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+contact_organization | null | If set to name of a contact organization, it will pass the contact with that organization name. 
+active | null | If set to true, it will pass all active contacts.
+contact_type |  | If set to a contact type integer value, it will pass all the contacts with that task type.
+key |  | The API Key
+
+<aside class="notice">
+You can see the integer values for lading statuses by looking under `int enum values`.
+</aside>
+
+## Get a Specific Contact
+
+```php
+<?php
+// Setup cURL
+$ch = curl_init();
+curl_setopt_array($ch, array(
+CURLOPT_URL => "https://example.com/app/api/5/contacts/{$contact_uuid}?key={$api_key}",
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+?>
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+"last_mod_date": null,
+"contact_category": null,
+"legal_name": null,
+"contact_relations": [
+
+],
+"contact_notes": [
+
+],
+"contact_name_prefix": null,
+"contact_title": null,
+"contact_emails": [
+
+],
+"contact_settings": [
+
+],
+"created": null,
+"contact_uuid": "",
+"contact_time_zone": null,
+"contact_name_middle": null,
+"us_dot_no": null,
+"contact_addresses": [
+{
+"address_label": null,
+"domain_uuid": "",
+"address_region": "PQ",
+"address_postal_code": "H4B 1R2",
+"contact_uuid": "",
+"address_description": null,
+"address_type": null,
+"address_locality": "MONTREAL",
+"address_street": "",
+"address_country": "CANADA",
+"contact_address_uuid": "",
+"address_extended": null,
+"address_latitude": null,
+"address_longitude": null,
+"address_primary": "0",
+"address_community": null
+}
+],
+"contact_note": null,
+"contact_nickname": null,
+"contact_role": null,
+"created_by": null,
+"domain_uuid": "",
+"last_mod_user": null,
+"contact_name_family": null,
+"contact_urls": [
+
+],
+"active": null,
+"contact_type": "2",
+"contact_name_suffix": null,
+"contact_email": null,
+"contact_url": null,
+"contact_parent_uuid": null,
+"contact_groups": [
+
+],
+"contact_organization": "Example Organization 2",
+"contact_name_given": null,
+"contact_phones": [
+{
+"phone_type_video": null,
+"domain_uuid": "",
+"contact_phone_uuid": "",
+"phone_type": null,
+"phone_label": null,
+"contact_uuid": "",
+"phone_description": null,
+"phone_extension": "",
+"phone_type_voice": null,
+"phone_number": "",
+"phone_type_text": null,
+"phone_type_fax": null,
+"phone_primary": "0"
+}
+]
+}
+
+```
+
+This endpoint retrieves a specific contact.
+
+### HTTP Request
+
+`GET https://example.com/app/api/5/contacts/<contact_uuid>/key=<api_key>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+contact_uuid | The UUID of the contact to retrieve.
+key | The API key.
+
+## Create a contact
+
+```php
+<?php
+
+// The data to send to the API
+$postData = array(
+'contact_email' => $contactEmail,
+'contact_nickname' => $contactNickname,
+'contact_role' => $contactRole,
+'contact_note' => $contactNote, 
+'contact_time_zone' => $contactTimeZone,
+'contact_category' => $contactCategory,
+'contact_type' => $contactType,
+'contact_organization' => $contactOrganization,
+'contact_url' => $contactUrl, 
+'contact_name_given' => $contactNameGiven, 
+'contact_title' => $contactTitle, 
+'created_by' => $createdBy, 
+'created' => $created,
+'contact_name_family' => $contactNameFamily,
+'contact_addresses' => array(
+    'address_region' => $addressRegion,
+    'address_postal_code' => $addressPostalCode,
+    'address_description' => $addressDescription,
+    'address_type' => $addressType,
+    'address_locality' => $addressLocality,
+    'address_street' => $addressStreet,
+    'address_country' => $addressCountry,
+    'address_extended' => $addressExtended,
+    'address_latitude' => $addressLatitude,
+    'address_longitude' => $addressLongitude),
+'contact_phones' => array(
+    'phone_type' => $phoneType,
+    'phone_description' => $phoneDescription,
+    'phone_extension' => $phoneExtension,
+    'phone_number' => $phoneNumber)
+    
+);
+
+// Setup cURL
+$ch = curl_init('https://example/app/api/5/contacts/?key={$api_key}');
+curl_setopt_array($ch, array(
+CURLOPT_POST => TRUE,
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+CURLOPT_POSTFIELDS => json_encode($postData)
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+
+//Get the contact UUID
+$contactUuid = $responseData['details']['0']['uuid'];
+?>
+```
+
+> The above code returns JSON structured like this:
+
+```json
+{
+"code": "200",
+"details": [
+{
+"code": "200",
+"uuid": "61748b85-1f82-4dda-bdcf-1edc454cf9fe",
+"name": "contacts",
+"sql": "INSERT INTO v_contacts (domain_uuid, contact_uuid, contact_email, contact_nickname, contact_role, contact_note, contact_time_zone, contact_category, contact_type, contact_organization, contact_url, contact_name_given, contact_title, created_by, created, contact_name_family) VALUES ('12fcbe40-c1f1-4e36-85bc-6f0fa0433bc2', '61748b85-1f82-4dda-bdcf-1edc454cf9fe', '', '', '', '', '', '', '', '', '', '', '', '', '', '');",
+"message": "OK"
+},
+{
+"code": "200",
+"uuid": "0816e85c-59e5-4068-ba95-97be48a7f052",
+"name": "contact_phones",
+"sql": "INSERT INTO v_contact_phones (domain_uuid, contact_uuid, contact_phone_uuid, phone_type, phone_description, phone_extension, phone_number) VALUES ('12fcbe40-c1f1-4e36-85bc-6f0fa0433bc2', '61748b85-1f82-4dda-bdcf-1edc454cf9fe', '0816e85c-59e5-4068-ba95-97be48a7f052', '', '', '', '');",
+"message": "OK"
+}
+],
+"message": "OK"
+}
+
+
+```
+
+This endpoint creates a lading.
+
+### HTTP Request
+
+`POST https://example.com/app/api/5/ladings/key=<api_key>`
+
+### JSON Request Body
+
+`{
+"pay_advance": "",
+"load_pieces": "20",
+"seal_number": null,
+"equipment_options": "", 
+"rated_miles": "",
+"load_pallets": "",
+"carrier_mc": "",
+"load_length": "",
+"carrier_trailer": "", 
+"shipper_locality": "", 
+"alternate_reference": "", 
+"brokered_date": "January 24, 2014", 
+"load_special_info": "",
+"damage_note": "",
+"trip_number": "174744",
+"shipment_number": "915439",
+"load_value": "",
+"lading_number": "",
+"load_weight_actual": "",
+"payment_reference": "",
+"broker_mc": "",
+"load_start": "January 24, 2014",
+"pro_bill": "915439",
+"truckstop_post": "",
+"carrier_tractor": "",
+"lading_status": "13",
+"damage_photo": "",
+"type_of_equipment": "",
+"rate_pay": "",
+"load_weight": "294",
+"load_details": "",
+"rate_confirmation": “",
+"carrier_contact_uuid": “",
+"partial_or_full": "",
+"load_end": "January 24, 2014" 
+}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+key | The API key
+
 
