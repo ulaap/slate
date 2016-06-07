@@ -793,7 +793,7 @@ Parameter | Description
 contact_uuid | The UUID of the contact to retrieve.
 key | The API key.
 
-## Create a contact
+## Create a Contact
 
 ```php
 <?php
@@ -889,50 +889,48 @@ $contactUuid = $responseData['details']['0']['uuid'];
 
 ```
 
-This endpoint creates a lading.
+This endpoint creates a contact.
 
 ### HTTP Request
 
-`POST https://example.com/app/api/5/ladings/key=<api_key>`
+`POST https://example.com/app/api/5/contacts/key=<api_key>`
 
 ### JSON Request Body
 
 `{
-"pay_advance": "",
-"load_pieces": "20",
-"seal_number": null,
-"equipment_options": "", 
-"rated_miles": "",
-"load_pallets": "",
-"carrier_mc": "",
-"load_length": "",
-"carrier_trailer": "", 
-"shipper_locality": "", 
-"alternate_reference": "", 
-"brokered_date": "January 24, 2014", 
-"load_special_info": "",
-"damage_note": "",
-"trip_number": "174744",
-"shipment_number": "915439",
-"load_value": "",
-"lading_number": "",
-"load_weight_actual": "",
-"payment_reference": "",
-"broker_mc": "",
-"load_start": "January 24, 2014",
-"pro_bill": "915439",
-"truckstop_post": "",
-"carrier_tractor": "",
-"lading_status": "13",
-"damage_photo": "",
-"type_of_equipment": "",
-"rate_pay": "",
-"load_weight": "294",
-"load_details": "",
-"rate_confirmation": “",
-"carrier_contact_uuid": “",
-"partial_or_full": "",
-"load_end": "January 24, 2014" 
+"contact_email": "",
+"contact_nickname": "",
+"contact_role": "",
+"contact_note": "",
+"contact_time_zone": "",
+"contact_category": "",
+"contact_addresses": [{
+    "address_region": "", 
+    "address_postal_code": "",
+    "address_description": "",
+    "address_type": "",
+    "address_locality": "",
+    "address_street": "",
+    "address_country": "",
+    "address_extended": "",
+    "address_latitude": "",
+    "address_longitude": ""
+    } ],
+"contact_type": "",
+"contact_organization": "",
+"contact_phones": [{
+    "phone_type": "",
+    "phone_description": "",
+    "phone_extension": "",
+    "phone_number": ""
+    } ],
+"contact_url": "",
+"contact_name_given": "",
+"contact_title": "",
+"created_by": "",
+"created": "",
+"contact_name_family": ""
+
 }`
 
 ### URL Parameters
