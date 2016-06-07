@@ -964,7 +964,7 @@ You can see the integer values for lading statuses by looking under `int enum va
 </tr>
 </tbody></table>
 
-<h2 id="create-a-contact">Create a contact</h2>
+<h2 id="create-a-contact">Create a Contact</h2>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 
 <span class="c1">// The data to send to the API
@@ -1058,51 +1058,49 @@ You can see the integer values for lading statuses by looking under `int enum va
 
 </span></code></pre>
 
-<p>This endpoint creates a lading.</p>
+<p>This endpoint creates a contact.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://example.com/app/api/5/ladings/key=&lt;api_key&gt;</code></p>
+<p><code class="prettyprint">POST https://example.com/app/api/5/contacts/key=&lt;api_key&gt;</code></p>
 
 <h3 id="json-request-body">JSON Request Body</h3>
 
-<p><code class="prettyprint">{
-&quot;pay_advance&quot;: &quot;&quot;,
-&quot;load_pieces&quot;: &quot;20&quot;,
-&quot;seal_number&quot;: null,
-&quot;equipment_options&quot;: &quot;&quot;, 
-&quot;rated_miles&quot;: &quot;&quot;,
-&quot;load_pallets&quot;: &quot;&quot;,
-&quot;carrier_mc&quot;: &quot;&quot;,
-&quot;load_length&quot;: &quot;&quot;,
-&quot;carrier_trailer&quot;: &quot;&quot;, 
-&quot;shipper_locality&quot;: &quot;&quot;, 
-&quot;alternate_reference&quot;: &quot;&quot;, 
-&quot;brokered_date&quot;: &quot;January 24, 2014&quot;, 
-&quot;load_special_info&quot;: &quot;&quot;,
-&quot;damage_note&quot;: &quot;&quot;,
-&quot;trip_number&quot;: &quot;174744&quot;,
-&quot;shipment_number&quot;: &quot;915439&quot;,
-&quot;load_value&quot;: &quot;&quot;,
-&quot;lading_number&quot;: &quot;&quot;,
-&quot;load_weight_actual&quot;: &quot;&quot;,
-&quot;payment_reference&quot;: &quot;&quot;,
-&quot;broker_mc&quot;: &quot;&quot;,
-&quot;load_start&quot;: &quot;January 24, 2014&quot;,
-&quot;pro_bill&quot;: &quot;915439&quot;,
-&quot;truckstop_post&quot;: &quot;&quot;,
-&quot;carrier_tractor&quot;: &quot;&quot;,
-&quot;lading_status&quot;: &quot;13&quot;,
-&quot;damage_photo&quot;: &quot;&quot;,
-&quot;type_of_equipment&quot;: &quot;&quot;,
-&quot;rate_pay&quot;: &quot;&quot;,
-&quot;load_weight&quot;: &quot;294&quot;,
-&quot;load_details&quot;: &quot;&quot;,
-&quot;rate_confirmation&quot;: “&quot;,
-&quot;carrier_contact_uuid&quot;: “&quot;,
-&quot;partial_or_full&quot;: &quot;&quot;,
-&quot;load_end&quot;: &quot;January 24, 2014&quot; 
-}</code></p>
+<p>`{
+&ldquo;contact_email&rdquo;: &ldquo;&rdquo;,
+&ldquo;contact_nickname&rdquo;: &ldquo;&rdquo;,
+&ldquo;contact_role&rdquo;: &ldquo;&rdquo;,
+&ldquo;contact_note&rdquo;: &ldquo;&rdquo;,
+&ldquo;contact_time_zone&rdquo;: &ldquo;&rdquo;,
+&ldquo;contact_category&rdquo;: &ldquo;&rdquo;,
+&ldquo;contact_addresses&rdquo;: [{
+    &ldquo;address_region&rdquo;: &ldquo;&rdquo;, 
+    &ldquo;address_postal_code&rdquo;: &ldquo;&rdquo;,
+    &ldquo;address_description&rdquo;: &ldquo;&rdquo;,
+    &ldquo;address_type&rdquo;: &ldquo;&rdquo;,
+    &ldquo;address_locality&rdquo;: &ldquo;&rdquo;,
+    &ldquo;address_street&rdquo;: &ldquo;&rdquo;,
+    &ldquo;address_country&rdquo;: &ldquo;&rdquo;,
+    &ldquo;address_extended&rdquo;: &ldquo;&rdquo;,
+    &ldquo;address_latitude&rdquo;: &ldquo;&rdquo;,
+    &ldquo;address_longitude&rdquo;: &ldquo;&rdquo;
+    } ],
+&ldquo;contact_type&rdquo;: &ldquo;&rdquo;,
+&ldquo;contact_organization&rdquo;: &ldquo;&rdquo;,
+&ldquo;contact_phones&rdquo;: [{
+    &ldquo;phone_type&rdquo;: &ldquo;&rdquo;,
+    &ldquo;phone_description&rdquo;: &ldquo;&rdquo;,
+    &ldquo;phone_extension&rdquo;: &ldquo;&rdquo;,
+    &ldquo;phone_number&rdquo;: &ldquo;&rdquo;
+    } ],
+&ldquo;contact_url&rdquo;: &ldquo;&rdquo;,
+&ldquo;contact_name_given&rdquo;: &ldquo;&rdquo;,
+&ldquo;contact_title&rdquo;: &ldquo;&rdquo;,
+&ldquo;created_by&rdquo;: &ldquo;&rdquo;,
+&ldquo;created&rdquo;: &ldquo;&rdquo;,
+&ldquo;contact_name_family&rdquo;: &ldquo;&rdquo;</p>
+
+<p>}`</p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
