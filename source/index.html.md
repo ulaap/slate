@@ -80,7 +80,7 @@ die(curl_error($ch));
 $responseData = json_decode($response, TRUE);
 ?>
 ```
-> The above command returns JSON structured like this:
+> The above code returns JSON structured like this:
 
 ```json
 [
@@ -138,7 +138,7 @@ $responseData = json_decode($response, TRUE);
 ```
 
 
-> The above command returns JSON structured like this:
+> The above code returns JSON structured like this:
 
 ```json
 [
@@ -289,7 +289,7 @@ $responseData = json_decode($response, TRUE);
 ?>
 ```
 
-> The above command returns JSON structured like this:
+> The above code returns JSON structured like this:
 
 ```json
 {
@@ -478,7 +478,7 @@ $responseData = json_decode($response, TRUE);
 $ladingUuid = $responseData['details']['0']['uuid'];
 ?>
 ```
-
+> $ladingUuid will be used when creating a [lading task.](#create-a-lading-task)
 > The above code returns JSON structured like this:
 
 ```json
@@ -582,7 +582,7 @@ $responseData = json_decode($response, TRUE);
 ```
 
 
-> The above command returns JSON structured like this:
+> The above code returns JSON structured like this:
 
 ```json
 [
@@ -692,7 +692,7 @@ $responseData = json_decode($response, TRUE);
 ?>
 ```
 
-> The above command returns JSON structured like this:
+> The above code returns JSON structured like this:
 
 ```json
 {
@@ -861,7 +861,7 @@ $responseData = json_decode($response, TRUE);
 $contactUuid = $responseData['details']['0']['uuid'];
 ?>
 ```
-
+> $contactUuid will be used when creating a [lading task.](#create-a-lading-task)
 > The above code returns JSON structured like this:
 
 ```json
