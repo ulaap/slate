@@ -1032,7 +1032,7 @@ key | The API key
 Name | Description
 --------- | -----------
 contact_uuid | The UUID for the [contact.](#create-a-contact)
-lading_uuid | The UUID for the [lading.](#create-a-create-a-lading)
+lading_uuid | The UUID for the [lading.](#create-a-lading)
 good_type | Type of goods.
 load_start | Date and time the load starts. 
 date | Date and time lading task was created.
