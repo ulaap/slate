@@ -397,12 +397,155 @@ This endpoint retrieves a specific lading.
 
 ### HTTP Request
 
-`GET https://example.com/app/api/5/ladings/{lading_uuid}/key={api_key}`
+`GET https://example.com/app/api/5/ladings/<lading_uuid>/key=<api_key>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
 lading_uuid | The UUID of the lading to retrieve
+key | The API key
+
+## Create a Lading
+
+```php
+<?php
+
+// The data to send to the API
+$postData = array(
+'pay_advance' => $payAdvance,
+'load_pieces' => $loadPieces,
+'seal_number' => $sealNumber,
+'equipment_options' => $equipmentOptions, 
+'rated_miles' => $ratedMiles,
+'load_pallets' => $loadPallets,
+'carrier_mc' => $carrierMc,
+'load_length' => $loadLength,
+'carrier_trailer' => $carrierTrailer, 
+'shipper_locality' => $shipperLocality, 
+'alternate_reference' => $alternateReference, 
+'brokered_date' => $brokeredDate, 
+'load_special_info' => $loadspecialInfo,
+'damage_note' => $damageNote,
+'trip_number' => $tripNumber,
+'shipment_number' => $shipmentNumber,
+'load_value' => $loadValue,
+'lading_number' => $ladingNumber,
+'load_weight_actual' => $loadWeightActual,
+'payment_reference' => $paymentReference,
+'broker_mc' => $brokerMc,
+'load_start' => $loadStart,
+'pro_bill' => $proBill,
+'truckstop_post' => $truckstopPost,
+'carrier_tractor' => $carrierTractor,
+'lading_status' => $ladingStatus,
+'damage_photo' => $damagePhoto,
+'type_of_equipment' => $typeOfEquipment,
+'rate_pay' => $ratePay,
+'load_weight' => $loadWeight,
+'load_details' => $loadDetails,
+'rate_confirmation' => $rateConfirmation,
+'carrier_contact_uuid' => $carrierContactUuid,
+'partial_or_full' => $partialOrFull,
+'load_end' => $loadEnd 
+);
+
+// Setup cURL
+$ch = curl_init('https://example/app/api/5/ladings/?key={$api_key}');
+curl_setopt_array($ch, array(
+CURLOPT_POST => TRUE,
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+CURLOPT_POSTFIELDS => json_encode($postData)
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+
+//Get the domain UUID
+$ladingUuid = $responseData['details']['0']['uuid'];
+?>
+```
+
+> The above code returns JSON structured like this:
+
+```json
+{
+"code": "200", 
+"details": [
+{
+"code": "200",
+"uuid": "1cf8c03c-3f1b-4ee5-ba1f-360b99519ef1",
+"name": "ladings",
+"sql": "INSERT INTO v_ladings (lading_uuid, domain_uuid, pay_advance, load_pieces, seal_number, equipment_options, rated_miles,
+load_pallets, carrier_mc, load_length, carrier_trailer, shipper_locality, alternate_reference, brokered_date, load_special_info, damage_note, trip_number, shipment_number, load_value, lading_number, load_weight_actual, payment_reference, broker_mc, load_start, pro_bill, truckstop_post, carrier_tractor, lading_status, damage_photo, type_of_equipment, rate_pay, load_weight, load_details, rate_confirmation, partial_or_full, load_end) VALUES ('1cf8c03c-3f1b-4ee5-ba1f-360b99519ef1', '', '', '20', null, '', '', '', '', '', '', '', '', 'January 24, 2014', '', '', '174744', '915439', '', '', '', '', '', 'January 24, 2014', '915439', '', '', '13', '', '', '', '294', '', '', '', 'January 24, 2014');",
+"message": "OK" }
+],
+"message": "OK" }
+
+```
+
+This endpoint creates a lading.
+
+### HTTP Request
+
+`POST https://example.com/app/api/5/ladings/key=<api_key>`
+
+### JSON Request Body
+
+`{
+"pay_advance": "",
+"load_pieces": "20",
+"seal_number": null,
+"equipment_options": "", 
+"rated_miles": "",
+"load_pallets": "",
+"carrier_mc": "",
+"load_length": "",
+"carrier_trailer": "", 
+"shipper_locality": "", 
+"alternate_reference": "", 
+"brokered_date": "January 24, 2014", 
+"load_special_info": "",
+"damage_note": "",
+"trip_number": "174744",
+"shipment_number": "915439",
+"load_value": "",
+"lading_number": "",
+"load_weight_actual": "",
+"payment_reference": "",
+"broker_mc": "",
+"load_start": "January 24, 2014",
+"pro_bill": "915439",
+"truckstop_post": "",
+"carrier_tractor": "",
+"lading_status": "13",
+"damage_photo": "",
+"type_of_equipment": "",
+"rate_pay": "",
+"load_weight": "294",
+"load_details": "",
+"rate_confirmation": “",
+"carrier_contact_uuid": “",
+"partial_or_full": "",
+"load_end": "January 24, 2014" 
+}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
 key | The API key
 
