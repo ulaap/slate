@@ -938,4 +938,118 @@ Parameter | Description
 --------- | -----------
 key | The API key
 
+#Lading Tasks
+
+## Create a Lading Task
+
+```php
+<?php
+
+// The data to send to the API
+$postData = array(
+'contact_uuid' => $contactUuid,
+'lading_uuid' => $ladingUuid,
+'good_type' => $goodType,
+'load_start' => $loadStart, 
+'date' => $date,
+'load_end' => $loadEnd,
+'task_type' => $taskType);
+
+// Setup cURL
+$ch = curl_init('https://example/app/api/5/lading_tasks/?key={$api_key}');
+curl_setopt_array($ch, array(
+CURLOPT_POST => TRUE,
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+CURLOPT_POSTFIELDS => json_encode($postData)
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+
+//Get the lading_task_uuid UUID
+$ladingTaskUuid = $responseData['details']['0']['uuid'];
+?>
+```
+
+> The above code returns JSON structured like this:
+
+```json
+{
+"code": "200",
+"details": [
+{
+"code": "200",
+"uuid": "1e1e3d9b-b760-4802-a604-b1d613d9b8ef",
+"name": "lading_tasks",
+"sql": "INSERT INTO v_lading_tasks (domain_uuid, lading_task_uuid, contact_uuid, lading_uuid, good_type, load_start, date, load_end, task_type) VALUES ('', '1e1e3d9b-b760-4802-a604-b1d613d9b8ef', null, null, null, '2014-04-04 12:00:00-07', '2014-01-24 00:00:00', '2014-04-04 20:00:00-07', '1');",
+"message": "OK"
+}
+],
+"message": "OK"
+}
+
+```
+
+This endpoint creates a lading task.
+
+### HTTP Request
+
+`POST https://example.com/app/api/5/lading_tasks/key=<api_key>`
+
+### JSON Request Body
+
+`{
+"contact_uuid": null,
+"lading_uuid": null,
+"good_type": "",
+"load_start": "2014-04-04 12:00:00-07",
+"date": "2014-01-24 00:00:00",
+"load_end": "2014-04-04 20:00:00-07",
+"task_type": "1"
+}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+key | The API key
+
+### JSON Name and Value
+
+Name | Description
+--------- | -----------
+contact_uuid | The UUID for the [contact.](#create-a-contact)
+lading_uuid | The UUID for the [lading.](#create-a-create-a-lading)
+good_type | Type of goods.
+load_start | Date and time the load starts. 
+date | Date and time lading task was created.
+load_end | Date and time the load ends. 
+task_type | Type of task.
+
+### Task Type Enum Int Value
+
+Int | Enum 
+--------- | -----------
+1 | Shipper
+2 | Consignee
+3 | Consignee stop 2
+4 | Consignee stop 3 
+5 | Dispatch
+6 | Carrier 
+7 | Driver
+8 | Payment Factor
+
 
