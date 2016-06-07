@@ -523,7 +523,7 @@ You can see the integer values for lading statuses by looking under `int enum va
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://example.com/app/api/5/ladings/{lading_uuid}/key={api_key}</code></p>
+<p><code class="prettyprint">GET https://example.com/app/api/5/ladings/&lt;lading_uuid&gt;/key=&lt;api_key&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -537,6 +537,155 @@ You can see the integer values for lading statuses by looking under `int enum va
 <td>lading_uuid</td>
 <td>The UUID of the lading to retrieve</td>
 </tr>
+<tr>
+<td>key</td>
+<td>The API key</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-lading">Create a Lading</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// The data to send to the API
+</span><span class="nv">$postData</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'pay_advance'</span> <span class="o">=&gt;</span> <span class="nv">$payAdvance</span><span class="p">,</span>
+<span class="s1">'load_pieces'</span> <span class="o">=&gt;</span> <span class="nv">$loadPieces</span><span class="p">,</span>
+<span class="s1">'seal_number'</span> <span class="o">=&gt;</span> <span class="nv">$sealNumber</span><span class="p">,</span>
+<span class="s1">'equipment_options'</span> <span class="o">=&gt;</span> <span class="nv">$equipmentOptions</span><span class="p">,</span> 
+<span class="s1">'rated_miles'</span> <span class="o">=&gt;</span> <span class="nv">$ratedMiles</span><span class="p">,</span>
+<span class="s1">'load_pallets'</span> <span class="o">=&gt;</span> <span class="nv">$loadPallets</span><span class="p">,</span>
+<span class="s1">'carrier_mc'</span> <span class="o">=&gt;</span> <span class="nv">$carrierMc</span><span class="p">,</span>
+<span class="s1">'load_length'</span> <span class="o">=&gt;</span> <span class="nv">$loadLength</span><span class="p">,</span>
+<span class="s1">'carrier_trailer'</span> <span class="o">=&gt;</span> <span class="nv">$carrierTrailer</span><span class="p">,</span> 
+<span class="s1">'shipper_locality'</span> <span class="o">=&gt;</span> <span class="nv">$shipperLocality</span><span class="p">,</span> 
+<span class="s1">'alternate_reference'</span> <span class="o">=&gt;</span> <span class="nv">$alternateReference</span><span class="p">,</span> 
+<span class="s1">'brokered_date'</span> <span class="o">=&gt;</span> <span class="nv">$brokeredDate</span><span class="p">,</span> 
+<span class="s1">'load_special_info'</span> <span class="o">=&gt;</span> <span class="nv">$loadspecialInfo</span><span class="p">,</span>
+<span class="s1">'damage_note'</span> <span class="o">=&gt;</span> <span class="nv">$damageNote</span><span class="p">,</span>
+<span class="s1">'trip_number'</span> <span class="o">=&gt;</span> <span class="nv">$tripNumber</span><span class="p">,</span>
+<span class="s1">'shipment_number'</span> <span class="o">=&gt;</span> <span class="nv">$shipmentNumber</span><span class="p">,</span>
+<span class="s1">'load_value'</span> <span class="o">=&gt;</span> <span class="nv">$loadValue</span><span class="p">,</span>
+<span class="s1">'lading_number'</span> <span class="o">=&gt;</span> <span class="nv">$ladingNumber</span><span class="p">,</span>
+<span class="s1">'load_weight_actual'</span> <span class="o">=&gt;</span> <span class="nv">$loadWeightActual</span><span class="p">,</span>
+<span class="s1">'payment_reference'</span> <span class="o">=&gt;</span> <span class="nv">$paymentReference</span><span class="p">,</span>
+<span class="s1">'broker_mc'</span> <span class="o">=&gt;</span> <span class="nv">$brokerMc</span><span class="p">,</span>
+<span class="s1">'load_start'</span> <span class="o">=&gt;</span> <span class="nv">$loadStart</span><span class="p">,</span>
+<span class="s1">'pro_bill'</span> <span class="o">=&gt;</span> <span class="nv">$proBill</span><span class="p">,</span>
+<span class="s1">'truckstop_post'</span> <span class="o">=&gt;</span> <span class="nv">$truckstopPost</span><span class="p">,</span>
+<span class="s1">'carrier_tractor'</span> <span class="o">=&gt;</span> <span class="nv">$carrierTractor</span><span class="p">,</span>
+<span class="s1">'lading_status'</span> <span class="o">=&gt;</span> <span class="nv">$ladingStatus</span><span class="p">,</span>
+<span class="s1">'damage_photo'</span> <span class="o">=&gt;</span> <span class="nv">$damagePhoto</span><span class="p">,</span>
+<span class="s1">'type_of_equipment'</span> <span class="o">=&gt;</span> <span class="nv">$typeOfEquipment</span><span class="p">,</span>
+<span class="s1">'rate_pay'</span> <span class="o">=&gt;</span> <span class="nv">$ratePay</span><span class="p">,</span>
+<span class="s1">'load_weight'</span> <span class="o">=&gt;</span> <span class="nv">$loadWeight</span><span class="p">,</span>
+<span class="s1">'load_details'</span> <span class="o">=&gt;</span> <span class="nv">$loadDetails</span><span class="p">,</span>
+<span class="s1">'rate_confirmation'</span> <span class="o">=&gt;</span> <span class="nv">$rateConfirmation</span><span class="p">,</span>
+<span class="s1">'carrier_contact_uuid'</span> <span class="o">=&gt;</span> <span class="nv">$carrierContactUuid</span><span class="p">,</span>
+<span class="s1">'partial_or_full'</span> <span class="o">=&gt;</span> <span class="nv">$partialOrFull</span><span class="p">,</span>
+<span class="s1">'load_end'</span> <span class="o">=&gt;</span> <span class="nv">$loadEnd</span> 
+<span class="p">);</span>
+
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://example/app/api/5/ladings/?key={$api_key}'</span><span class="p">);</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_POST</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
+<span class="nx">CURLOPT_POSTFIELDS</span> <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$postData</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+
+<span class="c1">//Get the domain UUID
+</span><span class="nv">$ladingUuid</span> <span class="o">=</span> <span class="nv">$responseData</span><span class="p">[</span><span class="s1">'details'</span><span class="p">][</span><span class="s1">'0'</span><span class="p">][</span><span class="s1">'uuid'</span><span class="p">];</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>The above code returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1cf8c03c-3f1b-4ee5-ba1f-360b99519ef1"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ladings"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"sql"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT INTO v_ladings (lading_uuid, domain_uuid, pay_advance, load_pieces, seal_number, equipment_options, rated_miles,
+load_pallets, carrier_mc, load_length, carrier_trailer, shipper_locality, alternate_reference, brokered_date, load_special_info, damage_note, trip_number, shipment_number, load_value, lading_number, load_weight_actual, payment_reference, broker_mc, load_start, pro_bill, truckstop_post, carrier_tractor, lading_status, damage_photo, type_of_equipment, rate_pay, load_weight, load_details, rate_confirmation, partial_or_full, load_end) VALUES ('1cf8c03c-3f1b-4ee5-ba1f-360b99519ef1', '', '', '20', null, '', '', '', '', '', '', '', '', 'January 24, 2014', '', '', '174744', '915439', '', '', '', '', '', 'January 24, 2014', '915439', '', '', '13', '', '', '', '294', '', '', '', 'January 24, 2014');"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w"> </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<p>This endpoint creates a lading.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://example.com/app/api/5/ladings/key=&lt;api_key&gt;</code></p>
+
+<h3 id="json-request-body">JSON Request Body</h3>
+
+<p><code class="prettyprint">{
+&quot;pay_advance&quot;: &quot;&quot;,
+&quot;load_pieces&quot;: &quot;20&quot;,
+&quot;seal_number&quot;: null,
+&quot;equipment_options&quot;: &quot;&quot;, 
+&quot;rated_miles&quot;: &quot;&quot;,
+&quot;load_pallets&quot;: &quot;&quot;,
+&quot;carrier_mc&quot;: &quot;&quot;,
+&quot;load_length&quot;: &quot;&quot;,
+&quot;carrier_trailer&quot;: &quot;&quot;, 
+&quot;shipper_locality&quot;: &quot;&quot;, 
+&quot;alternate_reference&quot;: &quot;&quot;, 
+&quot;brokered_date&quot;: &quot;January 24, 2014&quot;, 
+&quot;load_special_info&quot;: &quot;&quot;,
+&quot;damage_note&quot;: &quot;&quot;,
+&quot;trip_number&quot;: &quot;174744&quot;,
+&quot;shipment_number&quot;: &quot;915439&quot;,
+&quot;load_value&quot;: &quot;&quot;,
+&quot;lading_number&quot;: &quot;&quot;,
+&quot;load_weight_actual&quot;: &quot;&quot;,
+&quot;payment_reference&quot;: &quot;&quot;,
+&quot;broker_mc&quot;: &quot;&quot;,
+&quot;load_start&quot;: &quot;January 24, 2014&quot;,
+&quot;pro_bill&quot;: &quot;915439&quot;,
+&quot;truckstop_post&quot;: &quot;&quot;,
+&quot;carrier_tractor&quot;: &quot;&quot;,
+&quot;lading_status&quot;: &quot;13&quot;,
+&quot;damage_photo&quot;: &quot;&quot;,
+&quot;type_of_equipment&quot;: &quot;&quot;,
+&quot;rate_pay&quot;: &quot;&quot;,
+&quot;load_weight&quot;: &quot;294&quot;,
+&quot;load_details&quot;: &quot;&quot;,
+&quot;rate_confirmation&quot;: “&quot;,
+&quot;carrier_contact_uuid&quot;: “&quot;,
+&quot;partial_or_full&quot;: &quot;&quot;,
+&quot;load_end&quot;: &quot;January 24, 2014&quot; 
+}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
 <tr>
 <td>key</td>
 <td>The API key</td>
