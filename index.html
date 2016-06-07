@@ -1115,6 +1115,181 @@ You can see the integer values for lading statuses by looking under `int enum va
 </tr>
 </tbody></table>
 
+<h1 id="lading-tasks">Lading Tasks</h1>
+
+<h2 id="create-a-lading-task">Create a Lading Task</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// The data to send to the API
+</span><span class="nv">$postData</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'contact_uuid'</span> <span class="o">=&gt;</span> <span class="nv">$contactUuid</span><span class="p">,</span>
+<span class="s1">'lading_uuid'</span> <span class="o">=&gt;</span> <span class="nv">$ladingUuid</span><span class="p">,</span>
+<span class="s1">'good_type'</span> <span class="o">=&gt;</span> <span class="nv">$goodType</span><span class="p">,</span>
+<span class="s1">'load_start'</span> <span class="o">=&gt;</span> <span class="nv">$loadStart</span><span class="p">,</span> 
+<span class="s1">'date'</span> <span class="o">=&gt;</span> <span class="nv">$date</span><span class="p">,</span>
+<span class="s1">'load_end'</span> <span class="o">=&gt;</span> <span class="nv">$loadEnd</span><span class="p">,</span>
+<span class="s1">'task_type'</span> <span class="o">=&gt;</span> <span class="nv">$taskType</span><span class="p">);</span>
+
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://example/app/api/5/lading_tasks/?key={$api_key}'</span><span class="p">);</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_POST</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
+<span class="nx">CURLOPT_POSTFIELDS</span> <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$postData</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+
+<span class="c1">//Get the lading_task_uuid UUID
+</span><span class="nv">$ladingTaskUuid</span> <span class="o">=</span> <span class="nv">$responseData</span><span class="p">[</span><span class="s1">'details'</span><span class="p">][</span><span class="s1">'0'</span><span class="p">][</span><span class="s1">'uuid'</span><span class="p">];</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>The above code returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1e1e3d9b-b760-4802-a604-b1d613d9b8ef"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lading_tasks"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"sql"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT INTO v_lading_tasks (domain_uuid, lading_task_uuid, contact_uuid, lading_uuid, good_type, load_start, date, load_end, task_type) VALUES ('', '1e1e3d9b-b760-4802-a604-b1d613d9b8ef', null, null, null, '2014-04-04 12:00:00-07', '2014-01-24 00:00:00', '2014-04-04 20:00:00-07', '1');"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<p>This endpoint creates a lading task.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://example.com/app/api/5/lading_tasks/key=&lt;api_key&gt;</code></p>
+
+<h3 id="json-request-body">JSON Request Body</h3>
+
+<p><code class="prettyprint">{
+&quot;contact_uuid&quot;: null,
+&quot;lading_uuid&quot;: null,
+&quot;good_type&quot;: &quot;&quot;,
+&quot;load_start&quot;: &quot;2014-04-04 12:00:00-07&quot;,
+&quot;date&quot;: &quot;2014-01-24 00:00:00&quot;,
+&quot;load_end&quot;: &quot;2014-04-04 20:00:00-07&quot;,
+&quot;task_type&quot;: &quot;1&quot;
+}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>The API key</td>
+</tr>
+</tbody></table>
+
+<h3 id="json-name-and-value">JSON Name and Value</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contact_uuid</td>
+<td>The UUID for the <a href="#create-a-contact">contact.</a></td>
+</tr>
+<tr>
+<td>lading_uuid</td>
+<td>The UUID for the <a href="#create-a-create-a-lading">lading.</a></td>
+</tr>
+<tr>
+<td>good_type</td>
+<td>Type of goods.</td>
+</tr>
+<tr>
+<td>load_start</td>
+<td>Date and time the load starts.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>Date and time lading task was created.</td>
+</tr>
+<tr>
+<td>load_end</td>
+<td>Date and time the load ends.</td>
+</tr>
+<tr>
+<td>task_type</td>
+<td>Type of task.</td>
+</tr>
+</tbody></table>
+
+<h3 id="task-type-enum-int-value">Task Type Enum Int Value</h3>
+
+<table><thead>
+<tr>
+<th>Int</th>
+<th>Enum</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Shipper</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Consignee</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Consignee stop 2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Consignee stop 3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Dispatch</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Carrier</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Driver</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Payment Factor</td>
+</tr>
+</tbody></table>
+
           <h1 id="errors">Errors</h1>
 
 <aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
