@@ -923,14 +923,13 @@ This endpoint creates a contact.
     "phone_description": "",
     "phone_extension": "",
     "phone_number": ""
-    } `]`,
+    }` ]`,
 "contact_url": "",
 "contact_name_given": "",
 "contact_title": "",
 "created_by": "",
 "created": "",
 "contact_name_family": ""
-
 }`
 
 ### URL Parameters
