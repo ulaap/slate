@@ -904,7 +904,7 @@ This endpoint creates a contact.
 "contact_note": "",
 "contact_time_zone": "",
 "contact_category": "",
-"contact_addresses": [{
+"contact_addresses":` [`{
     "address_region": "", 
     "address_postal_code": "",
     "address_description": "",
@@ -915,15 +915,15 @@ This endpoint creates a contact.
     "address_extended": "",
     "address_latitude": "",
     "address_longitude": ""
-    } ],
+    }` ]`,
 "contact_type": "",
 "contact_organization": "",
-"contact_phones": [{
+"contact_phones":` [`{
     "phone_type": "",
     "phone_description": "",
     "phone_extension": "",
     "phone_number": ""
-    } ],
+    } `]`,
 "contact_url": "",
 "contact_name_given": "",
 "contact_title": "",
