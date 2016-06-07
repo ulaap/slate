@@ -111,6 +111,7 @@ You must replace <code>api_key</code> with your personal API key.
 ## Get All Ladings
 
 ```php
+<?php
 // Setup cURL
 $ch = curl_init();
 curl_setopt_array($ch, array(
@@ -134,6 +135,7 @@ die(curl_error($ch));
 
 // Decode the response
 $responseData = json_decode($response, TRUE);
+?>
 ```
 
 
@@ -261,6 +263,7 @@ You can see the integer values for lading statuses by looking under `int enum va
 ## Get a Specific Lading
 
 ```php
+<?php
 // Setup cURL
 $ch = curl_init();
 curl_setopt_array($ch, array(
@@ -284,6 +287,7 @@ die(curl_error($ch));
 
 // Decode the response
 $responseData = json_decode($response, TRUE);
+?>
 ```
 
 > The above command returns JSON structured like this:
