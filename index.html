@@ -222,29 +222,31 @@ You must replace <code>api_key</code> with your personal API key.
 <h1 id="ladings">Ladings</h1>
 
 <h2 id="get-all-ladings">Get All Ladings</h2>
-<pre class="highlight php"><code>// Setup cURL
-$ch = curl_init();
-curl_setopt_array($ch, array(
-CURLOPT_URL =&gt; "https://example.com/app/api/5/ladings_list?key={$api_key}",
-CURLOPT_SSL_VERIFYPEER =&gt; false,
-CURLOPT_SSL_VERIFYHOST =&gt; false,
-CURLOPT_RETURNTRANSFER =&gt; TRUE,
-CURLOPT_HTTPHEADER =&gt; array(
-'Content-Type: application/json'
-),
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://example.com/app/api/5/ladings_list?key=</span><span class="si">{</span><span class="nv">$api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
 
-));
+<span class="p">));</span>
 
-// Send the request
-$response = curl_exec($ch);
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
 
-// Check for errors
-if($response === FALSE){
-die(curl_error($ch));
-}
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
 
-// Decode the response
-$responseData = json_decode($response, TRUE);
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -387,29 +389,31 @@ You can see the integer values for lading statuses by looking under `int enum va
 </aside>
 
 <h2 id="get-a-specific-lading">Get a Specific Lading</h2>
-<pre class="highlight php"><code>// Setup cURL
-$ch = curl_init();
-curl_setopt_array($ch, array(
-CURLOPT_URL =&gt; "https://example.com/app/api/5/ladings/{$lading_uuid}?key={$api_key}",
-CURLOPT_SSL_VERIFYPEER =&gt; false,
-CURLOPT_SSL_VERIFYHOST =&gt; false,
-CURLOPT_RETURNTRANSFER =&gt; TRUE,
-CURLOPT_HTTPHEADER =&gt; array(
-'Content-Type: application/json'
-),
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://example.com/app/api/5/ladings/</span><span class="si">{</span><span class="nv">$lading_uuid</span><span class="si">}</span><span class="s2">?key=</span><span class="si">{</span><span class="nv">$api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
 
-));
+<span class="p">));</span>
 
-// Send the request
-$response = curl_exec($ch);
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
 
-// Check for errors
-if($response === FALSE){
-die(curl_error($ch));
-}
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
 
-// Decode the response
-$responseData = json_decode($response, TRUE);
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
