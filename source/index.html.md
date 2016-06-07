@@ -474,7 +474,7 @@ die(curl_error($ch));
 // Decode the response
 $responseData = json_decode($response, TRUE);
 
-//Get the domain UUID
+//Get the lading UUID
 $ladingUuid = $responseData['details']['0']['uuid'];
 ?>
 ```
@@ -505,43 +505,43 @@ This endpoint creates a lading.
 
 ### JSON Request Body
 
-`{
-"pay_advance": "",
-"load_pieces": "20",
-"seal_number": null,
-"equipment_options": "", 
-"rated_miles": "",
-"load_pallets": "",
-"carrier_mc": "",
-"load_length": "",
-"carrier_trailer": "", 
-"shipper_locality": "", 
-"alternate_reference": "", 
-"brokered_date": "January 24, 2014", 
-"load_special_info": "",
-"damage_note": "",
-"trip_number": "174744",
-"shipment_number": "915439",
-"load_value": "",
-"lading_number": "",
-"load_weight_actual": "",
-"payment_reference": "",
-"broker_mc": "",
-"load_start": "January 24, 2014",
-"pro_bill": "915439",
-"truckstop_post": "",
-"carrier_tractor": "",
-"lading_status": "13",
-"damage_photo": "",
-"type_of_equipment": "",
-"rate_pay": "",
-"load_weight": "294",
-"load_details": "",
-"rate_confirmation": “",
-"carrier_contact_uuid": “",
-"partial_or_full": "",
-"load_end": "January 24, 2014" 
-}`
+`{`
+`"pay_advance": "",`
+`"load_pieces": "20",`
+`"seal_number": null,`
+`"equipment_options": "",`
+`"rated_miles": "",`
+`"load_pallets": "",`
+`"carrier_mc": "",`
+`"load_length": "",`
+`"carrier_trailer": "",` 
+`"shipper_locality": "",` 
+`"alternate_reference": "",` 
+`"brokered_date": "January 24, 2014",` 
+`"load_special_info": "",`
+`"damage_note": "",`
+`"trip_number": "174744",`
+`"shipment_number": "915439",`
+`"load_value": "",`
+`"lading_number": "",`
+`"load_weight_actual": "",`
+`"payment_reference": "",`
+`"broker_mc": "",`
+`"load_start": "January 24, 2014",`
+`"pro_bill": "915439",`
+`"truckstop_post": "",`
+`"carrier_tractor": "",`
+`"lading_status": "13",`
+`"damage_photo": "",`
+`"type_of_equipment": "",`
+`"rate_pay": "",`
+`"load_weight": "294",`
+`"load_details": "",`
+`"rate_confirmation": “",`
+`"carrier_contact_uuid": “",`
+`"partial_or_full": "",`
+`"load_end": "January 24, 2014"` 
+`}`
 
 ### URL Parameters
 
