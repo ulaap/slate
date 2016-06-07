@@ -523,7 +523,7 @@ You can see the integer values for lading statuses by looking under `int enum va
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://example.com/app/api/5/ladings/&lt;lading_uuid&gt;/key=&lt;api_key&gt;</code></p>
+<p><code class="prettyprint">GET https://example.com/app/api/5/ladings/&lt;lading_uuid&gt;/?key=&lt;api_key&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -615,8 +615,9 @@ You can see the integer values for lading statuses by looking under `int enum va
 </code></pre>
 
 <blockquote>
-<p>$ladingUuid will be used when creating a <a href="#create-a-lading-task">lading task.</a>
-The above code returns JSON structured like this:</p>
+<p>$ladingUuid will be used when creating a <a href="#create-a-lading-task">lading task.</a></p>
+
+<p>The above code returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w"> 
@@ -637,7 +638,7 @@ load_pallets, carrier_mc, load_length, carrier_trailer, shipper_locality, altern
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://example.com/app/api/5/ladings/key=&lt;api_key&gt;</code></p>
+<p><code class="prettyprint">POST https://example.com/app/api/5/ladings/?key=&lt;api_key&gt;</code></p>
 
 <h3 id="json-request-body">JSON Request Body</h3>
 
@@ -945,7 +946,7 @@ You can see the integer values for lading statuses by looking under `int enum va
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://example.com/app/api/5/contacts/&lt;contact_uuid&gt;/key=&lt;api_key&gt;</code></p>
+<p><code class="prettyprint">GET https://example.com/app/api/5/contacts/&lt;contact_uuid&gt;/?key=&lt;api_key&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1033,8 +1034,9 @@ You can see the integer values for lading statuses by looking under `int enum va
 </code></pre>
 
 <blockquote>
-<p>$contactUuid will be used when creating a <a href="#create-a-lading-task">lading task.</a>
-The above code returns JSON structured like this:</p>
+<p>$contactUuid will be used when creating a <a href="#create-a-lading-task">lading task.</a></p>
+
+<p>The above code returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
@@ -1064,7 +1066,7 @@ The above code returns JSON structured like this:</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://example.com/app/api/5/contacts/key=&lt;api_key&gt;</code></p>
+<p><code class="prettyprint">POST https://example.com/app/api/5/contacts/?key=&lt;api_key&gt;</code></p>
 
 <h3 id="json-request-body">JSON Request Body</h3>
 
