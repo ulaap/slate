@@ -397,7 +397,7 @@ This endpoint retrieves a specific lading.
 
 ### HTTP Request
 
-`GET https://example.com/app/api/5/ladings/<lading_uuid>/key=<api_key>`
+`GET https://example.com/app/api/5/ladings/<lading_uuid>/?key=<api_key>`
 
 ### URL Parameters
 
@@ -479,6 +479,7 @@ $ladingUuid = $responseData['details']['0']['uuid'];
 ?>
 ```
 > $ladingUuid will be used when creating a [lading task.](#create-a-lading-task)
+
 > The above code returns JSON structured like this:
 
 ```json
@@ -501,7 +502,7 @@ This endpoint creates a lading.
 
 ### HTTP Request
 
-`POST https://example.com/app/api/5/ladings/key=<api_key>`
+`POST https://example.com/app/api/5/ladings/?key=<api_key>`
 
 ### JSON Request Body
 
@@ -784,7 +785,7 @@ This endpoint retrieves a specific contact.
 
 ### HTTP Request
 
-`GET https://example.com/app/api/5/contacts/<contact_uuid>/key=<api_key>`
+`GET https://example.com/app/api/5/contacts/<contact_uuid>/?key=<api_key>`
 
 ### URL Parameters
 
@@ -862,6 +863,7 @@ $contactUuid = $responseData['details']['0']['uuid'];
 ?>
 ```
 > $contactUuid will be used when creating a [lading task.](#create-a-lading-task)
+
 > The above code returns JSON structured like this:
 
 ```json
@@ -893,7 +895,7 @@ This endpoint creates a contact.
 
 ### HTTP Request
 
-`POST https://example.com/app/api/5/contacts/key=<api_key>`
+`POST https://example.com/app/api/5/contacts/?key=<api_key>`
 
 ### JSON Request Body
 
