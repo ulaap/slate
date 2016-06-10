@@ -346,7 +346,8 @@ You must replace <code>api_key</code> with your personal API key.
 </span><span class="nt">"partial_or_full"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"load_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-14 00:00:00"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"shipper_contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"carrier_contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="nt">"carrier_contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"load_cubes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -355,7 +356,18 @@ You must replace <code>api_key</code> with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://example.com/app/api/5/ladings_list</code></p>
+<p><code class="prettyprint">GET https://example.com/app/api/5/ladings_list/?key=&lt;api_key&gt;</code></p>
+
+<h3 id="http-request-with-query-parameters">HTTP Request With Query Parameters</h3>
+
+<p><code class="prettyprint">GET https://example.com/app/api/5/ladings_list/?key=&lt;api_key&gt;&amp;pro_bill=&lt;any_pro_bill_number&gt;</code>
+<code class="prettyprint">GET https://example.com/app/api/5/ladings_list/?key=&lt;api_key&gt;&amp;lading_status=&lt;int&gt;</code></p>
+
+<aside class="notice">
+You must replace <code>api_key</code> with your personal API key.
+You must replace <code>any_pro_bill_number</code> with a pro bill number you want to query.
+You must replace <code>int</code> with interger value of a lading status (see below).
+</aside>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -380,242 +392,6 @@ You must replace <code>api_key</code> with your personal API key.
 <td>lading_status</td>
 <td></td>
 <td>If set to a lading status integer value, it will pass all the ladings with that status.</td>
-</tr>
-</tbody></table>
-
-<h3 id="json-name-and-value-description">JSON Name and Value Description</h3>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Data Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>shipper_region</td>
-<td>text</td>
-<td>The region of the shipper</td>
-</tr>
-<tr>
-<td>consignee_name</td>
-<td>text</td>
-<td>Name of consignee</td>
-</tr>
-<tr>
-<td>pay_advance</td>
-<td>text</td>
-<td>Specifies if carrier was given an advance or had a deduction made against the &ldquo;rate payment&rdquo;</td>
-</tr>
-<tr>
-<td>lading_status_updated</td>
-<td>timestamp</td>
-<td>Date and time the lading status was updated</td>
-</tr>
-<tr>
-<td>load_pieces</td>
-<td>text</td>
-<td>Number of pieces part of load</td>
-</tr>
-<tr>
-<td>seal_number</td>
-<td>text</td>
-<td>Customer, customs or bonding seal to secure a load for transport</td>
-</tr>
-<tr>
-<td>equipment_options</td>
-<td>text</td>
-<td>Carrier using additional equipment options</td>
-</tr>
-<tr>
-<td>carrier_trailer</td>
-<td>text</td>
-<td>Trailer identifier (number) used by carrier</td>
-</tr>
-<tr>
-<td>consignee_locality</td>
-<td>text</td>
-<td>The locality of the consignee</td>
-</tr>
-<tr>
-<td>consignee_region</td>
-<td>text</td>
-<td>The region of the consignee</td>
-</tr>
-<tr>
-<td>load_pallets</td>
-<td>text</td>
-<td>Number of pallets comprising the load</td>
-</tr>
-<tr>
-<td>carrier_mc</td>
-<td>text</td>
-<td>Motor Carrier prefix registered for transportation organization (user)</td>
-</tr>
-<tr>
-<td>domain_uuid</td>
-<td>uuid</td>
-<td>UUID of the Doamin</td>
-</tr>
-<tr>
-<td>load_length</td>
-<td>text</td>
-<td>Length of load listed</td>
-</tr>
-<tr>
-<td>carrier_trailer</td>
-<td>text</td>
-<td>Trailer identifier (number) used by carrier</td>
-</tr>
-<tr>
-<td>shipper_locality</td>
-<td>text</td>
-<td>The locality of the shipper</td>
-</tr>
-<tr>
-<td>alternate_reference</td>
-<td>text</td>
-<td>An alternate reference alphanumeric for tracking tasks</td>
-</tr>
-<tr>
-<td>brokered_date</td>
-<td>text</td>
-<td>Date haulage was arranged with carrier</td>
-</tr>
-<tr>
-<td>load_special_info</td>
-<td>text</td>
-<td>Special information note related to load haulage</td>
-</tr>
-<tr>
-<td>damage_note</td>
-<td>text</td>
-<td>Description of the damage to the load being hauled</td>
-</tr>
-<tr>
-<td>trip_number</td>
-<td>text</td>
-<td>Trip number used to consolidate information for accounting purposes</td>
-</tr>
-<tr>
-<td>shipper_name</td>
-<td>text</td>
-<td>The name of the shipper</td>
-</tr>
-<tr>
-<td>consignee_contact_uuid</td>
-<td>uuid</td>
-<td>The UUID for the consignee <a href="#create-a-contact">contact</a></td>
-</tr>
-<tr>
-<td>shipment_number</td>
-<td>text</td>
-<td>Shipper / Customer designated reference number or purchase order to track load</td>
-</tr>
-<tr>
-<td>load_value</td>
-<td>text</td>
-<td>Declared Value of load for bonding purposes or export</td>
-</tr>
-<tr>
-<td>lading_number</td>
-<td>text</td>
-<td>Bill of lading reference number or alphanumeric</td>
-</tr>
-<tr>
-<td>load_weight_actual</td>
-<td>text</td>
-<td>Actual weight of load when measured</td>
-</tr>
-<tr>
-<td>payment_reference</td>
-<td>text</td>
-<td>Payment reference number or identifier used by the factoring company</td>
-</tr>
-<tr>
-<td>broker_mc</td>
-<td>text</td>
-<td>Motor Carrier prefix registered for freight broker organization (user)</td>
-</tr>
-<tr>
-<td>load_start</td>
-<td>timestamp</td>
-<td>The start or pick-up time designated for the given task or load</td>
-</tr>
-<tr>
-<td>pro_bill</td>
-<td>text</td>
-<td>Carrier Pro Bill number or Load ID number</td>
-</tr>
-<tr>
-<td>carrier_tractor</td>
-<td>text</td>
-<td>Tractor identifier (number) used by carrier</td>
-</tr>
-<tr>
-<td>lading_status</td>
-<td>int</td>
-<td>Status of lading (see Lading Status Enum Int Value table)</td>
-</tr>
-<tr>
-<td>damage_photo</td>
-<td>text</td>
-<td>Photo of load damaged during cartage</td>
-</tr>
-<tr>
-<td>user_uuid</td>
-<td>uuid</td>
-<td>UUID of user</td>
-</tr>
-<tr>
-<td>type_of_equipment</td>
-<td>text</td>
-<td>Type of trailer equipment required to haul load</td>
-</tr>
-<tr>
-<td>rate_pay</td>
-<td>text</td>
-<td>Rate paid to carrier for haulage</td>
-</tr>
-<tr>
-<td>load_weight</td>
-<td>text</td>
-<td>Weight of load listed</td>
-</tr>
-<tr>
-<td>lading_uuid</td>
-<td>uuid</td>
-<td>UUID of lading.</td>
-</tr>
-<tr>
-<td>load_details</td>
-<td>text</td>
-<td>Details or remarks regarding the content of the load (for bill of lading requirement)</td>
-</tr>
-<tr>
-<td>rate_confirmation</td>
-<td>text</td>
-<td>Rate confirmation identifier (number) used to validate haulage agreement</td>
-</tr>
-<tr>
-<td>partial_or_full</td>
-<td>text</td>
-<td>Designates if load is a full trailer or less than a trailer capacity</td>
-</tr>
-<tr>
-<td>load_end</td>
-<td>timestamp</td>
-<td>The end or final delivery time designated for the given task or load</td>
-</tr>
-<tr>
-<td>shipper_contact_uuid</td>
-<td>uuid</td>
-<td>The UUID for the shipper <a href="#create-a-contact">contact</a></td>
-</tr>
-<tr>
-<td>carrier_contact_uuid</td>
-<td>uuid</td>
-<td>The UUID for the carrier <a href="#create-a-contact">contact</a></td>
 </tr>
 </tbody></table>
 
@@ -710,6 +486,242 @@ You must replace <code>api_key</code> with your personal API key.
 <tr>
 <td>21</td>
 <td>Load Completed</td>
+</tr>
+</tbody></table>
+
+<h3 id="json-name-type-and-value-description">JSON Name, Type, and Value Description</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>alternate_reference</td>
+<td>text</td>
+<td>An alternate reference alphanumeric for tracking tasks</td>
+</tr>
+<tr>
+<td>broker_mc</td>
+<td>text</td>
+<td>Motor Carrier prefix registered for freight broker organization user</td>
+</tr>
+<tr>
+<td>brokered_date</td>
+<td>text</td>
+<td>Date haulage was arranged with carrier</td>
+</tr>
+<tr>
+<td>carrier_contact_uuid</td>
+<td>uuid</td>
+<td>The UUID for the carrier contact #create-a-contact</td>
+</tr>
+<tr>
+<td>carrier_mc</td>
+<td>text</td>
+<td>Motor Carrier prefix registered for transportation organization user</td>
+</tr>
+<tr>
+<td>carrier_tractor</td>
+<td>text</td>
+<td>Tractor identifier number used by carrier</td>
+</tr>
+<tr>
+<td>carrier_trailer</td>
+<td>text</td>
+<td>Trailer identifier number used by carrier</td>
+</tr>
+<tr>
+<td>consignee_contact_uuid</td>
+<td>uuid</td>
+<td>The UUID for the consignee contact #create-a-contact</td>
+</tr>
+<tr>
+<td>consignee_locality</td>
+<td>text</td>
+<td>The locality of the consignee</td>
+</tr>
+<tr>
+<td>consignee_name</td>
+<td>text</td>
+<td>Name of consignee</td>
+</tr>
+<tr>
+<td>consignee_region</td>
+<td>text</td>
+<td>The region of the consignee</td>
+</tr>
+<tr>
+<td>damage_note</td>
+<td>text</td>
+<td>Description of the damage to the load being hauled</td>
+</tr>
+<tr>
+<td>damage_photo</td>
+<td>text</td>
+<td>Photo of load damaged during cartage</td>
+</tr>
+<tr>
+<td>domain_uuid</td>
+<td>uuid</td>
+<td>UUID of the Doamin</td>
+</tr>
+<tr>
+<td>equipment_options</td>
+<td>text</td>
+<td>Carrier using additional equipment options</td>
+</tr>
+<tr>
+<td>lading_number</td>
+<td>text</td>
+<td>Bill of lading reference number or alphanumeric</td>
+</tr>
+<tr>
+<td>lading_status</td>
+<td>int</td>
+<td>Status of lading see Lading Status Enum Int Value table</td>
+</tr>
+<tr>
+<td>lading_status_updated</td>
+<td>timestamp</td>
+<td>Date and time the lading status was updated</td>
+</tr>
+<tr>
+<td>lading_uuid</td>
+<td>uuid</td>
+<td>UUID of lading</td>
+</tr>
+<tr>
+<td>load_cubes</td>
+<td>text</td>
+<td>Cubic foot measure of a load</td>
+</tr>
+<tr>
+<td>load_details</td>
+<td>text</td>
+<td>Details or remarks regarding the content of the load for bill of lading requirement</td>
+</tr>
+<tr>
+<td>load_end</td>
+<td>timestamp</td>
+<td>The end or final delivery time designated for the given task or load</td>
+</tr>
+<tr>
+<td>load_length</td>
+<td>text</td>
+<td>Length of load listed</td>
+</tr>
+<tr>
+<td>load_pallets</td>
+<td>text</td>
+<td>Number of pallets comprising the load</td>
+</tr>
+<tr>
+<td>load_pieces</td>
+<td>text</td>
+<td>Number of pieces part of load</td>
+</tr>
+<tr>
+<td>load_special_info</td>
+<td>text</td>
+<td>Special information note related to load haulage</td>
+</tr>
+<tr>
+<td>load_start</td>
+<td>timestamp</td>
+<td>The start or pick-up time designated for the given task or load</td>
+</tr>
+<tr>
+<td>load_value</td>
+<td>text</td>
+<td>Declared Value of load for bonding purposes or export</td>
+</tr>
+<tr>
+<td>load_weight</td>
+<td>text</td>
+<td>Weight of load listed</td>
+</tr>
+<tr>
+<td>load_weight_actual</td>
+<td>text</td>
+<td>Actual weight of load when measured</td>
+</tr>
+<tr>
+<td>partial_or_full</td>
+<td>text</td>
+<td>Designates if load is a full trailer or less than a trailer capacity</td>
+</tr>
+<tr>
+<td>pay_advance</td>
+<td>text</td>
+<td>Specifies if carrier was given an advance or had a deduction made against the &ldquo;rate payment&rdquo;</td>
+</tr>
+<tr>
+<td>payment_reference</td>
+<td>text</td>
+<td>Payment reference number or identifier used by the factoring company</td>
+</tr>
+<tr>
+<td>pro_bill</td>
+<td>text</td>
+<td>Carrier Pro Bill number or Load ID number</td>
+</tr>
+<tr>
+<td>rate_confirmation</td>
+<td>text</td>
+<td>Rate confirmation identifier number used to validate haulage agreement</td>
+</tr>
+<tr>
+<td>rate_pay</td>
+<td>text</td>
+<td>Rate paid to carrier for haulage</td>
+</tr>
+<tr>
+<td>seal_number</td>
+<td>text</td>
+<td>Customer customs or bonding seal to secure a load for transport</td>
+</tr>
+<tr>
+<td>shipment_number</td>
+<td>text</td>
+<td>Shipper / Customer designated reference number or purchase order to track load</td>
+</tr>
+<tr>
+<td>shipper_contact_uuid</td>
+<td>uuid</td>
+<td>The UUID for the shipper contact #create-a-contact</td>
+</tr>
+<tr>
+<td>shipper_locality</td>
+<td>text</td>
+<td>The locality of the shipper</td>
+</tr>
+<tr>
+<td>shipper_name</td>
+<td>text</td>
+<td>The name of the shipper</td>
+</tr>
+<tr>
+<td>shipper_region</td>
+<td>text</td>
+<td>The region of the shipper</td>
+</tr>
+<tr>
+<td>trip_number</td>
+<td>text</td>
+<td>Trip number used to consolidate information for accounting purposes</td>
+</tr>
+<tr>
+<td>type_of_equipment</td>
+<td>text</td>
+<td>Type of trailer equipment required to haul load</td>
+</tr>
+<tr>
+<td>user_uuid</td>
+<td>uuid</td>
+<td>UUID of user</td>
 </tr>
 </tbody></table>
 
@@ -868,6 +880,11 @@ You must replace <code>api_key</code> with your personal API key.
 <td>The API key</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+See JSON value, types, and descriptions of [ladings](###JSON-Name,-Type,-and-Value-Description)
+See JSON value, types, and descriptions of [lading_tasks](#error-code-definitions)
+</aside>
 
 <h2 id="create-a-lading">Create a Lading</h2>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
