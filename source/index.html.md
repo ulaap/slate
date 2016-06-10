@@ -236,7 +236,8 @@ $responseData = json_decode($response, TRUE);
 "partial_or_full": null,
 "load_end": "2015-05-14 00:00:00",
 "shipper_contact_uuid": "",
-"carrier_contact_uuid": ""
+"carrier_contact_uuid": "",
+"load_cubes": ""
 }
 ]
 ```
@@ -245,7 +246,17 @@ This endpoint retrieves all ladings.
 
 ### HTTP Request
 
-`GET https://example.com/app/api/5/ladings_list`
+`GET https://example.com/app/api/5/ladings_list/?key=<api_key>`
+
+### HTTP Request With Query Parameters
+`GET https://example.com/app/api/5/ladings_list/?key=<api_key>&pro_bill=<any_pro_bill_number>`
+`GET https://example.com/app/api/5/ladings_list/?key=<api_key>&lading_status=<int>`
+
+<aside class="notice">
+You must replace <code>api_key</code> with your personal API key.
+You must replace <code>any_pro_bill_number</code> with a pro bill number you want to query.
+You must replace <code>int</code> with interger value of a lading status (see below).
+</aside>
 
 ### Query Parameters
 
@@ -254,56 +265,6 @@ Parameter | Default | Description
 carrier_contact_uuid |  | If set to contact_uuid of a carrier, it will pass all the ladings with that carrier. 
 pro_bill |  | If set to a pro bill number, it will pass the lading with that pro bill number.
 lading_status |  | If set to a lading status integer value, it will pass all the ladings with that status.
-
-### JSON Name and Value Description
-
-Name | Data Type | Description
---------- | --------- | -----------
-shipper_region | text | The region of the shipper
-consignee_name | text | Name of consignee
-pay_advance | text | Specifies if carrier was given an advance or had a deduction made against the "rate payment"
-lading_status_updated | timestamp | Date and time the lading status was updated 
-load_pieces | text | Number of pieces part of load
-seal_number | text | Customer, customs or bonding seal to secure a load for transport
-equipment_options | text | Carrier using additional equipment options
-carrier_trailer | text | Trailer identifier (number) used by carrier
-consignee_locality | text | The locality of the consignee
-consignee_region | text | The region of the consignee
-load_pallets | text | Number of pallets comprising the load 
-carrier_mc | text | 	Motor Carrier prefix registered for transportation organization (user)
-domain_uuid | uuid | UUID of the Doamin 
-load_length | text | Length of load listed
-carrier_trailer | text | Trailer identifier (number) used by carrier
-shipper_locality | text | The locality of the shipper
-alternate_reference | text | An alternate reference alphanumeric for tracking tasks
-brokered_date | text | Date haulage was arranged with carrier 
-load_special_info | text | Special information note related to load haulage
-damage_note | text | Description of the damage to the load being hauled 
-trip_number | text | Trip number used to consolidate information for accounting purposes
-shipper_name | text | The name of the shipper
-consignee_contact_uuid | uuid | The UUID for the consignee [contact](#create-a-contact)
-shipment_number | text | Shipper / Customer designated reference number or purchase order to track load
-load_value | text | Declared Value of load for bonding purposes or export 
-lading_number | text | Bill of lading reference number or alphanumeric
-load_weight_actual | text | Actual weight of load when measured 
-payment_reference | text | Payment reference number or identifier used by the factoring company
-broker_mc | text | Motor Carrier prefix registered for freight broker organization (user)
-load_start | timestamp | The start or pick-up time designated for the given task or load
-pro_bill | text | Carrier Pro Bill number or Load ID number
-carrier_tractor | text | Tractor identifier (number) used by carrier
-lading_status | int | Status of lading (see Lading Status Enum Int Value table)
-damage_photo | text | Photo of load damaged during cartage
-user_uuid | uuid | UUID of user
-type_of_equipment | text | Type of trailer equipment required to haul load
-rate_pay | text | Rate paid to carrier for haulage
-load_weight | text | Weight of load listed
-lading_uuid | uuid | UUID of lading. 
-load_details | text | Details or remarks regarding the content of the load (for bill of lading requirement)
-rate_confirmation | text | Rate confirmation identifier (number) used to validate haulage agreement 
-partial_or_full | text | Designates if load is a full trailer or less than a trailer capacity
-load_end | timestamp | The end or final delivery time designated for the given task or load
-shipper_contact_uuid | uuid | The UUID for the shipper [contact](#create-a-contact)
-carrier_contact_uuid | uuid | The UUID for the carrier [contact](#create-a-contact)
 
 ### Lading Status Enum Int Value
 
@@ -330,6 +291,56 @@ Int | Enum
 19 | Load Scale
 20 | Load Damage
 21 | Load Completed
+
+### JSON Name, Type, and Value Description
+
+Name | Data Type | Description
+--------- | --------- | -----------
+alternate_reference | text | An alternate reference alphanumeric for tracking tasks
+broker_mc | text | Motor Carrier prefix registered for freight broker organization user 
+brokered_date | text | Date haulage was arranged with carrier 
+carrier_contact_uuid | uuid | The UUID for the carrier contact #create-a-contact 
+carrier_mc | text | Motor Carrier prefix registered for transportation organization user 
+carrier_tractor | text | Tractor identifier number used by carrier
+carrier_trailer | text | Trailer identifier number used by carrier
+consignee_contact_uuid | uuid | The UUID for the consignee contact #create-a-contact 
+consignee_locality | text | The locality of the consignee
+consignee_name | text | Name of consignee
+consignee_region | text | The region of the consignee
+damage_note | text | Description of the damage to the load being hauled 
+damage_photo | text | Photo of load damaged during cartage
+domain_uuid | uuid | UUID of the Doamin 
+equipment_options | text | Carrier using additional equipment options
+lading_number | text | Bill of lading reference number or alphanumeric
+lading_status | int | Status of lading see Lading Status Enum Int Value table 
+lading_status_updated | timestamp | Date and time the lading status was updated 
+lading_uuid | uuid | UUID of lading 
+load_cubes | text | Cubic foot measure of a load
+load_details | text | Details or remarks regarding the content of the load for bill of lading requirement 
+load_end | timestamp | The end or final delivery time designated for the given task or load
+load_length | text | Length of load listed
+load_pallets | text | Number of pallets comprising the load 
+load_pieces | text | Number of pieces part of load
+load_special_info | text | Special information note related to load haulage
+load_start | timestamp | The start or pick-up time designated for the given task or load
+load_value | text | Declared Value of load for bonding purposes or export 
+load_weight | text | Weight of load listed
+load_weight_actual | text | Actual weight of load when measured 
+partial_or_full | text | Designates if load is a full trailer or less than a trailer capacity
+pay_advance | text | Specifies if carrier was given an advance or had a deduction made against the "rate payment"
+payment_reference | text | Payment reference number or identifier used by the factoring company
+pro_bill | text | Carrier Pro Bill number or Load ID number
+rate_confirmation | text | Rate confirmation identifier number used to validate haulage agreement 
+rate_pay | text | Rate paid to carrier for haulage
+seal_number | text | Customer customs or bonding seal to secure a load for transport
+shipment_number | text | Shipper / Customer designated reference number or purchase order to track load
+shipper_contact_uuid | uuid | The UUID for the shipper contact #create-a-contact 
+shipper_locality | text | The locality of the shipper
+shipper_name | text | The name of the shipper
+shipper_region | text | The region of the shipper
+trip_number | text | Trip number used to consolidate information for accounting purposes
+type_of_equipment | text | Type of trailer equipment required to haul load
+user_uuid | uuid | UUID of user
 
 ## Get a Specific Lading
 
@@ -477,6 +488,12 @@ Parameter | Description
 --------- | -----------
 lading_uuid | The UUID of the lading to retrieve
 key | The API key
+
+<aside class="notice">
+See JSON value, types, and descriptions of [ladings](###JSON-Name,-Type,-and-Value-Description)
+See JSON value, types, and descriptions of [lading_tasks](#error-code-definitions)
+</aside>
+
 
 ## Create a Lading
 
