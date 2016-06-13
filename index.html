@@ -284,7 +284,6 @@ You must replace <code>api_key</code> with your personal API key.
 </span><span class="nt">"broker_mc"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"load_start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-04-23 00:00:00"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"pro_bill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4288109750"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"truckstop_post"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"carrier_tractor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"lading_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"damage_photo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -332,7 +331,6 @@ You must replace <code>api_key</code> with your personal API key.
 </span><span class="nt">"broker_mc"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"load_start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-08 00:00:00"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"pro_bill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1013994898"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"truckstop_post"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"carrier_tractor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"lading_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"damage_photo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -788,7 +786,6 @@ You must replace <code>int</code> with interger value of a lading status (see be
 </span><span class="nt">"broker_mc"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"load_start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-04-23 00:00:00"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"pro_bill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4288109750"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"truckstop_post"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"carrier_tractor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"lading_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"damage_photo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -914,7 +911,6 @@ See JSON value, types, and descriptions of [lading_tasks](#error-code-definition
 <span class="s1">'broker_mc'</span> <span class="o">=&gt;</span> <span class="nv">$brokerMc</span><span class="p">,</span>
 <span class="s1">'load_start'</span> <span class="o">=&gt;</span> <span class="nv">$loadStart</span><span class="p">,</span>
 <span class="s1">'pro_bill'</span> <span class="o">=&gt;</span> <span class="nv">$proBill</span><span class="p">,</span>
-<span class="s1">'truckstop_post'</span> <span class="o">=&gt;</span> <span class="nv">$truckstopPost</span><span class="p">,</span>
 <span class="s1">'carrier_tractor'</span> <span class="o">=&gt;</span> <span class="nv">$carrierTractor</span><span class="p">,</span>
 <span class="s1">'lading_status'</span> <span class="o">=&gt;</span> <span class="nv">$ladingStatus</span><span class="p">,</span>
 <span class="s1">'damage_photo'</span> <span class="o">=&gt;</span> <span class="nv">$damagePhoto</span><span class="p">,</span>
@@ -970,7 +966,7 @@ See JSON value, types, and descriptions of [lading_tasks](#error-code-definition
 </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1cf8c03c-3f1b-4ee5-ba1f-360b99519ef1"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ladings"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"sql"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT INTO v_ladings (lading_uuid, domain_uuid, pay_advance, load_pieces, seal_number, equipment_options, rated_miles,
-load_pallets, carrier_mc, load_length, carrier_trailer, shipper_locality, alternate_reference, brokered_date, load_special_info, damage_note, trip_number, shipment_number, load_value, lading_number, load_weight_actual, payment_reference, broker_mc, load_start, pro_bill, truckstop_post, carrier_tractor, lading_status, damage_photo, type_of_equipment, rate_pay, load_weight, load_details, rate_confirmation, partial_or_full, load_end) VALUES ('1cf8c03c-3f1b-4ee5-ba1f-360b99519ef1', '', '', '20', null, '', '', '', '', '', '', '', '', 'January 24, 2014', '', '', '174744', '915439', '', '', '', '', '', 'January 24, 2014', '915439', '', '', '13', '', '', '', '294', '', '', '', 'January 24, 2014');"</span><span class="p">,</span><span class="w">
+load_pallets, carrier_mc, load_length, carrier_trailer, shipper_locality, alternate_reference, brokered_date, load_special_info, damage_note, trip_number, shipment_number, load_value, lading_number, load_weight_actual, payment_reference, broker_mc, load_start, pro_bill, carrier_tractor, lading_status, damage_photo, type_of_equipment, rate_pay, load_weight, load_details, rate_confirmation, partial_or_full, load_end) VALUES ('1cf8c03c-3f1b-4ee5-ba1f-360b99519ef1', '', '', '20', null, '', '', '', '', '', '', '', '', 'January 24, 2014', '', '', '174744', '915439', '', '', '', '', '', 'January 24, 2014', '915439', '', '', '13', '', '', '', '294', '', '', '', 'January 24, 2014');"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="p">],</span><span class="w">
 </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w"> </span><span class="p">}</span><span class="w">
@@ -1009,7 +1005,6 @@ load_pallets, carrier_mc, load_length, carrier_trailer, shipper_locality, altern
 &quot;broker_mc&quot;: &quot;&quot;,
 &quot;load_start&quot;: &quot;January 24, 2014&quot;,
 &quot;pro_bill&quot;: &quot;915439&quot;,
-&quot;truckstop_post&quot;: &quot;&quot;,
 &quot;carrier_tractor&quot;: &quot;&quot;,
 &quot;lading_status&quot;: &quot;13&quot;,
 &quot;damage_photo&quot;: &quot;&quot;,
