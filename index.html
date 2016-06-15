@@ -218,6 +218,431 @@
 You must replace <code>&lt;api_key&gt;</code> with your personal API key.
 </aside>
 
+<h1 id="contacts">Contacts</h1>
+
+<h2 id="get-all-contacts">Get All Contacts</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://example.com/app/api/5/contacts?key=</span><span class="si">{</span><span class="nv">$api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
+
+<span class="p">));</span>
+
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>The above code returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_suffix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"us_dot_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_nickname"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_role"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_prefix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_organization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Organization"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_parent_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_given"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"last_mod_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"created_by"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"last_mod_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_middle"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_family"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_suffix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"us_dot_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_nickname"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_role"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_prefix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_organization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Organization 2"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_parent_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_given"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"last_mod_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"created_by"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"last_mod_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_middle"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_family"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves all contacts.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://example.com/app/api/5/contacts?key=&lt;api_key&gt;</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contact_organization</td>
+<td>null</td>
+<td>If set to name of a contact organization, it will pass the contact with that organization name.</td>
+</tr>
+<tr>
+<td>active</td>
+<td>null</td>
+<td>If set to true, it will pass all active contacts.</td>
+</tr>
+<tr>
+<td>contact_type</td>
+<td></td>
+<td>If set to a contact type integer value, it will pass all the contacts with that task type.</td>
+</tr>
+<tr>
+<td>key</td>
+<td></td>
+<td>The API Key</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+You can see the integer values for lading statuses by looking under `int enum values`.
+</aside>
+
+<h2 id="get-a-specific-contact">Get a Specific Contact</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://example.com/app/api/5/contacts/</span><span class="si">{</span><span class="nv">$contact_uuid</span><span class="si">}</span><span class="s2">?key=</span><span class="si">{</span><span class="nv">$api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
+
+<span class="p">));</span>
+
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>The above code returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"last_mod_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_relations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"contact_notes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"contact_name_prefix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"contact_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_middle"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"us_dot_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"address_label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"address_region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PQ"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"address_postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H4B 1R2"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"address_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"address_locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTREAL"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"address_street"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"address_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CANADA"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_address_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"address_extended"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"address_latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"address_longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"address_primary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"address_community"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"contact_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_nickname"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_role"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"created_by"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"last_mod_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_family"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_suffix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_parent_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"contact_organization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Organization 2"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_name_given"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_phones"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"phone_type_video"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_phone_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"phone_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"phone_label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"phone_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"phone_extension"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"phone_type_voice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"phone_type_text"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"phone_type_fax"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"phone_primary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<p>This endpoint retrieves a specific contact.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://example.com/app/api/5/contacts/&lt;contact_uuid&gt;/?key=&lt;api_key&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contact_uuid</td>
+<td>The UUID of the contact to retrieve.</td>
+</tr>
+<tr>
+<td>key</td>
+<td>The API key.</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-contact">Create a Contact</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// The data to send to the API
+</span><span class="nv">$postData</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'contact_email'</span> <span class="o">=&gt;</span> <span class="nv">$contactEmail</span><span class="p">,</span>
+<span class="s1">'contact_nickname'</span> <span class="o">=&gt;</span> <span class="nv">$contactNickname</span><span class="p">,</span>
+<span class="s1">'contact_role'</span> <span class="o">=&gt;</span> <span class="nv">$contactRole</span><span class="p">,</span>
+<span class="s1">'contact_note'</span> <span class="o">=&gt;</span> <span class="nv">$contactNote</span><span class="p">,</span> 
+<span class="s1">'contact_time_zone'</span> <span class="o">=&gt;</span> <span class="nv">$contactTimeZone</span><span class="p">,</span>
+<span class="s1">'contact_category'</span> <span class="o">=&gt;</span> <span class="nv">$contactCategory</span><span class="p">,</span>
+<span class="s1">'contact_type'</span> <span class="o">=&gt;</span> <span class="nv">$contactType</span><span class="p">,</span>
+<span class="s1">'contact_organization'</span> <span class="o">=&gt;</span> <span class="nv">$contactOrganization</span><span class="p">,</span>
+<span class="s1">'contact_url'</span> <span class="o">=&gt;</span> <span class="nv">$contactUrl</span><span class="p">,</span> 
+<span class="s1">'contact_name_given'</span> <span class="o">=&gt;</span> <span class="nv">$contactNameGiven</span><span class="p">,</span> 
+<span class="s1">'contact_title'</span> <span class="o">=&gt;</span> <span class="nv">$contactTitle</span><span class="p">,</span> 
+<span class="s1">'created_by'</span> <span class="o">=&gt;</span> <span class="nv">$createdBy</span><span class="p">,</span> 
+<span class="s1">'created'</span> <span class="o">=&gt;</span> <span class="nv">$created</span><span class="p">,</span>
+<span class="s1">'contact_name_family'</span> <span class="o">=&gt;</span> <span class="nv">$contactNameFamily</span><span class="p">,</span>
+<span class="s1">'contact_addresses'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'address_region'</span> <span class="o">=&gt;</span> <span class="nv">$addressRegion</span><span class="p">,</span>
+<span class="s1">'address_postal_code'</span> <span class="o">=&gt;</span> <span class="nv">$addressPostalCode</span><span class="p">,</span>
+<span class="s1">'address_description'</span> <span class="o">=&gt;</span> <span class="nv">$addressDescription</span><span class="p">,</span>
+<span class="s1">'address_type'</span> <span class="o">=&gt;</span> <span class="nv">$addressType</span><span class="p">,</span>
+<span class="s1">'address_locality'</span> <span class="o">=&gt;</span> <span class="nv">$addressLocality</span><span class="p">,</span>
+<span class="s1">'address_street'</span> <span class="o">=&gt;</span> <span class="nv">$addressStreet</span><span class="p">,</span>
+<span class="s1">'address_country'</span> <span class="o">=&gt;</span> <span class="nv">$addressCountry</span><span class="p">,</span>
+<span class="s1">'address_extended'</span> <span class="o">=&gt;</span> <span class="nv">$addressExtended</span><span class="p">,</span>
+<span class="s1">'address_latitude'</span> <span class="o">=&gt;</span> <span class="nv">$addressLatitude</span><span class="p">,</span>
+<span class="s1">'address_longitude'</span> <span class="o">=&gt;</span> <span class="nv">$addressLongitude</span><span class="p">),</span>
+<span class="s1">'contact_phones'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'phone_type'</span> <span class="o">=&gt;</span> <span class="nv">$phoneType</span><span class="p">,</span>
+<span class="s1">'phone_description'</span> <span class="o">=&gt;</span> <span class="nv">$phoneDescription</span><span class="p">,</span>
+<span class="s1">'phone_extension'</span> <span class="o">=&gt;</span> <span class="nv">$phoneExtension</span><span class="p">,</span>
+<span class="s1">'phone_number'</span> <span class="o">=&gt;</span> <span class="nv">$phoneNumber</span><span class="p">)</span>
+
+<span class="p">);</span>
+
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://example/app/api/5/contacts/?key={$api_key}'</span><span class="p">);</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_POST</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
+<span class="nx">CURLOPT_POSTFIELDS</span> <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$postData</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+
+<span class="c1">//Get the contact UUID
+</span><span class="nv">$contactUuid</span> <span class="o">=</span> <span class="nv">$responseData</span><span class="p">[</span><span class="s1">'details'</span><span class="p">][</span><span class="s1">'0'</span><span class="p">][</span><span class="s1">'uuid'</span><span class="p">];</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>$contactUuid will be used when creating a <a href="#create-a-lading-task">lading task.</a></p>
+
+<p>The above code returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61748b85-1f82-4dda-bdcf-1edc454cf9fe"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contacts"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"sql"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT INTO v_contacts (domain_uuid, contact_uuid, contact_email, contact_nickname, contact_role, contact_note, contact_time_zone, contact_category, contact_type, contact_organization, contact_url, contact_name_given, contact_title, created_by, created, contact_name_family) VALUES ('12fcbe40-c1f1-4e36-85bc-6f0fa0433bc2', '61748b85-1f82-4dda-bdcf-1edc454cf9fe', '', '', '', '', '', '', '', '', '', '', '', '', '', '');"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0816e85c-59e5-4068-ba95-97be48a7f052"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contact_phones"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"sql"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT INTO v_contact_phones (domain_uuid, contact_uuid, contact_phone_uuid, phone_type, phone_description, phone_extension, phone_number) VALUES ('12fcbe40-c1f1-4e36-85bc-6f0fa0433bc2', '61748b85-1f82-4dda-bdcf-1edc454cf9fe', '0816e85c-59e5-4068-ba95-97be48a7f052', '', '', '', '');"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre>
+
+<p>This endpoint creates a contact.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://example.com/app/api/5/contacts/?key=&lt;api_key&gt;</code></p>
+
+<h3 id="json-request-body">JSON Request Body</h3>
+
+<p><code class="prettyprint">{
+&quot;contact_email&quot;: &quot;&quot;,
+&quot;contact_nickname&quot;: &quot;&quot;,
+&quot;contact_role&quot;: &quot;&quot;,
+&quot;contact_note&quot;: &quot;&quot;,
+&quot;contact_time_zone&quot;: &quot;&quot;,
+&quot;contact_category&quot;: &quot;&quot;,
+&quot;contact_addresses&quot;:</code> [<code class="prettyprint">{
+&quot;address_region&quot;: &quot;&quot;, 
+&quot;address_postal_code&quot;: &quot;&quot;,
+&quot;address_description&quot;: &quot;&quot;,
+&quot;address_type&quot;: &quot;&quot;,
+&quot;address_locality&quot;: &quot;&quot;,
+&quot;address_street&quot;: &quot;&quot;,
+&quot;address_country&quot;: &quot;&quot;,
+&quot;address_extended&quot;: &quot;&quot;,
+&quot;address_latitude&quot;: &quot;&quot;,
+&quot;address_longitude&quot;: &quot;&quot;
+}</code> ]<code class="prettyprint">,
+&quot;contact_type&quot;: &quot;&quot;,
+&quot;contact_organization&quot;: &quot;&quot;,
+&quot;contact_phones&quot;:</code> [<code class="prettyprint">{
+&quot;phone_type&quot;: &quot;&quot;,
+&quot;phone_description&quot;: &quot;&quot;,
+&quot;phone_extension&quot;: &quot;&quot;,
+&quot;phone_number&quot;: &quot;&quot;
+}</code> ]<code class="prettyprint">,
+&quot;contact_url&quot;: &quot;&quot;,
+&quot;contact_name_given&quot;: &quot;&quot;,
+&quot;contact_title&quot;: &quot;&quot;,
+&quot;created_by&quot;: &quot;&quot;,
+&quot;created&quot;: &quot;&quot;,
+&quot;contact_name_family&quot;: &quot;&quot;
+}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>The API key</td>
+</tr>
+</tbody></table>
+
 <h1 id="ladings">Ladings</h1>
 
 <h2 id="get-all-ladings">Get All Ladings</h2>
@@ -1035,430 +1460,9 @@ load_pallets, carrier_mc, load_length, carrier_trailer, shipper_locality, altern
 </tr>
 </tbody></table>
 
-<h1 id="contacts">Contacts</h1>
-
-<h2 id="get-all-contacts">Get All Contacts</h2>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="c1">// Setup cURL
-</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
-<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-<span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://example.com/app/api/5/contacts?key=</span><span class="si">{</span><span class="nv">$api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
-<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
-<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
-<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
-<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-<span class="s1">'Content-Type: application/json'</span>
-<span class="p">),</span>
-
-<span class="p">));</span>
-
-<span class="c1">// Send the request
-</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
-
-<span class="c1">// Check for errors
-</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
-<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
-<span class="p">}</span>
-
-<span class="c1">// Decode the response
-</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
-<span class="cp">?&gt;</span>
-</code></pre>
-
-<blockquote>
-<p>The above code returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="nt">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_suffix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"us_dot_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_nickname"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_role"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_prefix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_organization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Organization"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_parent_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_given"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"last_mod_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"created_by"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"last_mod_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_middle"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_family"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="nt">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_suffix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"us_dot_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_nickname"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_role"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_prefix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_organization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Organization 2"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_parent_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_given"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"last_mod_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"created_by"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"last_mod_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_middle"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_family"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all contacts.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://example.com/app/api/5/contacts?key=&lt;api_key&gt;</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contact_organization</td>
-<td>null</td>
-<td>If set to name of a contact organization, it will pass the contact with that organization name.</td>
-</tr>
-<tr>
-<td>active</td>
-<td>null</td>
-<td>If set to true, it will pass all active contacts.</td>
-</tr>
-<tr>
-<td>contact_type</td>
-<td></td>
-<td>If set to a contact type integer value, it will pass all the contacts with that task type.</td>
-</tr>
-<tr>
-<td>key</td>
-<td></td>
-<td>The API Key</td>
-</tr>
-</tbody></table>
-
 <aside class="notice">
-You can see the integer values for lading statuses by looking under `int enum values`.
+See JSON value, types, and descriptions of <a href="http://ulaap.com:4567/#get-all-ladings">ladings</a>
 </aside>
-
-<h2 id="get-a-specific-contact">Get a Specific Contact</h2>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="c1">// Setup cURL
-</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
-<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-<span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://example.com/app/api/5/contacts/</span><span class="si">{</span><span class="nv">$contact_uuid</span><span class="si">}</span><span class="s2">?key=</span><span class="si">{</span><span class="nv">$api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
-<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
-<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
-<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
-<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-<span class="s1">'Content-Type: application/json'</span>
-<span class="p">),</span>
-
-<span class="p">));</span>
-
-<span class="c1">// Send the request
-</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
-
-<span class="c1">// Check for errors
-</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
-<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
-<span class="p">}</span>
-
-<span class="c1">// Decode the response
-</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
-<span class="cp">?&gt;</span>
-</code></pre>
-
-<blockquote>
-<p>The above code returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="nt">"last_mod_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"legal_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_relations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-
-</span><span class="p">],</span><span class="w">
-</span><span class="nt">"contact_notes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-
-</span><span class="p">],</span><span class="w">
-</span><span class="nt">"contact_name_prefix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-
-</span><span class="p">],</span><span class="w">
-</span><span class="nt">"contact_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-
-</span><span class="p">],</span><span class="w">
-</span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_time_zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_middle"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"us_dot_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="nt">"address_label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"address_region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PQ"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"address_postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H4B 1R2"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"address_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"address_locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTREAL"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"address_street"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"address_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CANADA"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_address_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"address_extended"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"address_latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"address_longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"address_primary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"address_community"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">],</span><span class="w">
-</span><span class="nt">"contact_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_nickname"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_role"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"created_by"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"last_mod_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_family"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-
-</span><span class="p">],</span><span class="w">
-</span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_suffix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_parent_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-
-</span><span class="p">],</span><span class="w">
-</span><span class="nt">"contact_organization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Organization 2"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_name_given"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_phones"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="nt">"phone_type_video"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_phone_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"phone_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"phone_label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"phone_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"phone_extension"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"phone_type_voice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"phone_type_text"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"phone_type_fax"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"phone_primary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
-
-<p>This endpoint retrieves a specific contact.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://example.com/app/api/5/contacts/&lt;contact_uuid&gt;/?key=&lt;api_key&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contact_uuid</td>
-<td>The UUID of the contact to retrieve.</td>
-</tr>
-<tr>
-<td>key</td>
-<td>The API key.</td>
-</tr>
-</tbody></table>
-
-<h2 id="create-a-contact">Create a Contact</h2>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-
-<span class="c1">// The data to send to the API
-</span><span class="nv">$postData</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
-<span class="s1">'contact_email'</span> <span class="o">=&gt;</span> <span class="nv">$contactEmail</span><span class="p">,</span>
-<span class="s1">'contact_nickname'</span> <span class="o">=&gt;</span> <span class="nv">$contactNickname</span><span class="p">,</span>
-<span class="s1">'contact_role'</span> <span class="o">=&gt;</span> <span class="nv">$contactRole</span><span class="p">,</span>
-<span class="s1">'contact_note'</span> <span class="o">=&gt;</span> <span class="nv">$contactNote</span><span class="p">,</span> 
-<span class="s1">'contact_time_zone'</span> <span class="o">=&gt;</span> <span class="nv">$contactTimeZone</span><span class="p">,</span>
-<span class="s1">'contact_category'</span> <span class="o">=&gt;</span> <span class="nv">$contactCategory</span><span class="p">,</span>
-<span class="s1">'contact_type'</span> <span class="o">=&gt;</span> <span class="nv">$contactType</span><span class="p">,</span>
-<span class="s1">'contact_organization'</span> <span class="o">=&gt;</span> <span class="nv">$contactOrganization</span><span class="p">,</span>
-<span class="s1">'contact_url'</span> <span class="o">=&gt;</span> <span class="nv">$contactUrl</span><span class="p">,</span> 
-<span class="s1">'contact_name_given'</span> <span class="o">=&gt;</span> <span class="nv">$contactNameGiven</span><span class="p">,</span> 
-<span class="s1">'contact_title'</span> <span class="o">=&gt;</span> <span class="nv">$contactTitle</span><span class="p">,</span> 
-<span class="s1">'created_by'</span> <span class="o">=&gt;</span> <span class="nv">$createdBy</span><span class="p">,</span> 
-<span class="s1">'created'</span> <span class="o">=&gt;</span> <span class="nv">$created</span><span class="p">,</span>
-<span class="s1">'contact_name_family'</span> <span class="o">=&gt;</span> <span class="nv">$contactNameFamily</span><span class="p">,</span>
-<span class="s1">'contact_addresses'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'address_region'</span> <span class="o">=&gt;</span> <span class="nv">$addressRegion</span><span class="p">,</span>
-    <span class="s1">'address_postal_code'</span> <span class="o">=&gt;</span> <span class="nv">$addressPostalCode</span><span class="p">,</span>
-    <span class="s1">'address_description'</span> <span class="o">=&gt;</span> <span class="nv">$addressDescription</span><span class="p">,</span>
-    <span class="s1">'address_type'</span> <span class="o">=&gt;</span> <span class="nv">$addressType</span><span class="p">,</span>
-    <span class="s1">'address_locality'</span> <span class="o">=&gt;</span> <span class="nv">$addressLocality</span><span class="p">,</span>
-    <span class="s1">'address_street'</span> <span class="o">=&gt;</span> <span class="nv">$addressStreet</span><span class="p">,</span>
-    <span class="s1">'address_country'</span> <span class="o">=&gt;</span> <span class="nv">$addressCountry</span><span class="p">,</span>
-    <span class="s1">'address_extended'</span> <span class="o">=&gt;</span> <span class="nv">$addressExtended</span><span class="p">,</span>
-    <span class="s1">'address_latitude'</span> <span class="o">=&gt;</span> <span class="nv">$addressLatitude</span><span class="p">,</span>
-    <span class="s1">'address_longitude'</span> <span class="o">=&gt;</span> <span class="nv">$addressLongitude</span><span class="p">),</span>
-<span class="s1">'contact_phones'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'phone_type'</span> <span class="o">=&gt;</span> <span class="nv">$phoneType</span><span class="p">,</span>
-    <span class="s1">'phone_description'</span> <span class="o">=&gt;</span> <span class="nv">$phoneDescription</span><span class="p">,</span>
-    <span class="s1">'phone_extension'</span> <span class="o">=&gt;</span> <span class="nv">$phoneExtension</span><span class="p">,</span>
-    <span class="s1">'phone_number'</span> <span class="o">=&gt;</span> <span class="nv">$phoneNumber</span><span class="p">)</span>
-
-<span class="p">);</span>
-
-<span class="c1">// Setup cURL
-</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://example/app/api/5/contacts/?key={$api_key}'</span><span class="p">);</span>
-<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-<span class="nx">CURLOPT_POST</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
-<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
-<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
-<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
-<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-<span class="s1">'Content-Type: application/json'</span>
-<span class="p">),</span>
-<span class="nx">CURLOPT_POSTFIELDS</span> <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$postData</span><span class="p">)</span>
-<span class="p">));</span>
-
-<span class="c1">// Send the request
-</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
-
-<span class="c1">// Check for errors
-</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
-<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
-<span class="p">}</span>
-
-<span class="c1">// Decode the response
-</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
-
-<span class="c1">//Get the contact UUID
-</span><span class="nv">$contactUuid</span> <span class="o">=</span> <span class="nv">$responseData</span><span class="p">[</span><span class="s1">'details'</span><span class="p">][</span><span class="s1">'0'</span><span class="p">][</span><span class="s1">'uuid'</span><span class="p">];</span>
-<span class="cp">?&gt;</span>
-</code></pre>
-
-<blockquote>
-<p>$contactUuid will be used when creating a <a href="#create-a-lading-task">lading task.</a></p>
-
-<p>The above code returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61748b85-1f82-4dda-bdcf-1edc454cf9fe"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contacts"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"sql"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT INTO v_contacts (domain_uuid, contact_uuid, contact_email, contact_nickname, contact_role, contact_note, contact_time_zone, contact_category, contact_type, contact_organization, contact_url, contact_name_given, contact_title, created_by, created, contact_name_family) VALUES ('12fcbe40-c1f1-4e36-85bc-6f0fa0433bc2', '61748b85-1f82-4dda-bdcf-1edc454cf9fe', '', '', '', '', '', '', '', '', '', '', '', '', '', '');"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0816e85c-59e5-4068-ba95-97be48a7f052"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contact_phones"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"sql"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT INTO v_contact_phones (domain_uuid, contact_uuid, contact_phone_uuid, phone_type, phone_description, phone_extension, phone_number) VALUES ('12fcbe40-c1f1-4e36-85bc-6f0fa0433bc2', '61748b85-1f82-4dda-bdcf-1edc454cf9fe', '0816e85c-59e5-4068-ba95-97be48a7f052', '', '', '', '');"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">],</span><span class="w">
-</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-
-</span></code></pre>
-
-<p>This endpoint creates a contact.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://example.com/app/api/5/contacts/?key=&lt;api_key&gt;</code></p>
-
-<h3 id="json-request-body">JSON Request Body</h3>
-
-<p><code class="prettyprint">{
-&quot;contact_email&quot;: &quot;&quot;,
-&quot;contact_nickname&quot;: &quot;&quot;,
-&quot;contact_role&quot;: &quot;&quot;,
-&quot;contact_note&quot;: &quot;&quot;,
-&quot;contact_time_zone&quot;: &quot;&quot;,
-&quot;contact_category&quot;: &quot;&quot;,
-&quot;contact_addresses&quot;:</code> [<code class="prettyprint">{
-    &quot;address_region&quot;: &quot;&quot;, 
-    &quot;address_postal_code&quot;: &quot;&quot;,
-    &quot;address_description&quot;: &quot;&quot;,
-    &quot;address_type&quot;: &quot;&quot;,
-    &quot;address_locality&quot;: &quot;&quot;,
-    &quot;address_street&quot;: &quot;&quot;,
-    &quot;address_country&quot;: &quot;&quot;,
-    &quot;address_extended&quot;: &quot;&quot;,
-    &quot;address_latitude&quot;: &quot;&quot;,
-    &quot;address_longitude&quot;: &quot;&quot;
-    }</code> ]<code class="prettyprint">,
-&quot;contact_type&quot;: &quot;&quot;,
-&quot;contact_organization&quot;: &quot;&quot;,
-&quot;contact_phones&quot;:</code> [<code class="prettyprint">{
-    &quot;phone_type&quot;: &quot;&quot;,
-    &quot;phone_description&quot;: &quot;&quot;,
-    &quot;phone_extension&quot;: &quot;&quot;,
-    &quot;phone_number&quot;: &quot;&quot;
-    }</code> ]<code class="prettyprint">,
-&quot;contact_url&quot;: &quot;&quot;,
-&quot;contact_name_given&quot;: &quot;&quot;,
-&quot;contact_title&quot;: &quot;&quot;,
-&quot;created_by&quot;: &quot;&quot;,
-&quot;created&quot;: &quot;&quot;,
-&quot;contact_name_family&quot;: &quot;&quot;
-}</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>key</td>
-<td>The API key</td>
-</tr>
-</tbody></table>
 
 <h1 id="lading-tasks">Lading Tasks</h1>
 
