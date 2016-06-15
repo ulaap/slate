@@ -315,6 +315,32 @@ You must replace <code>&lt;api_key&gt;</code> with your personal API key.
 
 <p><code class="prettyprint">GET https://example.com/app/api/5/contacts?key=&lt;api_key&gt;</code></p>
 
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>The API key</td>
+</tr>
+</tbody></table>
+
+<h3 id="http-request-with-query-parameters">HTTP Request With Query Parameters</h3>
+
+<p><code class="prettyprint">GET https://example.com/app/api/5/contacts/?key=&lt;api_key&gt;&amp;contact_organization=&lt;any_contact_organization_name&gt;</code>
+<code class="prettyprint">GET https://example.com/app/api/5/contacts/?key=&lt;api_key&gt;&amp;active=&lt;boolean&gt;</code>
+<code class="prettyprint">GET https://example.com/app/api/5/contacts/?key=&lt;api_key&gt;&amp;contact_type=&lt;int_for_contact_type&gt;</code></p>
+
+<aside class="notice">
+You must replace <code>&lt;api_key&gt;</code> with your personal API key.<p>
+You must replace <code>&lt;any_contact_organization_name&gt;</code> with a contact organization name you want to query.<p>
+You must replace <code>&lt;int_for_contact_type&gt;</code> with interger value of a contact type (see below).
+</aside>
+
 <h3 id="query-parameters">Query Parameters</h3>
 
 <table><thead>
@@ -336,19 +362,240 @@ You must replace <code>&lt;api_key&gt;</code> with your personal API key.
 </tr>
 <tr>
 <td>contact_type</td>
-<td></td>
+<td>null</td>
 <td>If set to a contact type integer value, it will pass all the contacts with that task type.</td>
-</tr>
-<tr>
-<td>key</td>
-<td></td>
-<td>The API Key</td>
 </tr>
 </tbody></table>
 
-<aside class="notice">
-You can see the integer values for lading statuses by looking under `int enum values`.
-</aside>
+<h3 id="contact-type-enum-int-value">Contact Type Enum Int Value</h3>
+
+<table><thead>
+<tr>
+<th>Int</th>
+<th>Enum</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Default</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Manufacturer</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Service Provider</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Contractor</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Shipper</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Receiver Consignee</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Carrier</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Payment Processor</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Vendor</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Reseller</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Distributor</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Agent</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Friend</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Family</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Volunteer</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Company Division</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Driver</td>
+</tr>
+<tr>
+<td>17</td>
+<td>APP Client</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Logistics Broker</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Customs Broker</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Customer Bill To</td>
+</tr>
+</tbody></table>
+
+<h3 id="json-name-type-and-value-description">JSON Name, Type, and Value Description</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>active</td>
+<td>boolean</td>
+<td>Determines if the contact is active</td>
+</tr>
+<tr>
+<td>contact_category</td>
+<td>text</td>
+<td>A field designated for future use and particular to phone system integration</td>
+</tr>
+<tr>
+<td>contact_email</td>
+<td>text</td>
+<td>Form of a valid email address</td>
+</tr>
+<tr>
+<td>contact_name_family</td>
+<td>text</td>
+<td>The family or last name of the contact</td>
+</tr>
+<tr>
+<td>contact_name_given</td>
+<td>text</td>
+<td>The given or first name of the contact</td>
+</tr>
+<tr>
+<td>contact_name_middle</td>
+<td>text</td>
+<td></td>
+</tr>
+<tr>
+<td>contact_name_prefix</td>
+<td>text</td>
+<td></td>
+</tr>
+<tr>
+<td>contact_name_suffix</td>
+<td>text</td>
+<td></td>
+</tr>
+<tr>
+<td>contact_nickname</td>
+<td>text</td>
+<td>A text field that can be used as a well known reference for the contact that is not a proper name</td>
+</tr>
+<tr>
+<td>contact_note</td>
+<td>text</td>
+<td>An open text field used to add a notation particular to the contact</td>
+</tr>
+<tr>
+<td>contact_organization</td>
+<td>text</td>
+<td>Proper name or business name used to identify the organization that the contact works for or is a part of</td>
+</tr>
+<tr>
+<td>contact_parent_uuid</td>
+<td>uuid</td>
+<td>UUID of the contact&rsquo;s parent</td>
+</tr>
+<tr>
+<td>contact_role</td>
+<td>text</td>
+<td>A designated &ldquo;role&rdquo; of a contact which is documented below</td>
+</tr>
+<tr>
+<td>contact_time_zone</td>
+<td>text</td>
+<td>A &ldquo;timezone&rdquo; of a contact which is documented below</td>
+</tr>
+<tr>
+<td>contact_title</td>
+<td>text</td>
+<td>A business title associated with the contact&rsquo;s position in the organization</td>
+</tr>
+<tr>
+<td>contact_type</td>
+<td>text</td>
+<td>Designation given to the contact for the purpose of grouping, sorting or filtering contacts (see above for int)</td>
+</tr>
+<tr>
+<td>contact_url</td>
+<td>text</td>
+<td>The website of the Organization that the contact is associated to</td>
+</tr>
+<tr>
+<td>contact_uuid</td>
+<td>uuid</td>
+<td>UUID of the contact</td>
+</tr>
+<tr>
+<td>created</td>
+<td>text</td>
+<td>A timestamp of when the contact record was created</td>
+</tr>
+<tr>
+<td>created_by</td>
+<td>text</td>
+<td>The capture of the API user credentials that were used to create the contact record</td>
+</tr>
+<tr>
+<td>domain_uuid</td>
+<td>uuid</td>
+<td>UUID of the domain</td>
+</tr>
+<tr>
+<td>last_mod_date</td>
+<td>text</td>
+<td></td>
+</tr>
+<tr>
+<td>last_mod_user</td>
+<td>text</td>
+<td></td>
+</tr>
+<tr>
+<td>legal_name</td>
+<td>text</td>
+<td></td>
+</tr>
+<tr>
+<td>us_dot_no</td>
+<td>text</td>
+<td></td>
+</tr>
+</tbody></table>
 
 <h2 id="get-a-specific-contact">Get a Specific Contact</h2>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
@@ -787,8 +1034,8 @@ You can see the integer values for lading statuses by looking under `int enum va
 <code class="prettyprint">GET https://example.com/app/api/5/ladings_list/?key=&lt;api_key&gt;&amp;lading_status=&lt;int&gt;</code></p>
 
 <aside class="notice">
-You must replace <code>api_key</code> with your personal API key.
-You must replace <code>any_pro_bill_number</code> with a pro bill number you want to query.
+You must replace <code>api_key</code> with your personal API key.<p>
+You must replace <code>any_pro_bill_number</code> with a pro bill number you want to query.<p>
 You must replace <code>int</code> with interger value of a lading status (see below).
 </aside>
 
