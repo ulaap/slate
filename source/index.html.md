@@ -480,7 +480,7 @@ This endpoint retrieves a specific lading.
 `GET https://example.com/app/api/5/ladings/<lading_uuid>/?key=<api_key>`
 
 <aside class="warning">
-You must replace <code>lading_uuid</code> with the UUID of the desired lading.
+You must replace <code><lading_uuid></code> with the UUID of the desired lading.
 </aside>
 
 ### URL Parameters
@@ -490,7 +490,7 @@ Parameter | Description
 key | The API key
 
 <aside class="notice">
-See JSON value, types, and descriptions of [ladings](#get-all-ladings)
+See JSON value, types, and descriptions of <a href="http://ulaap.com:4567/#get-all-ladings">ladings</a>
 </aside>
 
 <aside class="notice">
