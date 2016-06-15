@@ -101,7 +101,7 @@ Ulaap expects for the API key to be included in all API requests to the server i
 
 `?key=api_key`
 
-<aside class="notice">
+<aside class="warning">
 You must replace <code>api_key</code> with your personal API key.
 </aside>
 
@@ -480,7 +480,7 @@ This endpoint retrieves a specific lading.
 `GET https://example.com/app/api/5/ladings/<lading_uuid>/?key=<api_key>`
 
 <aside class="warning">
-Replace <lading_uuid> with the UUID of the desired lading.
+You must replace <code>lading_uuid</code> with the UUID of the desired lading.
 </aside>
 
 ### URL Parameters
