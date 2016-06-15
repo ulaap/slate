@@ -99,10 +99,10 @@ Ulaap uses API keys to allow access to the API. You can fetch your API key by pa
 
 Ulaap expects for the API key to be included in all API requests to the server in a URL parameter that looks like the following:
 
-`?key=api_key`
+`?key=<api_key>`
 
 <aside class="warning">
-You must replace <code>api_key</code> with your personal API key.
+You must replace <code>&lt;api_key&gt;</code> with your personal API key.
 </aside>
 
 # Ladings
@@ -480,7 +480,7 @@ This endpoint retrieves a specific lading.
 `GET https://example.com/app/api/5/ladings/<lading_uuid>/?key=<api_key>`
 
 <aside class="warning">
-You must replace <code>\<lading_uuid\></code> with the UUID of the desired lading.
+You must replace <code>&lt;lading_uuid&gt;</code> with the UUID of the desired lading.
 </aside>
 
 ### URL Parameters
