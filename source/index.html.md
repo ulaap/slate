@@ -480,7 +480,7 @@ This endpoint retrieves a specific lading.
 `GET https://example.com/app/api/5/ladings/<lading_uuid>/?key=<api_key>`
 
 <aside class="warning">
-Replace "<lading_uuid>" with the UUID of the desired lading.
+Replace <lading_uuid> with the UUID of the desired lading.
 </aside>
 
 ### URL Parameters
