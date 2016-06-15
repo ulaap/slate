@@ -302,9 +302,9 @@ carrier_mc | text | Motor Carrier prefix registered for transportation organizat
 carrier_tractor | text | Tractor identifier number used by carrier
 carrier_trailer | text | Trailer identifier number used by carrier
 consignee_contact_uuid | uuid | The UUID for the consignee contact #create-a-contact 
-consignee_locality | text | The locality of the consignee
+consignee_locality | text | The town, city, or community name of the consignee 
 consignee_name | text | Name of consignee
-consignee_region | text | The region of the consignee
+consignee_region | text | The state or province of the consignee
 damage_note | text | Description of the damage to the load being hauled 
 damage_photo | text | Photo of load damaged during cartage
 domain_uuid | uuid | UUID of the Doamin 
@@ -333,9 +333,9 @@ rate_pay | text | Rate paid to carrier for haulage
 seal_number | text | Customer customs or bonding seal to secure a load for transport
 shipment_number | text | Shipper / Customer designated reference number or purchase order to track load
 shipper_contact_uuid | uuid | The UUID for the shipper contact #create-a-contact 
-shipper_locality | text | The locality of the shipper
+shipper_locality | text | The town, city, or community name of the shipper
 shipper_name | text | The name of the shipper
-shipper_region | text | The region of the shipper
+shipper_region | text | The state or province of the shipper
 trip_number | text | Trip number used to consolidate information for accounting purposes
 type_of_equipment | text | Type of trailer equipment required to haul load
 user_uuid | uuid | UUID of user
@@ -410,52 +410,52 @@ $responseData = json_decode($response, TRUE);
 "damage_photo": null,
 "user_uuid": null,
 "lading_tasks": [
-{
-"signature_uuid": null,
-"domain_uuid": "",
-"task_note": null,
-"good_type": null,
-"contact_uuid": "",
-"load_start": null,
-"lading_uuid": "",
-"date": null,
-"lading_task_uuid": "",
-"load_end": null,
-"scan_document_uuid": null,
-"task_type": "1",
-"scan_uuid": null
-},
-{
-"signature_uuid": null,
-"domain_uuid": "",
-"task_note": null,
-"good_type": null,
-"contact_uuid": "",
-"load_start": null,
-"lading_uuid": "",
-"date": null,
-"lading_task_uuid": "",
-"load_end": null,
-"scan_document_uuid": null,
-"task_type": "2",
-"scan_uuid": null
-},
-{
-"signature_uuid": null,
-"domain_uuid": "",
-"task_note": null,
-"good_type": null,
-"contact_uuid": "",
-"load_start": null,
-"lading_uuid": "",
-"date": null,
-"lading_task_uuid": "",
-"load_end": null,
-"scan_document_uuid": null,
-"task_type": "6",
-"scan_uuid": null
-}
-],
+        {
+        "signature_uuid": null,
+        "domain_uuid": "",
+        "task_note": null,
+        "good_type": null,
+        "contact_uuid": "",
+        "load_start": null,
+        "lading_uuid": "",
+        "date": null,
+        "lading_task_uuid": "",
+        "load_end": null,
+        "scan_document_uuid": null,
+        "task_type": "1",
+        "scan_uuid": null
+        },
+        {
+        "signature_uuid": null,
+        "domain_uuid": "",
+        "task_note": null,
+        "good_type": null,
+        "contact_uuid": "",
+        "load_start": null,
+        "lading_uuid": "",
+        "date": null,
+        "lading_task_uuid": "",
+        "load_end": null,
+        "scan_document_uuid": null,
+        "task_type": "2",
+        "scan_uuid": null
+        },
+        {
+        "signature_uuid": null,
+        "domain_uuid": "",
+        "task_note": null,
+        "good_type": null,
+        "contact_uuid": "",
+        "load_start": null,
+        "lading_uuid": "",
+        "date": null,
+        "lading_task_uuid": "",
+        "load_end": null,
+        "scan_document_uuid": null,
+        "task_type": "6",
+        "scan_uuid": null
+        }
+                    ],
 "type_of_equipment": null,
 "rate_pay": null,
 "load_weight": "516",
@@ -479,15 +479,21 @@ This endpoint retrieves a specific lading.
 
 `GET https://example.com/app/api/5/ladings/<lading_uuid>/?key=<api_key>`
 
+<aside class="warning">
+Replace "<lading_uuid>" with the UUID of the desired lading.
+</aside>
+
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-lading_uuid | The UUID of the lading to retrieve
 key | The API key
 
 <aside class="notice">
-See JSON value, types, and descriptions of [ladings](###JSON-Name,-Type,-and-Value-Description)
+See JSON value, types, and descriptions of [ladings](#get-all-ladings)
+</aside>
+
+<aside class="notice">
 See JSON value, types, and descriptions of [lading_tasks](#error-code-definitions)
 </aside>
 
