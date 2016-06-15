@@ -213,7 +213,9 @@ key | The API key
 
 ### HTTP Request With Query Parameters
 `GET https://example.com/app/api/5/contacts/?key=<api_key>&contact_organization=<any_contact_organization_name>`
+
 `GET https://example.com/app/api/5/contacts/?key=<api_key>&active=<boolean>`
+
 `GET https://example.com/app/api/5/contacts/?key=<api_key>&contact_type=<int_for_contact_type>`
 
 <aside class="notice">
@@ -275,7 +277,7 @@ contact_parent_uuid | uuid | UUID of the contact's parent
 contact_role | text | A designated "role" of a contact which is documented below
 contact_time_zone | text | A "timezone" of a contact which is documented below
 contact_title | text | A business title associated with the contact's position in the organization
-contact_type | text | Designation given to the contact for the purpose of grouping, sorting or filtering contacts (see above for int) 
+contact_type | text | Designation given to the contact for grouping, sorting or filtering contacts (see above for int) 
 contact_url | text | The website of the Organization that the contact is associated to
 contact_uuid | uuid | UUID of the contact
 created | text | A timestamp of when the contact record was created 
@@ -709,6 +711,7 @@ This endpoint retrieves all ladings.
 
 ### HTTP Request With Query Parameters
 `GET https://example.com/app/api/5/ladings_list/?key=<api_key>&pro_bill=<any_pro_bill_number>`
+
 `GET https://example.com/app/api/5/ladings_list/?key=<api_key>&lading_status=<int>`
 
 <aside class="notice">
