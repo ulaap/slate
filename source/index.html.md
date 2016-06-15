@@ -205,18 +205,87 @@ This endpoint retrieves all contacts.
 
 `GET https://example.com/app/api/5/contacts?key=<api_key>`
 
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+key | The API key
+
+### HTTP Request With Query Parameters
+`GET https://example.com/app/api/5/contacts/?key=<api_key>&contact_organization=<any_contact_organization_name>`
+`GET https://example.com/app/api/5/contacts/?key=<api_key>&active=<boolean>`
+`GET https://example.com/app/api/5/contacts/?key=<api_key>&contact_type=<int_for_contact_type>`
+
+<aside class="notice">
+You must replace <code>&lt;api_key&gt;</code> with your personal API key.<p>
+You must replace <code>&lt;any_contact_organization_name&gt;</code> with a contact organization name you want to query.<p>
+You must replace <code>&lt;int_for_contact_type&gt;</code> with interger value of a contact type (see below).
+</aside>
+
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
 contact_organization | null | If set to name of a contact organization, it will pass the contact with that organization name. 
 active | null | If set to true, it will pass all active contacts.
-contact_type |  | If set to a contact type integer value, it will pass all the contacts with that task type.
-key |  | The API Key
+contact_type | null | If set to a contact type integer value, it will pass all the contacts with that task type.
 
-<aside class="notice">
-You can see the integer values for lading statuses by looking under `int enum values`.
-</aside>
+### Contact Type Enum Int Value
+
+Int | Enum 
+--------- | -----------
+0 | Default
+1 | Manufacturer
+2 | Service Provider
+3 | Contractor
+4 | Shipper 
+5 | Receiver Consignee
+6 | Carrier 
+7 | Payment Processor
+8 | Vendor
+9 | Reseller
+10 | Distributor
+11 | Agent
+12 | Friend
+13 | Family
+14 | Volunteer
+15 | Company Division
+16 | Driver
+17 | APP Client
+18 | Logistics Broker
+19 | Customs Broker
+20 | Customer Bill To
+
+### JSON Name, Type, and Value Description
+
+Name | Data Type | Description
+--------- | --------- | -----------
+active | boolean | Determines if the contact is active
+contact_category | text | A field designated for future use and particular to phone system integration
+contact_email | text | Form of a valid email address
+contact_name_family | text | The family or last name of the contact
+contact_name_given | text | The given or first name of the contact 
+contact_name_middle | text | 
+contact_name_prefix | text | 
+contact_name_suffix | text |  
+contact_nickname | text | A text field that can be used as a well known reference for the contact that is not a proper name
+contact_note | text | An open text field used to add a notation particular to the contact 
+contact_organization | text | Proper name or business name used to identify the organization that the contact works for or is a part of
+contact_parent_uuid | uuid | UUID of the contact's parent
+contact_role | text | A designated "role" of a contact which is documented below
+contact_time_zone | text | A "timezone" of a contact which is documented below
+contact_title | text | A business title associated with the contact's position in the organization
+contact_type | text | Designation given to the contact for the purpose of grouping, sorting or filtering contacts (see above for int) 
+contact_url | text | The website of the Organization that the contact is associated to
+contact_uuid | uuid | UUID of the contact
+created | text | A timestamp of when the contact record was created 
+created_by | text | The capture of the API user credentials that were used to create the contact record 
+domain_uuid | uuid | UUID of the domain
+last_mod_date | text | 
+last_mod_user | text |  
+legal_name | text | 
+us_dot_no | text | 
+
 
 ## Get a Specific Contact
 
@@ -643,8 +712,8 @@ This endpoint retrieves all ladings.
 `GET https://example.com/app/api/5/ladings_list/?key=<api_key>&lading_status=<int>`
 
 <aside class="notice">
-You must replace <code>api_key</code> with your personal API key.
-You must replace <code>any_pro_bill_number</code> with a pro bill number you want to query.
+You must replace <code>api_key</code> with your personal API key.<p>
+You must replace <code>any_pro_bill_number</code> with a pro bill number you want to query.<p>
 You must replace <code>int</code> with interger value of a lading status (see below).
 </aside>
 
