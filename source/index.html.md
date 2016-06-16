@@ -1020,14 +1020,8 @@ $postData = array(
 'seal_number' => NULL,
 'load_start' => NULL,
 'load_end' => NULL,
-'lading_status' => NULL,
-'shipper_name' => NULL,
-'shipper_locality' => NULL,
-'shipper_region' => NULL,
+'lading_status' => NULL
 'shipper_contact_uuid' => NULL,
-'consignee_name' => NULL,
-'consignee_locality' => NULL,
-'consignee_region' => NULL,
 'consignee_contact_uuid' => NULL,
 'user_uuid' => NULL,
 'lading_status_updated' => NULL,
@@ -1107,12 +1101,9 @@ $responseData = json_decode($response, TRUE);
 $ladingUuid = $responseData['details']['0']['uuid'];
 ?>
 ```
-> $ladingUuid will be used when creating a [lading task.](#create-a-lading-task)
-
 > The above code returns JSON structured like this:
 
 ```json
-{
 {
 "code": "200",
 "details": [
@@ -1120,7 +1111,7 @@ $ladingUuid = $responseData['details']['0']['uuid'];
 "code": "200",
 "uuid": "5948128a-3cc4-41a8-bf73-47f6ade8b849",
 "name": "ladings",
-"sql": "INSERT INTO v_ladings (lading_uuid, pro_bill, trip_number, partial_or_full, shipment_number, load_details, load_special_info, load_weight, load_weight_actual, load_length, load_pieces, load_pallets, load_value, damage_photo, damage_note, broker_mc, carrier_mc, carrier_tractor, carrier_trailer, type_of_equipment, equipment_options, rate_confirmation, rate_pay, pay_advance, brokered_date, rated_miles, payment_reference, lading_number, alternate_reference, seal_number, load_start, load_end, lading_status, shipper_name, shipper_locality, shipper_region, shipper_contact_uuid, consignee_name, consignee_locality, consignee_region, consignee_contact_uuid, user_uuid, lading_status_updated, carrier_contact_uuid, load_cubes) VALUES ('5948128a-3cc4-41a8-bf73-47f6ade8b849', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'null', null, null, 'null', null);",
+"sql": "INSERT INTO v_ladings (lading_uuid, pro_bill, trip_number, partial_or_full, shipment_number, load_details, load_special_info, load_weight, load_weight_actual, load_length, load_pieces, load_pallets, load_value, damage_photo, damage_note, broker_mc, carrier_mc, carrier_tractor, carrier_trailer, type_of_equipment, equipment_options, rate_confirmation, rate_pay, pay_advance, brokered_date, rated_miles, payment_reference, lading_number, alternate_reference, seal_number, load_start, load_end, lading_status, shipper_contact_uuid, consignee_contact_uuid, user_uuid, lading_status_updated, carrier_contact_uuid, load_cubes) VALUES ('5948128a-3cc4-41a8-bf73-47f6ade8b849', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'null', null, null, 'null', null);",
 "message": "OK"
 },
 {
@@ -1144,7 +1135,7 @@ This endpoint creates a lading.
 
 ### JSON Request Body
 
-<aside><code>{&quot;pro_bill&quot;:null,&quot;trip_number&quot;:null,&quot;partial_or_full&quot;:null,&quot;shipment_number&quot;:null,&quot;load_details&quot;:null,&quot;load_special_info&quot;:null,&quot;load_weight&quot;:null,&quot;load_weight_actual&quot;:null,&quot;load_length&quot;:null,&quot;load_pieces&quot;:null,&quot;load_pallets&quot;:null,&quot;load_value&quot;:null,&quot;damage_photo&quot;:null,&quot;damage_note&quot;:null,&quot;broker_mc&quot;:null,&quot;carrier_mc&quot;:null,&quot;carrier_tractor&quot;:null,&quot;carrier_trailer&quot;:null,&quot;type_of_equipment&quot;:null,&quot;equipment_options&quot;:null,&quot;rate_confirmation&quot;:null,&quot;rate_pay&quot;:null,&quot;pay_advance&quot;:null,&quot;brokered_date&quot;:null,&quot;rated_miles&quot;:null,&quot;payment_reference&quot;:null,&quot;lading_number&quot;:null,&quot;alternate_reference&quot;:null,&quot;seal_number&quot;:null,&quot;load_start&quot;:null,&quot;load_end&quot;:null,&quot;lading_status&quot;:null,&quot;shipper_name&quot;:null,&quot;shipper_locality&quot;:null,&quot;shipper_region&quot;:null,&quot;shipper_contact_uuid&quot;:null,&quot;consignee_name&quot;:null,&quot;consignee_locality&quot;:null,&quot;consignee_region&quot;:null,&quot;consignee_contact_uuid&quot;:null,&quot;user_uuid&quot;:null,&quot;lading_status_updated&quot;:null,&quot;carrier_contact_uuid&quot;:null,&quot;load_cubes&quot;:null,&quot;lading_tasks&quot;:[{&quot;contact_uuid&quot;:null,&quot;signature_uuid&quot;:null,&quot;scan_uuid&quot;:null,&quot;date&quot;:null,&quot;task_type&quot;:null,&quot;good_type&quot;:null,&quot;load_start&quot;:null,&quot;load_end&quot;:null,&quot;scan_document_uuid&quot;:null,&quot;task_note&quot;:null},{&quot;contact_uuid&quot;:null,&quot;signature_uuid&quot;:null,&quot;scan_uuid&quot;:null,&quot;date&quot;:null,&quot;task_type&quot;:null,&quot;good_type&quot;:null,&quot;load_start&quot;:null,&quot;load_end&quot;:null,&quot;scan_document_uuid&quot;:null,&quot;task_note&quot;:null},{&quot;contact_uuid&quot;:null,&quot;signature_uuid&quot;:null,&quot;scan_uuid&quot;:null,&quot;date&quot;:null,&quot;task_type&quot;:null,&quot;good_type&quot;:null,&quot;load_start&quot;:null,&quot;load_end&quot;:null,&quot;scan_document_uuid&quot;:null,&quot;task_note&quot;:null}],&quot;lading_logs&quot;:[]}</code></aside>
+<aside class="success"><code>{&quot;pro_bill&quot;:null,&quot;trip_number&quot;:null,&quot;partial_or_full&quot;:null,&quot;shipment_number&quot;:null,&quot;load_details&quot;:null,&quot;load_special_info&quot;:null,&quot;load_weight&quot;:null,&quot;load_weight_actual&quot;:null,&quot;load_length&quot;:null,&quot;load_pieces&quot;:null,&quot;load_pallets&quot;:null,&quot;load_value&quot;:null,&quot;damage_photo&quot;:null,&quot;damage_note&quot;:null,&quot;broker_mc&quot;:null,&quot;carrier_mc&quot;:null,&quot;carrier_tractor&quot;:null,&quot;carrier_trailer&quot;:null,&quot;type_of_equipment&quot;:null,&quot;equipment_options&quot;:null,&quot;rate_confirmation&quot;:null,&quot;rate_pay&quot;:null,&quot;pay_advance&quot;:null,&quot;brokered_date&quot;:null,&quot;rated_miles&quot;:null,&quot;payment_reference&quot;:null,&quot;lading_number&quot;:null,&quot;alternate_reference&quot;:null,&quot;seal_number&quot;:null,&quot;load_start&quot;:null,&quot;load_end&quot;:null,&quot;lading_status&quot;:null,&quot;shipper_name&quot;:null,&quot;shipper_locality&quot;:null,&quot;shipper_region&quot;:null,&quot;shipper_contact_uuid&quot;:null,&quot;consignee_name&quot;:null,&quot;consignee_locality&quot;:null,&quot;consignee_region&quot;:null,&quot;consignee_contact_uuid&quot;:null,&quot;user_uuid&quot;:null,&quot;lading_status_updated&quot;:null,&quot;carrier_contact_uuid&quot;:null,&quot;load_cubes&quot;:null,&quot;lading_tasks&quot;:[{&quot;contact_uuid&quot;:null,&quot;signature_uuid&quot;:null,&quot;scan_uuid&quot;:null,&quot;date&quot;:null,&quot;task_type&quot;:null,&quot;good_type&quot;:null,&quot;load_start&quot;:null,&quot;load_end&quot;:null,&quot;scan_document_uuid&quot;:null,&quot;task_note&quot;:null},{&quot;contact_uuid&quot;:null,&quot;signature_uuid&quot;:null,&quot;scan_uuid&quot;:null,&quot;date&quot;:null,&quot;task_type&quot;:null,&quot;good_type&quot;:null,&quot;load_start&quot;:null,&quot;load_end&quot;:null,&quot;scan_document_uuid&quot;:null,&quot;task_note&quot;:null},{&quot;contact_uuid&quot;:null,&quot;signature_uuid&quot;:null,&quot;scan_uuid&quot;:null,&quot;date&quot;:null,&quot;task_type&quot;:null,&quot;good_type&quot;:null,&quot;load_start&quot;:null,&quot;load_end&quot;:null,&quot;scan_document_uuid&quot;:null,&quot;task_note&quot;:null}],&quot;lading_logs&quot;:[]}</code></aside>
 
 ### URL Parameters
 
@@ -1154,6 +1145,10 @@ key | The API key
 
 <aside class="notice">
 See JSON value, types, and descriptions of <a href="http://ulaap.com:4567/#get-all-ladings">ladings</a>
+</aside>
+
+<aside class="warning">
+The API will automatically populate the following fields, so, they are not to be sent in the POST request body: <code>consignee_name, consignee_locality, consignee_region, shipper_name, shipper_locality, shipper_region</code>   
 </aside>
 
 
