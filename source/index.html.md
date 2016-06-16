@@ -842,7 +842,7 @@ $responseData = json_decode($response, TRUE);
 "consignee_name": null,
 "pay_advance": null,
 "lading_status_updated": null,
-"load_pieces": "3",
+"load_pieces": null,
 "seal_number": null,
 "equipment_options": null,
 "rated_miles": null,
@@ -850,84 +850,84 @@ $responseData = json_decode($response, TRUE);
 "consignee_region": null,
 "load_pallets": null,
 "carrier_mc": null,
-"domain_uuid": "",
+"domain_uuid": null,
 "load_length": null,
 "carrier_trailer": null,
 "shipper_locality": null,
-"alternate_reference": "202740-01",
+"alternate_reference": null,
 "brokered_date": null,
-"load_special_info": "Consignee notes: RECEIVING HOURS ARE FROM 7AM TO16:30PM",
+"load_special_info": null,
 "damage_note": null,
-"trip_number": "",
+"trip_number": null,
 "shipper_name": null,
-"consignee_contact_uuid": "",
+"consignee_contact_uuid": null,
 "shipment_number": null,
 "load_value": null,
-"lading_number": "",
-"load_weight_actual": "516",
+"lading_number": null,
+"load_weight_actual": null,
 "payment_reference": null,
 "broker_mc": null,
-"load_start": "2015-04-23 00:00:00",
-"pro_bill": "4288109750",
+"load_start": null,
+"pro_bill": null,
 "carrier_tractor": null,
-"lading_status": "0",
+"lading_status": null,
 "damage_photo": null,
 "user_uuid": null,
 "lading_tasks": [
         {
         "signature_uuid": null,
-        "domain_uuid": "",
+        "domain_uuid": null,
         "task_note": null,
         "good_type": null,
-        "contact_uuid": "",
+        "contact_uuid": null,
         "load_start": null,
-        "lading_uuid": "",
+        "lading_uuid": null,
         "date": null,
-        "lading_task_uuid": "",
+        "lading_task_uuid": null,
         "load_end": null,
         "scan_document_uuid": null,
-        "task_type": "1",
+        "task_type": null,
         "scan_uuid": null
         },
         {
         "signature_uuid": null,
-        "domain_uuid": "",
+        "domain_uuid": null,
         "task_note": null,
         "good_type": null,
-        "contact_uuid": "",
+        "contact_uuid": null,
         "load_start": null,
-        "lading_uuid": "",
+        "lading_uuid": null,
         "date": null,
-        "lading_task_uuid": "",
+        "lading_task_uuid": null,
         "load_end": null,
         "scan_document_uuid": null,
-        "task_type": "2",
+        "task_type": null,
         "scan_uuid": null
         },
         {
         "signature_uuid": null,
-        "domain_uuid": "",
+        "domain_uuid": null,
         "task_note": null,
         "good_type": null,
-        "contact_uuid": "",
+        "contact_uuid": null,
         "load_start": null,
-        "lading_uuid": "",
+        "lading_uuid": null,
         "date": null,
-        "lading_task_uuid": "",
+        "lading_task_uuid": null,
         "load_end": null,
         "scan_document_uuid": null,
-        "task_type": "6",
+        "task_type": null,
         "scan_uuid": null
         }
                     ],
 "type_of_equipment": null,
 "rate_pay": null,
-"load_weight": "516",
-"lading_uuid": "",
-"load_details": "PIECES-(3) MS701 SMOOTH #50175",
+"load_weight": null,
+"lading_uuid": null,
+"load_details": null,
 "rate_confirmation": null,
 "partial_or_full": null,
-"load_end": "2015-04-29 00:00:00",
+"load_end": null,
 "shipper_contact_uuid": "",
 "carrier_contact_uuid": "",
 "lading_logs": [
@@ -953,14 +953,34 @@ Parameter | Description
 --------- | -----------
 key | The API key
 
+### JSON Name, Type, and Value Description for Lading Tasks
+
+Name | Data Type | Description
+--------- | ----------- | -----------
+contact_uuid | uuid | The UUID for the [contact](#create-a-contact)
+lading_uuid | uuid | The UUID for the [lading](#create-a-lading)
+good_type | text | Type of goods
+load_start | timestamp | Date and time the load starts 
+date | timestamp | Date and time lading task was created
+load_end | timestamp | Date and time the load ends 
+task_type | text | Type of task (see below for int value)
+
+### Task Type Enum Int Value
+
+Int | Enum 
+--------- | -----------
+1 | Shipper
+2 | Consignee
+3 | Consignee stop 2
+4 | Consignee stop 3 
+5 | Dispatch
+6 | Carrier 
+7 | Driver
+8 | Payment Factor
+
 <aside class="notice">
 See JSON value, types, and descriptions of <a href="http://ulaap.com:4567/#get-all-ladings">ladings</a>
 </aside>
-
-<aside class="notice">
-See JSON value, types, and descriptions of [lading_tasks](#error-code-definitions)
-</aside>
-
 
 ## Create a Lading
 
@@ -969,42 +989,96 @@ See JSON value, types, and descriptions of [lading_tasks](#error-code-definition
 
 // The data to send to the API
 $postData = array(
-'pay_advance' => $payAdvance,
-'load_pieces' => $loadPieces,
-'seal_number' => $sealNumber,
-'equipment_options' => $equipmentOptions, 
-'rated_miles' => $ratedMiles,
-'load_pallets' => $loadPallets,
-'carrier_mc' => $carrierMc,
-'load_length' => $loadLength,
-'carrier_trailer' => $carrierTrailer, 
-'shipper_locality' => $shipperLocality, 
-'alternate_reference' => $alternateReference, 
-'brokered_date' => $brokeredDate, 
-'load_special_info' => $loadspecialInfo,
-'damage_note' => $damageNote,
-'trip_number' => $tripNumber,
-'shipment_number' => $shipmentNumber,
-'load_value' => $loadValue,
-'lading_number' => $ladingNumber,
-'load_weight_actual' => $loadWeightActual,
-'payment_reference' => $paymentReference,
-'broker_mc' => $brokerMc,
-'load_start' => $loadStart,
-'pro_bill' => $proBill,
-'carrier_tractor' => $carrierTractor,
-'lading_status' => $ladingStatus,
-'damage_photo' => $damagePhoto,
-'type_of_equipment' => $typeOfEquipment,
-'rate_pay' => $ratePay,
-'load_weight' => $loadWeight,
-'load_details' => $loadDetails,
-'rate_confirmation' => $rateConfirmation,
-'carrier_contact_uuid' => $carrierContactUuid,
-'partial_or_full' => $partialOrFull,
-'load_end' => $loadEnd 
+'pro_bill' => NULL,
+'trip_number' => NULL,
+'partial_or_full' => NULL,
+'shipment_number' => NULL,
+'load_details' => NULL,
+'load_special_info' => NULL,
+'load_weight' => NULL,
+'load_weight_actual' => NULL,
+'load_length' => NULL,
+'load_pieces' => NULL,
+'load_pallets' => NULL,
+'load_value' => NULL,
+'damage_photo' => NULL,
+'damage_note' => NULL,
+'broker_mc' => NULL,
+'carrier_mc' => NULL,
+'carrier_tractor' => NULL,
+'carrier_trailer' => NULL,
+'type_of_equipment' => NULL,
+'equipment_options' => NULL,
+'rate_confirmation' => NULL,
+'rate_pay' => NULL,
+'pay_advance' => NULL,
+'brokered_date' => NULL,
+'rated_miles' => NULL,
+'payment_reference' => NULL,
+'lading_number' => NULL,
+'alternate_reference' => NULL,
+'seal_number' => NULL,
+'load_start' => NULL,
+'load_end' => NULL,
+'lading_status' => NULL,
+'shipper_name' => NULL,
+'shipper_locality' => NULL,
+'shipper_region' => NULL,
+'shipper_contact_uuid' => NULL,
+'consignee_name' => NULL,
+'consignee_locality' => NULL,
+'consignee_region' => NULL,
+'consignee_contact_uuid' => NULL,
+'user_uuid' => NULL,
+'lading_status_updated' => NULL,
+'carrier_contact_uuid' => NULL,
+'load_cubes' => NULL,
+'lading_tasks' => 
+array (
+0 => 
+array(
+'contact_uuid' => NULL,
+'signature_uuid' => NULL,
+'scan_uuid' => NULL,
+'date' => NULL,
+'task_type' => NULL,
+'good_type' => NULL,
+'load_start' => NULL,
+'load_end' => NULL,
+'scan_document_uuid' => NULL,
+'task_note' => NULL,
+),
+1 => 
+array(
+'contact_uuid' => NULL,
+'signature_uuid' => NULL,
+'scan_uuid' => NULL,
+'date' => NULL,
+'task_type' => NULL,
+'good_type' => NULL,
+'load_start' => NULL,
+'load_end' => NULL,
+'scan_document_uuid' => NULL,
+'task_note' => NULL,
+),
+2 => 
+array(
+'contact_uuid' => NULL,
+'signature_uuid' => NULL,
+'scan_uuid' => NULL,
+'date' => NULL,
+'task_type' => NULL,
+'good_type' => NULL,
+'load_start' => NULL,
+'load_end' => NULL,
+'scan_document_uuid' => NULL,
+'task_note' => NULL,
+),
+),
+'lading_logs' => 
+array (
+),
 );
-
 // Setup cURL
 $ch = curl_init('https://example/app/api/5/ladings/?key={$api_key}');
 curl_setopt_array($ch, array(
@@ -1039,17 +1113,26 @@ $ladingUuid = $responseData['details']['0']['uuid'];
 
 ```json
 {
-"code": "200", 
+{
+"code": "200",
 "details": [
 {
 "code": "200",
-"uuid": "1cf8c03c-3f1b-4ee5-ba1f-360b99519ef1",
+"uuid": "5948128a-3cc4-41a8-bf73-47f6ade8b849",
 "name": "ladings",
-"sql": "INSERT INTO v_ladings (lading_uuid, domain_uuid, pay_advance, load_pieces, seal_number, equipment_options, rated_miles,
-load_pallets, carrier_mc, load_length, carrier_trailer, shipper_locality, alternate_reference, brokered_date, load_special_info, damage_note, trip_number, shipment_number, load_value, lading_number, load_weight_actual, payment_reference, broker_mc, load_start, pro_bill, carrier_tractor, lading_status, damage_photo, type_of_equipment, rate_pay, load_weight, load_details, rate_confirmation, partial_or_full, load_end) VALUES ('1cf8c03c-3f1b-4ee5-ba1f-360b99519ef1', '', '', '20', null, '', '', '', '', '', '', '', '', 'January 24, 2014', '', '', '174744', '915439', '', '', '', '', '', 'January 24, 2014', '915439', '', '', '13', '', '', '', '294', '', '', '', 'January 24, 2014');",
-"message": "OK" }
+"sql": "INSERT INTO v_ladings (lading_uuid, pro_bill, trip_number, partial_or_full, shipment_number, load_details, load_special_info, load_weight, load_weight_actual, load_length, load_pieces, load_pallets, load_value, damage_photo, damage_note, broker_mc, carrier_mc, carrier_tractor, carrier_trailer, type_of_equipment, equipment_options, rate_confirmation, rate_pay, pay_advance, brokered_date, rated_miles, payment_reference, lading_number, alternate_reference, seal_number, load_start, load_end, lading_status, shipper_name, shipper_locality, shipper_region, shipper_contact_uuid, consignee_name, consignee_locality, consignee_region, consignee_contact_uuid, user_uuid, lading_status_updated, carrier_contact_uuid, load_cubes) VALUES ('5948128a-3cc4-41a8-bf73-47f6ade8b849', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'null', null, null, 'null', null);",
+"message": "OK"
+},
+{
+"code": "200",
+"uuid": "d8a173ba-f326-4ebc-bb7b-a4849756e957",
+"name": "lading_tasks",
+"sql": "INSERT INTO v_lading_tasks (lading_uuid, lading_task_uuid, contact_uuid, signature_uuid, scan_uuid, date, task_type, good_type, load_start, load_end, scan_document_uuid, task_note) VALUES ('5948128a-3cc4-41a8-bf73-47f6ade8b849', 'd8a173ba-f326-4ebc-bb7b-a4849756e957', null, null, null, null, null, null, null, null, null, null);",
+"message": "OK"
+}
 ],
-"message": "OK" }
+"message": "OK"
+}
 
 ```
 
@@ -1061,42 +1144,7 @@ This endpoint creates a lading.
 
 ### JSON Request Body
 
-`{
-"pay_advance": "",
-"load_pieces": "20",
-"seal_number": null,
-"equipment_options": "", 
-"rated_miles": "",
-"load_pallets": "",
-"carrier_mc": "",
-"load_length": "",
-"carrier_trailer": "", 
-"shipper_locality": "", 
-"alternate_reference": "", 
-"brokered_date": "January 24, 2014", 
-"load_special_info": "",
-"damage_note": "",
-"trip_number": "174744",
-"shipment_number": "915439",
-"load_value": "",
-"lading_number": "",
-"load_weight_actual": "",
-"payment_reference": "",
-"broker_mc": "",
-"load_start": "January 24, 2014",
-"pro_bill": "915439",
-"carrier_tractor": "",
-"lading_status": "13",
-"damage_photo": "",
-"type_of_equipment": "",
-"rate_pay": "",
-"load_weight": "294",
-"load_details": "",
-"rate_confirmation": “",
-"carrier_contact_uuid": “",
-"partial_or_full": "",
-"load_end": "January 24, 2014" 
-}`
+<aside><code>{&quot;pro_bill&quot;:null,&quot;trip_number&quot;:null,&quot;partial_or_full&quot;:null,&quot;shipment_number&quot;:null,&quot;load_details&quot;:null,&quot;load_special_info&quot;:null,&quot;load_weight&quot;:null,&quot;load_weight_actual&quot;:null,&quot;load_length&quot;:null,&quot;load_pieces&quot;:null,&quot;load_pallets&quot;:null,&quot;load_value&quot;:null,&quot;damage_photo&quot;:null,&quot;damage_note&quot;:null,&quot;broker_mc&quot;:null,&quot;carrier_mc&quot;:null,&quot;carrier_tractor&quot;:null,&quot;carrier_trailer&quot;:null,&quot;type_of_equipment&quot;:null,&quot;equipment_options&quot;:null,&quot;rate_confirmation&quot;:null,&quot;rate_pay&quot;:null,&quot;pay_advance&quot;:null,&quot;brokered_date&quot;:null,&quot;rated_miles&quot;:null,&quot;payment_reference&quot;:null,&quot;lading_number&quot;:null,&quot;alternate_reference&quot;:null,&quot;seal_number&quot;:null,&quot;load_start&quot;:null,&quot;load_end&quot;:null,&quot;lading_status&quot;:null,&quot;shipper_name&quot;:null,&quot;shipper_locality&quot;:null,&quot;shipper_region&quot;:null,&quot;shipper_contact_uuid&quot;:null,&quot;consignee_name&quot;:null,&quot;consignee_locality&quot;:null,&quot;consignee_region&quot;:null,&quot;consignee_contact_uuid&quot;:null,&quot;user_uuid&quot;:null,&quot;lading_status_updated&quot;:null,&quot;carrier_contact_uuid&quot;:null,&quot;load_cubes&quot;:null,&quot;lading_tasks&quot;:[{&quot;contact_uuid&quot;:null,&quot;signature_uuid&quot;:null,&quot;scan_uuid&quot;:null,&quot;date&quot;:null,&quot;task_type&quot;:null,&quot;good_type&quot;:null,&quot;load_start&quot;:null,&quot;load_end&quot;:null,&quot;scan_document_uuid&quot;:null,&quot;task_note&quot;:null},{&quot;contact_uuid&quot;:null,&quot;signature_uuid&quot;:null,&quot;scan_uuid&quot;:null,&quot;date&quot;:null,&quot;task_type&quot;:null,&quot;good_type&quot;:null,&quot;load_start&quot;:null,&quot;load_end&quot;:null,&quot;scan_document_uuid&quot;:null,&quot;task_note&quot;:null},{&quot;contact_uuid&quot;:null,&quot;signature_uuid&quot;:null,&quot;scan_uuid&quot;:null,&quot;date&quot;:null,&quot;task_type&quot;:null,&quot;good_type&quot;:null,&quot;load_start&quot;:null,&quot;load_end&quot;:null,&quot;scan_document_uuid&quot;:null,&quot;task_note&quot;:null}],&quot;lading_logs&quot;:[]}</code></aside>
 
 ### URL Parameters
 
@@ -1108,118 +1156,7 @@ key | The API key
 See JSON value, types, and descriptions of <a href="http://ulaap.com:4567/#get-all-ladings">ladings</a>
 </aside>
 
-#Lading Tasks
 
-## Create a Lading Task
 
-```php
-<?php
-
-// The data to send to the API
-$postData = array(
-'contact_uuid' => $contactUuid,
-'lading_uuid' => $ladingUuid,
-'good_type' => $goodType,
-'load_start' => $loadStart, 
-'date' => $date,
-'load_end' => $loadEnd,
-'task_type' => $taskType);
-
-// Setup cURL
-$ch = curl_init('https://example/app/api/5/lading_tasks/?key={$api_key}');
-curl_setopt_array($ch, array(
-CURLOPT_POST => TRUE,
-CURLOPT_SSL_VERIFYPEER => false,
-CURLOPT_SSL_VERIFYHOST => false,
-CURLOPT_RETURNTRANSFER => TRUE,
-CURLOPT_HTTPHEADER => array(
-'Content-Type: application/json'
-),
-CURLOPT_POSTFIELDS => json_encode($postData)
-));
-
-// Send the request
-$response = curl_exec($ch);
-
-// Check for errors
-if($response === FALSE){
-die(curl_error($ch));
-}
-
-// Decode the response
-$responseData = json_decode($response, TRUE);
-
-//Get the lading_task_uuid UUID
-$ladingTaskUuid = $responseData['details']['0']['uuid'];
-?>
-```
-
-> The above code returns JSON structured like this:
-
-```json
-{
-"code": "200",
-"details": [
-{
-"code": "200",
-"uuid": "1e1e3d9b-b760-4802-a604-b1d613d9b8ef",
-"name": "lading_tasks",
-"sql": "INSERT INTO v_lading_tasks (domain_uuid, lading_task_uuid, contact_uuid, lading_uuid, good_type, load_start, date, load_end, task_type) VALUES ('', '1e1e3d9b-b760-4802-a604-b1d613d9b8ef', null, null, null, '2014-04-04 12:00:00-07', '2014-01-24 00:00:00', '2014-04-04 20:00:00-07', '1');",
-"message": "OK"
-}
-],
-"message": "OK"
-}
-
-```
-
-This endpoint creates a lading task.
-
-### HTTP Request
-
-`POST https://example.com/app/api/5/lading_tasks/key=<api_key>`
-
-### JSON Request Body
-
-`{
-"contact_uuid": null,
-"lading_uuid": null,
-"good_type": "",
-"load_start": "2014-04-04 12:00:00-07",
-"date": "2014-01-24 00:00:00",
-"load_end": "2014-04-04 20:00:00-07",
-"task_type": "1"
-}`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-key | The API key
-
-### JSON Name and Value Description
-
-Name | Description
---------- | -----------
-contact_uuid | The UUID for the [contact.](#create-a-contact)
-lading_uuid | The UUID for the [lading.](#create-a-lading)
-good_type | Type of goods.
-load_start | Date and time the load starts. 
-date | Date and time lading task was created.
-load_end | Date and time the load ends. 
-task_type | Type of task.
-
-### Task Type Enum Int Value
-
-Int | Enum 
---------- | -----------
-1 | Shipper
-2 | Consignee
-3 | Consignee stop 2
-4 | Consignee stop 3 
-5 | Dispatch
-6 | Carrier 
-7 | Driver
-8 | Payment Factor
 
 
