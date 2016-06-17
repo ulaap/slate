@@ -148,16 +148,16 @@ $responseData = json_decode($response, TRUE);
 "contact_name_suffix": null,
 "us_dot_no": null,
 "active": null,
-"domain_uuid": "",
+"domain_uuid": null,
 "contact_nickname": null,
 "contact_role": null,
 "contact_note": null,
 "contact_time_zone": null,
-"contact_uuid": "",
+"contact_uuid": null,
 "contact_category": null,
 "contact_name_prefix": null,
-"contact_type": "1",
-"contact_organization": "Example Organization",
+"contact_type": null,
+"contact_organization": null,
 "contact_url": null,
 "contact_parent_uuid": null,
 "contact_name_given": null,
@@ -175,16 +175,16 @@ $responseData = json_decode($response, TRUE);
 "contact_name_suffix": null,
 "us_dot_no": null,
 "active": null,
-"domain_uuid": "",
+"domain_uuid": null,
 "contact_nickname": null,
 "contact_role": null,
 "contact_note": null,
 "contact_time_zone": null,
-"contact_uuid": "",
+"contact_uuid": null,
 "contact_category": null,
 "contact_name_prefix": null,
-"contact_type": "2",
-"contact_organization": "Example Organization 2",
+"contact_type": null,
+"contact_organization": null,
 "contact_url": null,
 "contact_parent_uuid": null,
 "contact_name_given": null,
@@ -341,27 +341,27 @@ $responseData = json_decode($response, TRUE);
 
 ],
 "created": null,
-"contact_uuid": "",
+"contact_uuid": null,
 "contact_time_zone": null,
 "contact_name_middle": null,
 "us_dot_no": null,
 "contact_addresses": [
 {
 "address_label": null,
-"domain_uuid": "",
-"address_region": "PQ",
-"address_postal_code": "H4B 1R2",
-"contact_uuid": "",
+"domain_uuid": null,
+"address_region": null,
+"address_postal_code": null,
+"contact_uuid": null,
 "address_description": null,
 "address_type": null,
-"address_locality": "MONTREAL",
-"address_street": "",
-"address_country": "CANADA",
-"contact_address_uuid": "",
+"address_locality": null,
+"address_street": null,
+"address_country": null,
+"contact_address_uuid": null,
 "address_extended": null,
 "address_latitude": null,
 "address_longitude": null,
-"address_primary": "0",
+"address_primary": null,
 "address_community": null
 }
 ],
@@ -369,14 +369,14 @@ $responseData = json_decode($response, TRUE);
 "contact_nickname": null,
 "contact_role": null,
 "created_by": null,
-"domain_uuid": "",
+"domain_uuid": null,
 "last_mod_user": null,
 "contact_name_family": null,
 "contact_urls": [
 
 ],
 "active": null,
-"contact_type": "2",
+"contact_type": null,
 "contact_name_suffix": null,
 "contact_email": null,
 "contact_url": null,
@@ -384,23 +384,23 @@ $responseData = json_decode($response, TRUE);
 "contact_groups": [
 
 ],
-"contact_organization": "Example Organization 2",
+"contact_organization": null,
 "contact_name_given": null,
 "contact_phones": [
 {
 "phone_type_video": null,
-"domain_uuid": "",
-"contact_phone_uuid": "",
+"domain_uuid": null,
+"contact_phone_uuid": null,
 "phone_type": null,
 "phone_label": null,
-"contact_uuid": "",
+"contact_uuid": null,
 "phone_description": null,
-"phone_extension": "",
+"phone_extension": null,
 "phone_type_voice": null,
-"phone_number": "",
+"phone_number": null,
 "phone_type_text": null,
 "phone_type_fax": null,
-"phone_primary": "0"
+"phone_primary": null
 }
 ]
 }
@@ -427,36 +427,36 @@ key | The API key.
 
 // The data to send to the API
 $postData = array(
-'contact_email' => $contactEmail,
-'contact_nickname' => $contactNickname,
-'contact_role' => $contactRole,
-'contact_note' => $contactNote, 
-'contact_time_zone' => $contactTimeZone,
-'contact_category' => $contactCategory,
-'contact_type' => $contactType,
-'contact_organization' => $contactOrganization,
-'contact_url' => $contactUrl, 
-'contact_name_given' => $contactNameGiven, 
-'contact_title' => $contactTitle, 
-'created_by' => $createdBy, 
-'created' => $created,
-'contact_name_family' => $contactNameFamily,
+'contact_email' => NULL,
+'contact_nickname' => NULL,
+'contact_role' => NULL,
+'contact_note' => NULL, 
+'contact_time_zone' => NULL,
+'contact_category' => NULL,
+'contact_type' => NULL,
+'contact_organization' => NULL,
+'contact_url' => NULL, 
+'contact_name_given' => NULL, 
+'contact_title' => NULL, 
+'created_by' => NULL, 
+'created' => NULL,
+'contact_name_family' => NULL,
 'contact_addresses' => array(
-'address_region' => $addressRegion,
-'address_postal_code' => $addressPostalCode,
-'address_description' => $addressDescription,
-'address_type' => $addressType,
-'address_locality' => $addressLocality,
-'address_street' => $addressStreet,
-'address_country' => $addressCountry,
-'address_extended' => $addressExtended,
-'address_latitude' => $addressLatitude,
-'address_longitude' => $addressLongitude),
+'address_region' => NULL,
+'address_postal_code' => NULL,
+'address_description' => NULL,
+'address_type' => NULL,
+'address_locality' => NULL,
+'address_street' => NULL,
+'address_country' => NULL,
+'address_extended' => NULL,
+'address_latitude' => NULL,
+'address_longitude' => NULL),
 'contact_phones' => array(
-'phone_type' => $phoneType,
-'phone_description' => $phoneDescription,
-'phone_extension' => $phoneExtension,
-'phone_number' => $phoneNumber)
+'phone_type' => NULL,
+'phone_description' => NULL,
+'phone_extension' => NULL,
+'phone_number' => NULL)
 
 );
 
@@ -488,7 +488,7 @@ $responseData = json_decode($response, TRUE);
 $contactUuid = $responseData['details']['0']['uuid'];
 ?>
 ```
-> $contactUuid will be used when creating a [lading task.](#create-a-lading-task)
+> $contactUuid will be used when creating a [lading task.](#create-a-lading)
 
 > The above code returns JSON structured like this:
 
@@ -500,14 +500,14 @@ $contactUuid = $responseData['details']['0']['uuid'];
 "code": "200",
 "uuid": "61748b85-1f82-4dda-bdcf-1edc454cf9fe",
 "name": "contacts",
-"sql": "INSERT INTO v_contacts (domain_uuid, contact_uuid, contact_email, contact_nickname, contact_role, contact_note, contact_time_zone, contact_category, contact_type, contact_organization, contact_url, contact_name_given, contact_title, created_by, created, contact_name_family) VALUES ('12fcbe40-c1f1-4e36-85bc-6f0fa0433bc2', '61748b85-1f82-4dda-bdcf-1edc454cf9fe', '', '', '', '', '', '', '', '', '', '', '', '', '', '');",
+"sql": "INSERT INTO v_contacts (domain_uuid, contact_uuid, contact_email, contact_nickname, contact_role, contact_note, contact_time_zone, contact_category, contact_type, contact_organization, contact_url, contact_name_given, contact_title, created_by, created, contact_name_family) VALUES ('12fcbe40-c1f1-4e36-85bc-6f0fa0433bc2', '61748b85-1f82-4dda-bdcf-1edc454cf9fe', null, null, null, null, null, null, null, null, null, null, null, null, null, null);",
 "message": "OK"
 },
 {
 "code": "200",
 "uuid": "0816e85c-59e5-4068-ba95-97be48a7f052",
 "name": "contact_phones",
-"sql": "INSERT INTO v_contact_phones (domain_uuid, contact_uuid, contact_phone_uuid, phone_type, phone_description, phone_extension, phone_number) VALUES ('12fcbe40-c1f1-4e36-85bc-6f0fa0433bc2', '61748b85-1f82-4dda-bdcf-1edc454cf9fe', '0816e85c-59e5-4068-ba95-97be48a7f052', '', '', '', '');",
+"sql": "INSERT INTO v_contact_phones (domain_uuid, contact_uuid, contact_phone_uuid, phone_type, phone_description, phone_extension, phone_number) VALUES ('12fcbe40-c1f1-4e36-85bc-6f0fa0433bc2', '61748b85-1f82-4dda-bdcf-1edc454cf9fe', '0816e85c-59e5-4068-ba95-97be48a7f052', null, null, null, null);",
 "message": "OK"
 }
 ],
@@ -525,40 +525,7 @@ This endpoint creates a contact.
 
 ### JSON Request Body
 
-`{
-"contact_email": "",
-"contact_nickname": "",
-"contact_role": "",
-"contact_note": "",
-"contact_time_zone": "",
-"contact_category": "",
-"contact_addresses":` [`{
-"address_region": "", 
-"address_postal_code": "",
-"address_description": "",
-"address_type": "",
-"address_locality": "",
-"address_street": "",
-"address_country": "",
-"address_extended": "",
-"address_latitude": "",
-"address_longitude": ""
-}` ]`,
-"contact_type": "",
-"contact_organization": "",
-"contact_phones":` [`{
-"phone_type": "",
-"phone_description": "",
-"phone_extension": "",
-"phone_number": ""
-}` ]`,
-"contact_url": "",
-"contact_name_given": "",
-"contact_title": "",
-"created_by": "",
-"created": "",
-"contact_name_family": ""
-}`
+<aside class="success"><code>{&quot;contact_email&quot;:null,&quot;contact_nickname&quot;:null,&quot;contact_role&quot;:null,&quot;contact_note&quot;:null,&quot;contact_time_zone&quot;:null,&quot;contact_category&quot;:null,&quot;contact_type&quot;:null,&quot;contact_organization&quot;:null,&quot;contact_url&quot;:null,&quot;contact_name_given&quot;:null,&quot;contact_title&quot;:null,&quot;created_by&quot;:null,&quot;created&quot;:null,&quot;contact_name_family&quot;:null,&quot;contact_addresses&quot;:{&quot;address_region&quot;:null,&quot;address_postal_code&quot;:null,&quot;address_description&quot;:null,&quot;address_type&quot;:null,&quot;address_locality&quot;:null,&quot;address_street&quot;:null,&quot;address_country&quot;:null,&quot;address_extended&quot;:null,&quot;address_latitude&quot;:null,&quot;address_longitude&quot;:null},&quot;contact_phones&quot;:{&quot;phone_type&quot;:null,&quot;phone_description&quot;:null,&quot;phone_extension&quot;:null,&quot;phone_number&quot;:null}}</code></aside>
 
 ### URL Parameters
 
@@ -610,7 +577,7 @@ $responseData = json_decode($response, TRUE);
 "consignee_name": null,
 "pay_advance": null,
 "lading_status_updated": null,
-"load_pieces": "3",
+"load_pieces": null,
 "seal_number": null,
 "equipment_options": null,
 "rated_miles": null,
@@ -618,46 +585,46 @@ $responseData = json_decode($response, TRUE);
 "consignee_region": null,
 "load_pallets": null,
 "carrier_mc": null,
-"domain_uuid": "",
+"domain_uuid": null,
 "load_length": null,
 "carrier_trailer": null,
 "shipper_locality": null,
-"alternate_reference": "202740-01",
+"alternate_reference": null,
 "brokered_date": null,
-"load_special_info": "",
+"load_special_info": null,
 "damage_note": null,
-"trip_number": "",
+"trip_number": null,
 "shipper_name": null,
-"consignee_contact_uuid": "",
+"consignee_contact_uuid": null,
 "shipment_number": null,
 "load_value": null,
-"lading_number": "",
-"load_weight_actual": "516",
+"lading_number": null,
+"load_weight_actual": null,
 "payment_reference": null,
 "broker_mc": null,
-"load_start": "2015-04-23 00:00:00",
-"pro_bill": "4288109750",
+"load_start": null,
+"pro_bill": null,
 "carrier_tractor": null,
-"lading_status": "0",
+"lading_status": null,
 "damage_photo": null,
 "user_uuid": null,
 "type_of_equipment": null,
 "rate_pay": null,
-"load_weight": "516",
-"lading_uuid": "",
-"load_details": "PIECES-(3) MS701 SMOOTH #50175",
+"load_weight": null,
+"lading_uuid": null,
+"load_details": null,
 "rate_confirmation": null,
 "partial_or_full": null,
-"load_end": "2015-04-29 00:00:00",
-"shipper_contact_uuid": "",
-"carrier_contact_uuid": ""
+"load_end": null,
+"shipper_contact_uuid": null,
+"carrier_contact_uuid": null
 },
 {
 "shipper_region": null,
 "consignee_name": null,
 "pay_advance": null,
 "lading_status_updated": null,
-"load_pieces": "15",
+"load_pieces": null,
 "seal_number": null,
 "equipment_options": null,
 "rated_miles": null,
@@ -665,40 +632,40 @@ $responseData = json_decode($response, TRUE);
 "consignee_region": null,
 "load_pallets": null,
 "carrier_mc": null,
-"domain_uuid": "",
+"domain_uuid": null,
 "load_length": null,
 "carrier_trailer": null,
 "shipper_locality": null,
-"alternate_reference": "203252-01",
+"alternate_reference": null,
 "brokered_date": null,
-"load_special_info": "",
+"load_special_info": null,
 "damage_note": null,
-"trip_number": "",
+"trip_number": null,
 "shipper_name": null,
-"consignee_contact_uuid": "",
+"consignee_contact_uuid": null,
 "shipment_number": null,
 "load_value": null,
-"lading_number": "212689",
-"load_weight_actual": "83",
+"lading_number": null,
+"load_weight_actual": null,
 "payment_reference": null,
 "broker_mc": null,
-"load_start": "2015-05-08 00:00:00",
-"pro_bill": "1013994898",
+"load_start": null,
+"pro_bill": null,
 "carrier_tractor": null,
-"lading_status": "21",
+"lading_status": null,
 "damage_photo": null,
 "user_uuid": null,
 "type_of_equipment": null,
 "rate_pay": null,
-"load_weight": "83",
-"lading_uuid": "",
-"load_details": "PIECES",
+"load_weight": null,
+"lading_uuid": null,
+"load_details": null,
 "rate_confirmation": null,
 "partial_or_full": null,
-"load_end": "2015-05-14 00:00:00",
-"shipper_contact_uuid": "",
-"carrier_contact_uuid": "",
-"load_cubes": ""
+"load_end": null,
+"shipper_contact_uuid": null,
+"carrier_contact_uuid": null,
+"load_cubes": null
 }
 ]
 ```
@@ -710,6 +677,7 @@ This endpoint retrieves all ladings.
 `GET https://example.com/app/api/5/ladings_list/?key=<api_key>`
 
 ### HTTP Request With Query Parameters
+
 `GET https://example.com/app/api/5/ladings_list/?key=<api_key>&pro_bill=<any_pro_bill_number>`
 
 `GET https://example.com/app/api/5/ladings_list/?key=<api_key>&lading_status=<int>`
@@ -928,8 +896,8 @@ $responseData = json_decode($response, TRUE);
 "rate_confirmation": null,
 "partial_or_full": null,
 "load_end": null,
-"shipper_contact_uuid": "",
-"carrier_contact_uuid": "",
+"shipper_contact_uuid": null,
+"carrier_contact_uuid": null,
 "lading_logs": [
 
 ]
@@ -1148,7 +1116,7 @@ See JSON value, types, and descriptions of <a href="http://ulaap.com:4567/#get-a
 </aside>
 
 <aside class="warning">
-The API will automatically populate the following fields, so, they are not to be sent in the POST request body: <code>consignee_name, consignee_locality, consignee_region, shipper_name, shipper_locality, shipper_region</code>   
+The API will automatically populate the following fields, so, they are not to be sent in the POST request body: <code>consignee_name, consignee_locality, consignee_region, shipper_name, shipper_locality, and shipper_region</code>   
 </aside>
 
 
