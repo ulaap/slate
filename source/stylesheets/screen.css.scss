@@ -491,7 +491,7 @@ html, body {
     vertical-align: middle;
     padding-right: 0.5em;
     font-size: 14px;
-    white-space: -moz-pre-wrap;
+    overflow-wrap: break-word;
   }
 
   aside.notice:before {
