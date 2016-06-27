@@ -533,6 +533,83 @@ Parameter | Description
 --------- | -----------
 key | The API key
 
+## Update a Contact
+
+```php
+<?php
+
+// The data to send to the API
+$postData = array(
+'contact_url' => NULL
+);
+
+// Setup cURL
+$ch = curl_init('https://example/app/api/5/contacts/{$contact_uuid}?key={$api_key}');
+curl_setopt_array($ch, array(
+CURLOPT_POST => TRUE,
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+CURLOPT_POSTFIELDS => json_encode($postData)
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+
+?>
+```
+> The contact UUID of the contact to be updated will need to be passed in the URL string
+
+> The above code returns JSON structured like this:
+
+```json
+{
+"code": "200",
+"details": [
+{
+"code": "200",
+"name": "contacts",
+"sql": "UPDATE v_contacts SET contact_url = null WHERE contact_uuid = null ",
+"message": "OK"
+}
+],
+"message": "OK"
+}
+
+
+```
+
+This endpoint updates a contact.
+
+### HTTP Request
+
+`POST https://example.com/app/api/5/contacts/<contact_uuid>?key=<api_key>`
+
+### JSON Request Body
+
+<aside class="success"><code>{&quot;contact_url&quot;:null}</code></aside>
+
+<aside class="notice">
+This example JSON request body updates the "contact_url".  You can update as many or as little fields as needed
+</aside>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+contact_uuid | The UUID of the contact to update
+key | The API key
 
 
 # Ladings
@@ -1119,6 +1196,83 @@ See JSON value, types, and descriptions of <a href="http://ulaap.com:4567/#get-a
 The API will automatically populate the following fields, so, they are not to be sent in the POST request body: <code>consignee_name, consignee_locality, consignee_region, shipper_name, shipper_locality, and shipper_region</code>   
 </aside>
 
+## Update a Lading
+
+```php
+<?php
+
+// The data to send to the API
+$postData = array(
+'lading_status' => NULL
+);
+
+// Setup cURL
+$ch = curl_init('https://example/app/api/5/ladings/{$lading_uuid}?key={$api_key}');
+curl_setopt_array($ch, array(
+CURLOPT_POST => TRUE,
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+CURLOPT_POSTFIELDS => json_encode($postData)
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+
+?>
+```
+> The lading UUID of the lading to be updated will need to be passed in the URL string
+
+> The above code returns JSON structured like this:
+
+```json
+{
+"code": "200",
+"details": [
+{
+"code": "200",
+"name": "contacts",
+"sql": "UPDATE v_ladings SET lading_status = null WHERE lading_uuid = null ",
+"message": "OK"
+}
+],
+"message": "OK"
+}
+
+
+```
+
+This endpoint updates a lading.
+
+### HTTP Request
+
+`POST https://example.com/app/api/5/ladings/<lading_uuid>?key=<api_key>`
+
+### JSON Request Body
+
+<aside class="success"><code>{&quot;lading_status&quot;:null}</code></aside>
+
+<aside class="notice">
+This example JSON request body updates the "lading_status".  You can update as many or as little fields as needed
+</aside>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+lading_uuid | The UUID of the lading to update
+key | The API key
 
 
 
