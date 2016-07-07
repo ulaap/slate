@@ -1275,5 +1275,498 @@ lading_uuid | The UUID of the lading to update
 key | The API key
 
 
+# Documents
+
+## Get All Documents
+
+```php
+<?php
+// Setup cURL
+$ch = curl_init();
+curl_setopt_array($ch, array(
+CURLOPT_URL => "https://example.com/app/api/5/scan_documents?key={$api_key}",
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+?>
+```
 
 
+> The above code returns JSON structured like this:
+
+```json
+[
+{
+"domain_uuid": null,
+"scan_document_uuid": null,
+"scan": null,
+"scan_type": null,
+"latitude": null,
+"longitude": null,
+"date": null,
+"lading_task_uuid": null
+},
+{
+"domain_uuid": null,
+"scan_document_uuid": null,
+"scan": null,
+"scan_type": null,
+"latitude": null,
+"longitude": null,
+"date": null,
+"lading_task_uuid": null
+}
+]
+```
+
+This endpoint retrieves all documents.
+
+### HTTP Request
+
+`GET https://example.com/app/api/5/scan_documents?key=<api_key>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+key | The API key
+
+### HTTP Request With Query Parameters
+`GET https://example.com/app/api/5/scan_documents/?key=<api_key>&lading_task_uuid=<lading_task_uuid>`
+
+
+<aside class="notice">
+You must replace <code>&lt;api_key&gt;</code> with your personal API key.<p>
+You must replace <code>&lt;lading_task_uuid&gt;</code> with a lading task UUID you want to query.<p>
+</aside>
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+lading_task_uuid | uuid | If set to a lading task UUID, it will return all docuemtns for that task. 
+
+
+### JSON Name, Type, and Value Description
+
+Name | Data Type | Description
+--------- | --------- | -----------
+date | text | Date of scanned document 
+domain_uuid | uuid | UUID of domain
+lading_task_uuid | uuid | UUID of the lading task
+latitude | text | Latitude of where the document was scanned
+longitude | text | Longitude of where the document was scanned
+scan | text | Base64 encoded string of a scanned document image
+scan_document_uuid | uuid | UUID of the scanned document 
+scan_type | text |  Type of scanned docuemnt 
+
+
+## Get a Specific Document
+
+```php
+<?php
+// Setup cURL
+$ch = curl_init();
+curl_setopt_array($ch, array(
+CURLOPT_URL => "https://example.com/app/api/5/scan_documents/{$scan_document_uuid}?key={$api_key}",
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+?>
+```
+
+> The above code returns JSON structured like this:
+
+```json
+{
+"domain_uuid": null,
+"scan_document_uuid": null,
+"scan": null,
+"scan_type": null,
+"latitude": null,
+"longitude": null,
+"date": null,
+"lading_task_uuid": null
+}
+
+```
+
+This endpoint retrieves a specific document.
+
+### HTTP Request
+
+`GET https://example.com/app/api/5/scan_documents/<scan_document_uuid>/?key=<api_key>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+scan_document_uuid | The UUID of the document to retrieve.
+key | The API key.
+
+
+## Create a Document
+
+```php
+<?php
+
+// The data to send to the API
+$postData = array(
+'scan' => NULL,  //Base64 encoded string of a document image
+'scan_type' => NULL,
+'latitude' => NULL,
+'longitude' => NULL,
+'date' => NULL,
+'lading_task_uuid' => NULL);
+// Setup cURL
+$ch = curl_init('https://example/app/api/5/scan_documents/?key={$api_key}');
+curl_setopt_array($ch, array(
+CURLOPT_POST => TRUE,
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+CURLOPT_POSTFIELDS => json_encode($postData)
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+
+//Get the scan document UUID
+$scanDocumentUuid = $responseData['details']['0']['uuid'];
+?>
+```
+> The above code returns JSON structured like this:
+
+```json
+{
+"code": "200",
+"details": [
+{
+"code": "200",
+"uuid": "e1002f65-4e36-41a8-bf73-6f0fade8b849",
+"name": "scan_documents",
+"sql": "INSERT INTO v_scan_documents (scan_document_uuid, scan, scan_type, latitude, longitude, date, lading_task_uuid) VALUES ('e1002f65-4e36-41a8-bf73-6f0fade8b849', null, null, null, null, null, null);",
+"message": "OK"
+}
+
+```
+
+This endpoint creates a document.
+
+### HTTP Request
+
+`POST https://example.com/app/api/5/scan_documents/?key=<api_key>`
+
+### JSON Request Body
+
+<aside class="success"><code>{&quot;scan&quot;:null,&quot;scan_type&quot;:null,&quot;latitude&quot;:null,&quot;longitude&quot;:null,&quot;date&quot;:null,&quot;lading_task_uuid&quot;:null}</code></aside>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+key | The API key
+
+<aside class="notice">
+The "lading_task_uuid" must contain the uuid of the lading task to attach the document to
+</aside>
+
+<aside class="warning">
+"scan" must be a Base64 encoded string that represents the scanned document image</code>   
+</aside>
+
+# Signatures
+
+## Get All Signatures
+
+```php
+<?php
+// Setup cURL
+$ch = curl_init();
+curl_setopt_array($ch, array(
+CURLOPT_URL => "https://example.com/app/api/5/signatures?key={$api_key}",
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+?>
+```
+
+
+> The above code returns JSON structured like this:
+
+```json
+[
+{
+"domain_uuid": null,
+"signature_uuid": null,
+"signature_capture": null,
+"signature_type": null,
+"signatory": null,
+"latitude": null,
+"longitude": null,
+"date": null,
+"user_uuid": null,
+"lading_task_uuid": null
+},
+{
+"domain_uuid": null,
+"signature_uuid": null,
+"signature_capture": null,
+"signature_type": null,
+"signatory": null,
+"latitude": null,
+"longitude": null,
+"date": null,
+"user_uuid": null,
+"lading_task_uuid": null
+}
+]
+```
+
+This endpoint retrieves all signatures.
+
+### HTTP Request
+
+`GET https://example.com/app/api/5/signatures?key=<api_key>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+key | The API key
+
+### HTTP Request With Query Parameters
+`GET https://example.com/app/api/5/signatures/?key=<api_key>&lading_task_uuid=<lading_task_uuid>`
+
+
+<aside class="notice">
+You must replace <code>&lt;api_key&gt;</code> with your personal API key.<p>
+You must replace <code>&lt;lading_task_uuid&gt;</code> with a lading task UUID you want to query.<p>
+</aside>
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+lading_task_uuid | uuid | If set to a lading task UUID, it will return the signature for that task. 
+
+
+### JSON Name, Type, and Value Description
+
+Name | Data Type | Description
+--------- | --------- | -----------
+date | text | Date of signature
+domain_uuid | uuid | UUID of domain
+lading_task_uuid | uuid | UUID of the lading task
+latitude | text | Latitude of where the scan took place
+longitude | text | Longitude of where the scan took place
+signatory | text | Text representation of the signature
+signature_capture | text | Base64 encoded string of a signature image
+signature_type | text |  Type of signature
+signature_uuid | uuid | UUID of the signature
+user_uuid| uuid | UUID of user (not used at the moment)
+
+## Get a Specific Signature
+
+```php
+<?php
+// Setup cURL
+$ch = curl_init();
+curl_setopt_array($ch, array(
+CURLOPT_URL => "https://example.com/app/api/5/signatures/{$signature_uuid}?key={$api_key}",
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+?>
+```
+
+> The above code returns JSON structured like this:
+
+```json
+{
+"domain_uuid": null,
+"signature_uuid": null,
+"signature_capture": null,
+"signature_type": null,
+"signatory": null,
+"latitude": null,
+"longitude": null,
+"date": null,
+"user_uuid": null,
+"lading_task_uuid": null
+}
+
+```
+
+This endpoint retrieves a specific signature.
+
+### HTTP Request
+
+`GET https://example.com/app/api/5/signatures/<signature_uuid>/?key=<api_key>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+signature_uuid | The UUID of the signature to retrieve.
+key | The API key.
+
+
+## Create a Signature
+
+```php
+<?php
+
+// The data to send to the API
+$postData = array(
+'signature_capture' => NULL,  //Base64 encoded string of a document image
+'signature_type' => NULL,
+'signatory' => NULL,
+'latitude' => NULL,
+'longitude' => NULL,
+'date' => NULL,
+'user_uuid' => NULL,
+'lading_task_uuid' => NULL);
+
+// Setup cURL
+$ch = curl_init('https://example/app/api/5/signatures/?key={$api_key}');
+curl_setopt_array($ch, array(
+CURLOPT_POST => TRUE,
+CURLOPT_SSL_VERIFYPEER => false,
+CURLOPT_SSL_VERIFYHOST => false,
+CURLOPT_RETURNTRANSFER => TRUE,
+CURLOPT_HTTPHEADER => array(
+'Content-Type: application/json'
+),
+CURLOPT_POSTFIELDS => json_encode($postData)
+));
+
+// Send the request
+$response = curl_exec($ch);
+
+// Check for errors
+if($response === FALSE){
+die(curl_error($ch));
+}
+
+// Decode the response
+$responseData = json_decode($response, TRUE);
+
+//Get the signature UUID
+$signatureUuid = $responseData['details']['0']['uuid'];
+?>
+```
+> The above code returns JSON structured like this:
+
+```json
+{
+"code": "200",
+"details": [
+{
+"code": "200",
+"uuid": "14a32f65-0f71-41a8-bf73-6f0fadeb055a",
+"name": "scan_documents",
+"sql": "INSERT INTO v_scan_documents (signature_uuid, signature_capture, signature_type, signatory, latitude, longitude, date, user_uuid, lading_task_uuid ) VALUES ('14a32f65-0f71-41a8-bf73-6f0fadeb055a', null, null, null, null, null, null, null, null);",
+"message": "OK"
+}
+
+```
+
+This endpoint creates a signature.
+
+### HTTP Request
+
+`POST https://example.com/app/api/5/signatures/?key=<api_key>`
+
+### JSON Request Body
+
+<aside class="success"><code>{ &quot;signature_capture&quot;:null, &quot;signature_type&quot;:null, &quot;signatory&quot;:null, &quot;latitude&quot;:null, &quot;longitude&quot;:null, &quot;date&quot;:null, &quot;user_uuid&quot;:null, &quot;lading_task_uuid&quot;:null }</code></aside>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+key | The API key
+
+<aside class="notice">
+The "lading_task_uuid" must contain the uuid of the lading task to attach the signature to
+</aside>
+
+<aside class="warning">
+"signature_capture" must be a Base64 encoded string that represents the scanned document image</code>   
+</aside>
