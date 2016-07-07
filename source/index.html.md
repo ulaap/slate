@@ -1740,8 +1740,8 @@ $signatureUuid = $responseData['details']['0']['uuid'];
 {
 "code": "200",
 "uuid": "14a32f65-0f71-41a8-bf73-6f0fadeb055a",
-"name": "scan_documents",
-"sql": "INSERT INTO v_scan_documents (signature_uuid, signature_capture, signature_type, signatory, latitude, longitude, date, user_uuid, lading_task_uuid ) VALUES ('14a32f65-0f71-41a8-bf73-6f0fadeb055a', null, null, null, null, null, null, null, null);",
+"name": "signatures",
+"sql": "INSERT INTO v_signatures (signature_uuid, signature_capture, signature_type, signatory, latitude, longitude, date, user_uuid, lading_task_uuid ) VALUES ('14a32f65-0f71-41a8-bf73-6f0fadeb055a', null, null, null, null, null, null, null, null);",
 "message": "OK"
 }
 
