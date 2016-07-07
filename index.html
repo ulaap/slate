@@ -1964,6 +1964,643 @@ This example JSON request body updates the &ldquo;lading_status&rdquo;.  You can
 </tr>
 </tbody></table>
 
+<h1 id="documents">Documents</h1>
+
+<h2 id="get-all-documents">Get All Documents</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://example.com/app/api/5/scan_documents?key=</span><span class="si">{</span><span class="nv">$api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
+
+<span class="p">));</span>
+
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>The above code returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"scan_document_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"scan"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"scan_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"lading_task_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"scan_document_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"scan"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"scan_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"lading_task_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves all documents.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://example.com/app/api/5/scan_documents?key=&lt;api_key&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>The API key</td>
+</tr>
+</tbody></table>
+
+<h3 id="http-request-with-query-parameters">HTTP Request With Query Parameters</h3>
+
+<p><code class="prettyprint">GET https://example.com/app/api/5/scan_documents/?key=&lt;api_key&gt;&amp;lading_task_uuid=&lt;lading_task_uuid&gt;</code></p>
+
+<aside class="notice">
+You must replace <code>&lt;api_key&gt;</code> with your personal API key.<p>
+You must replace <code>&lt;lading_task_uuid&gt;</code> with a lading task UUID you want to query.<p>
+</aside>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lading_task_uuid</td>
+<td>uuid</td>
+<td>If set to a lading task UUID, it will return all docuemtns for that task.</td>
+</tr>
+</tbody></table>
+
+<h3 id="json-name-type-and-value-description">JSON Name, Type, and Value Description</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date</td>
+<td>text</td>
+<td>Date of scanned document</td>
+</tr>
+<tr>
+<td>domain_uuid</td>
+<td>uuid</td>
+<td>UUID of domain</td>
+</tr>
+<tr>
+<td>lading_task_uuid</td>
+<td>uuid</td>
+<td>UUID of the lading task</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>text</td>
+<td>Latitude of where the document was scanned</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>text</td>
+<td>Longitude of where the document was scanned</td>
+</tr>
+<tr>
+<td>scan</td>
+<td>text</td>
+<td>Base64 encoded string of a scanned document image</td>
+</tr>
+<tr>
+<td>scan_document_uuid</td>
+<td>uuid</td>
+<td>UUID of the scanned document</td>
+</tr>
+<tr>
+<td>scan_type</td>
+<td>text</td>
+<td>Type of scanned docuemnt</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-document">Get a Specific Document</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://example.com/app/api/5/scan_documents/</span><span class="si">{</span><span class="nv">$scan_document_uuid</span><span class="si">}</span><span class="s2">?key=</span><span class="si">{</span><span class="nv">$api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
+
+<span class="p">));</span>
+
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>The above code returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"scan_document_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"scan"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"scan_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"lading_task_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<p>This endpoint retrieves a specific document.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://example.com/app/api/5/scan_documents/&lt;scan_document_uuid&gt;/?key=&lt;api_key&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>scan_document_uuid</td>
+<td>The UUID of the document to retrieve.</td>
+</tr>
+<tr>
+<td>key</td>
+<td>The API key.</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-document">Create a Document</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// The data to send to the API
+</span><span class="nv">$postData</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'scan'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>  <span class="c1">//Base64 encoded string of a document image
+</span><span class="s1">'scan_type'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="s1">'latitude'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="s1">'longitude'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="s1">'date'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="s1">'lading_task_uuid'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">);</span>
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://example/app/api/5/scan_documents/?key={$api_key}'</span><span class="p">);</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_POST</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
+<span class="nx">CURLOPT_POSTFIELDS</span> <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$postData</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+
+<span class="c1">//Get the scan document UUID
+</span><span class="nv">$scanDocumentUuid</span> <span class="o">=</span> <span class="nv">$responseData</span><span class="p">[</span><span class="s1">'details'</span><span class="p">][</span><span class="s1">'0'</span><span class="p">][</span><span class="s1">'uuid'</span><span class="p">];</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>The above code returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e1002f65-4e36-41a8-bf73-6f0fade8b849"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scan_documents"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"sql"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT INTO v_scan_documents (scan_document_uuid, scan, scan_type, latitude, longitude, date, lading_task_uuid) VALUES ('e1002f65-4e36-41a8-bf73-6f0fade8b849', null, null, null, null, null, null);"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<p>This endpoint creates a document.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://example.com/app/api/5/scan_documents/?key=&lt;api_key&gt;</code></p>
+
+<h3 id="json-request-body">JSON Request Body</h3>
+
+<aside class="success"><code>{&quot;scan&quot;:null,&quot;scan_type&quot;:null,&quot;latitude&quot;:null,&quot;longitude&quot;:null,&quot;date&quot;:null,&quot;lading_task_uuid&quot;:null}</code></aside>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>The API key</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+The &ldquo;lading_task_uuid&rdquo; must contain the uuid of the lading task to attach the document to
+</aside>
+
+<aside class="warning">
+&ldquo;scan&rdquo; must be a Base64 encoded string that represents the scanned document image</code>   
+</aside>
+
+<h1 id="signatures">Signatures</h1>
+
+<h2 id="get-all-signatures">Get All Signatures</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://example.com/app/api/5/signatures?key=</span><span class="si">{</span><span class="nv">$api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
+
+<span class="p">));</span>
+
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>The above code returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"signature_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"signature_capture"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"signature_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"signatory"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"user_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"lading_task_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"signature_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"signature_capture"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"signature_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"signatory"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"user_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"lading_task_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves all signatures.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://example.com/app/api/5/signatures?key=&lt;api_key&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>The API key</td>
+</tr>
+</tbody></table>
+
+<h3 id="http-request-with-query-parameters">HTTP Request With Query Parameters</h3>
+
+<p><code class="prettyprint">GET https://example.com/app/api/5/signatures/?key=&lt;api_key&gt;&amp;lading_task_uuid=&lt;lading_task_uuid&gt;</code></p>
+
+<aside class="notice">
+You must replace <code>&lt;api_key&gt;</code> with your personal API key.<p>
+You must replace <code>&lt;lading_task_uuid&gt;</code> with a lading task UUID you want to query.<p>
+</aside>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lading_task_uuid</td>
+<td>uuid</td>
+<td>If set to a lading task UUID, it will return the signature for that task.</td>
+</tr>
+</tbody></table>
+
+<h3 id="json-name-type-and-value-description">JSON Name, Type, and Value Description</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date</td>
+<td>text</td>
+<td>Date of signature</td>
+</tr>
+<tr>
+<td>domain_uuid</td>
+<td>uuid</td>
+<td>UUID of domain</td>
+</tr>
+<tr>
+<td>lading_task_uuid</td>
+<td>uuid</td>
+<td>UUID of the lading task</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>text</td>
+<td>Latitude of where the scan took place</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>text</td>
+<td>Longitude of where the scan took place</td>
+</tr>
+<tr>
+<td>signatory</td>
+<td>text</td>
+<td>Text representation of the signature</td>
+</tr>
+<tr>
+<td>signature_capture</td>
+<td>text</td>
+<td>Base64 encoded string of a signature image</td>
+</tr>
+<tr>
+<td>signature_type</td>
+<td>text</td>
+<td>Type of signature</td>
+</tr>
+<tr>
+<td>signature_uuid</td>
+<td>uuid</td>
+<td>UUID of the signature</td>
+</tr>
+<tr>
+<td>user_uuid</td>
+<td>uuid</td>
+<td>UUID of user (not used at the moment)</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-signature">Get a Specific Signature</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://example.com/app/api/5/signatures/</span><span class="si">{</span><span class="nv">$signature_uuid</span><span class="si">}</span><span class="s2">?key=</span><span class="si">{</span><span class="nv">$api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
+
+<span class="p">));</span>
+
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>The above code returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"domain_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"signature_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"signature_capture"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"signature_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"signatory"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"user_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"lading_task_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<p>This endpoint retrieves a specific signature.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://example.com/app/api/5/signatures/&lt;signature_uuid&gt;/?key=&lt;api_key&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>signature_uuid</td>
+<td>The UUID of the signature to retrieve.</td>
+</tr>
+<tr>
+<td>key</td>
+<td>The API key.</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-signature">Create a Signature</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// The data to send to the API
+</span><span class="nv">$postData</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'signature_capture'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>  <span class="c1">//Base64 encoded string of a document image
+</span><span class="s1">'signature_type'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="s1">'signatory'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="s1">'latitude'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="s1">'longitude'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="s1">'date'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="s1">'user_uuid'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="s1">'lading_task_uuid'</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">);</span>
+
+<span class="c1">// Setup cURL
+</span><span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://example/app/api/5/signatures/?key={$api_key}'</span><span class="p">);</span>
+<span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<span class="nx">CURLOPT_POST</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYPEER</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_SSL_VERIFYHOST</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>
+<span class="nx">CURLOPT_HTTPHEADER</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'Content-Type: application/json'</span>
+<span class="p">),</span>
+<span class="nx">CURLOPT_POSTFIELDS</span> <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$postData</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="c1">// Send the request
+</span><span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+
+<span class="c1">// Check for errors
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$response</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+<span class="k">die</span><span class="p">(</span><span class="nb">curl_error</span><span class="p">(</span><span class="nv">$ch</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Decode the response
+</span><span class="nv">$responseData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+
+<span class="c1">//Get the signature UUID
+</span><span class="nv">$signatureUuid</span> <span class="o">=</span> <span class="nv">$responseData</span><span class="p">[</span><span class="s1">'details'</span><span class="p">][</span><span class="s1">'0'</span><span class="p">][</span><span class="s1">'uuid'</span><span class="p">];</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>The above code returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14a32f65-0f71-41a8-bf73-6f0fadeb055a"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scan_documents"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"sql"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSERT INTO v_scan_documents (signature_uuid, signature_capture, signature_type, signatory, latitude, longitude, date, user_uuid, lading_task_uuid ) VALUES ('14a32f65-0f71-41a8-bf73-6f0fadeb055a', null, null, null, null, null, null, null, null);"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<p>This endpoint creates a signature.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://example.com/app/api/5/signatures/?key=&lt;api_key&gt;</code></p>
+
+<h3 id="json-request-body">JSON Request Body</h3>
+
+<aside class="success"><code>{ &quot;signature_capture&quot;:null, &quot;signature_type&quot;:null, &quot;signatory&quot;:null, &quot;latitude&quot;:null, &quot;longitude&quot;:null, &quot;date&quot;:null, &quot;user_uuid&quot;:null, &quot;lading_task_uuid&quot;:null }</code></aside>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>The API key</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+The &ldquo;lading_task_uuid&rdquo; must contain the uuid of the lading task to attach the signature to
+</aside>
+
+<aside class="warning">
+&ldquo;signature_capture&rdquo; must be a Base64 encoded string that represents the scanned document image</code>   
+</aside>
+
           <h1 id="errors">Errors</h1>
 
 <p>The Ulaap API uses the following error codes:</p>
