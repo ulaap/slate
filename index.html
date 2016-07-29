@@ -159,6 +159,15 @@
 
 <p>Designed as a unified platform, Ulaap keeps your development and deployment resources in check.  Let our tools help you do the business that you need to do.</p>
 
+<h1 id="what-39-s-new">What&rsquo;s New</h1>
+
+<h2 id="07-28-2016">07/28/2016</h2>
+
+<p>* Added requirements to ladings table. 
+    * Added timestamps (created and modified) to each table. 
+    * Added &ldquo;driver_contact_uuid&rdquo; to ladings table to assign a lading to a driver. 
+    * Added query parameters for retrieving ladings for a certain carrier or driver.</p>
+
 <h1 id="authentication">Authentication</h1>
 
 <blockquote>
@@ -1026,7 +1035,12 @@ This example JSON request body updates the &ldquo;contact_url&rdquo;.  You can u
 </span><span class="nt">"partial_or_full"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"load_end"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"shipper_contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"carrier_contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="nt">"carrier_contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"load_cubes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"driver_contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"created"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"modified"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"requirements"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">},</span><span class="w">
 </span><span class="p">{</span><span class="w">
 </span><span class="nt">"shipper_region"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1074,7 +1088,11 @@ This example JSON request body updates the &ldquo;contact_url&rdquo;.  You can u
 </span><span class="nt">"load_end"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"shipper_contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 </span><span class="nt">"carrier_contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-</span><span class="nt">"load_cubes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="nt">"load_cubes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"driver_contact_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"created"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"modified"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"requirements"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -1091,10 +1109,18 @@ This example JSON request body updates the &ldquo;contact_url&rdquo;.  You can u
 
 <p><code class="prettyprint">GET https://example.com/app/api/5/ladings_list/?key=&lt;api_key&gt;&amp;lading_status=&lt;int&gt;</code></p>
 
+<p><code class="prettyprint">GET https://example.com/app/api/5/ladings_list/?key=&lt;api_key&gt;&amp;carrier_contact_uuid=&lt;any_carrier_contact_uuid&gt;</code></p>
+
+<p><code class="prettyprint">GET https://example.com/app/api/5/ladings_list/?key=&lt;api_key&gt;&amp;driver_contact_uuid=&lt;any_driver_contact_uuid&gt;</code></p>
+
+<p><code class="prettyprint">GET https://example.com/app/api/5/ladings_list/?key=&lt;api_key&gt;&amp;carrier_contact_uuid=&lt;any_carrier_contact_uuid&gt;&amp;driver_contact_uuid=&lt;any_driver_contact_uuid&gt;</code></p>
+
 <aside class="notice">
 You must replace <code>api_key</code> with your personal API key.<p>
 You must replace <code>any_pro_bill_number</code> with a pro bill number you want to query.<p>
 You must replace <code>int</code> with interger value of a lading status (see below).
+You must replace <code>any_carrier_contact_uuid</code> with a contact_uuid of a carrier.<p>
+You must replace <code>any_driver_contact_uuid</code> with a contact_uuid of a driver.<p>
 </aside>
 
 <h3 id="query-parameters">Query Parameters</h3>
@@ -1110,6 +1136,11 @@ You must replace <code>int</code> with interger value of a lading status (see be
 <td>carrier_contact_uuid</td>
 <td></td>
 <td>If set to contact_uuid of a carrier, it will pass all the ladings with that carrier.</td>
+</tr>
+<tr>
+<td>driver_contact_uuid</td>
+<td></td>
+<td>If set to contact_uuid of a driver, it will pass all the ladings assigned to that driver.</td>
 </tr>
 <tr>
 <td>pro_bill</td>
@@ -1217,6 +1248,32 @@ You must replace <code>int</code> with interger value of a lading status (see be
 </tr>
 </tbody></table>
 
+<h3 id="requirement-values">Requirement Values</h3>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>both</td>
+<td>Set to &ldquo;both&rdquo; to require a signature and document scan from the shipper and consignee</td>
+</tr>
+<tr>
+<td>shipper</td>
+<td>Set to &ldquo;shipper&rdquo; to require a signature and document scan from the shipper</td>
+</tr>
+<tr>
+<td>consignee</td>
+<td>Set to &ldquo;consignee&rdquo; to require a signature and document scan from the shipper</td>
+</tr>
+<tr>
+<td>null</td>
+<td>If left to null, it won&rsquo;t require a signature or document scan from the shipper or consignee</td>
+</tr>
+</tbody></table>
+
 <h3 id="json-name-type-and-value-description">JSON Name, Type, and Value Description</h3>
 
 <table><thead>
@@ -1280,6 +1337,11 @@ You must replace <code>int</code> with interger value of a lading status (see be
 <td>consignee_region</td>
 <td>text</td>
 <td>The state or province of the consignee</td>
+</tr>
+<tr>
+<td>created</td>
+<td>timestamp</td>
+<td>Timestamp of when lading was created</td>
 </tr>
 <tr>
 <td>damage_note</td>
@@ -1377,6 +1439,11 @@ You must replace <code>int</code> with interger value of a lading status (see be
 <td>Actual weight of load when measured</td>
 </tr>
 <tr>
+<td>modified</td>
+<td>timestamp</td>
+<td>Timestamp of when lading was last modified</td>
+</tr>
+<tr>
 <td>partial_or_full</td>
 <td>text</td>
 <td>Designates if load is a full trailer or less than a trailer capacity</td>
@@ -1405,6 +1472,11 @@ You must replace <code>int</code> with interger value of a lading status (see be
 <td>rate_pay</td>
 <td>text</td>
 <td>Rate paid to carrier for haulage</td>
+</tr>
+<tr>
+<td>requirements</td>
+<td>text</td>
+<td>Set a value to require a signature and document scan for a lading (see &ldquo;Requirement Values&rdquo;)</td>
 </tr>
 <tr>
 <td>seal_number</td>
