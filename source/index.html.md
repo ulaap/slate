@@ -49,6 +49,20 @@ Ulaap tools strengthen real-time accountability and make your company more attra
 
 Designed as a unified platform, Ulaap keeps your development and deployment resources in check.  Let our tools help you do the business that you need to do.
 
+# What's New
+
+## 07/28/2016
+
+    * Added requirements to ladings table. 
+    * Added timestamps (created and modified) to each table. 
+    * Added "driver_contact_uuid" to ladings table to assign a lading to a driver. 
+    * Added query parameters for retrieving ladings for a certain carrier or driver.
+    
+    
+
+
+
+
 # Authentication
 
 > To authorize, use this code:
@@ -694,7 +708,12 @@ $responseData = json_decode($response, TRUE);
 "partial_or_full": null,
 "load_end": null,
 "shipper_contact_uuid": null,
-"carrier_contact_uuid": null
+"carrier_contact_uuid": null,
+"load_cubes": null,
+"driver_contact_uuid": null,
+"created" : null,
+"modified" : null,
+"requirements" : null
 },
 {
 "shipper_region": null,
@@ -742,7 +761,11 @@ $responseData = json_decode($response, TRUE);
 "load_end": null,
 "shipper_contact_uuid": null,
 "carrier_contact_uuid": null,
-"load_cubes": null
+"load_cubes": null,
+"driver_contact_uuid": null,
+"created" : null,
+"modified" : null,
+"requirements" : null
 }
 ]
 ```
@@ -759,17 +782,26 @@ This endpoint retrieves all ladings.
 
 `GET https://example.com/app/api/5/ladings_list/?key=<api_key>&lading_status=<int>`
 
+`GET https://example.com/app/api/5/ladings_list/?key=<api_key>&carrier_contact_uuid=<any_carrier_contact_uuid>`
+
+`GET https://example.com/app/api/5/ladings_list/?key=<api_key>&driver_contact_uuid=<any_driver_contact_uuid>`
+
+`GET https://example.com/app/api/5/ladings_list/?key=<api_key>&carrier_contact_uuid=<any_carrier_contact_uuid>&driver_contact_uuid=<any_driver_contact_uuid>`
+
 <aside class="notice">
 You must replace <code>api_key</code> with your personal API key.<p>
 You must replace <code>any_pro_bill_number</code> with a pro bill number you want to query.<p>
 You must replace <code>int</code> with interger value of a lading status (see below).
+You must replace <code>any_carrier_contact_uuid</code> with a contact_uuid of a carrier.<p>
+You must replace <code>any_driver_contact_uuid</code> with a contact_uuid of a driver.<p>
 </aside>
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-carrier_contact_uuid |  | If set to contact_uuid of a carrier, it will pass all the ladings with that carrier. 
+carrier_contact_uuid |  | If set to contact_uuid of a carrier, it will pass all the ladings with that carrier.
+driver_contact_uuid |  | If set to contact_uuid of a driver, it will pass all the ladings assigned to that driver.
 pro_bill |  | If set to a pro bill number, it will pass the lading with that pro bill number.
 lading_status |  | If set to a lading status integer value, it will pass all the ladings with that status.
 
@@ -799,6 +831,16 @@ Int | Enum
 20 | Load Damage
 21 | Load Completed
 
+### Requirement Values
+
+Value | Description 
+--------- | -----------
+both | Set to "both" to require a signature and document scan from the shipper and consignee
+shipper | Set to "shipper" to require a signature and document scan from the shipper
+consignee | Set to "consignee" to require a signature and document scan from the shipper
+null | If left to null, it won't require a signature or document scan from the shipper or consignee
+
+
 ### JSON Name, Type, and Value Description
 
 Name | Data Type | Description
@@ -814,6 +856,7 @@ consignee_contact_uuid | uuid | The UUID for the consignee contact #create-a-con
 consignee_locality | text | The town, city, or community name of the consignee 
 consignee_name | text | Name of consignee
 consignee_region | text | The state or province of the consignee
+created | timestamp | Timestamp of when lading was created
 damage_note | text | Description of the damage to the load being hauled 
 damage_photo | text | Photo of load damaged during cartage
 domain_uuid | uuid | UUID of the Doamin 
@@ -833,12 +876,14 @@ load_start | timestamp | The start or pick-up time designated for the given task
 load_value | text | Declared Value of load for bonding purposes or export 
 load_weight | text | Weight of load listed
 load_weight_actual | text | Actual weight of load when measured 
+modified | timestamp | Timestamp of when lading was last modified
 partial_or_full | text | Designates if load is a full trailer or less than a trailer capacity
 pay_advance | text | Specifies if carrier was given an advance or had a deduction made against the "rate payment"
 payment_reference | text | Payment reference number or identifier used by the factoring company
 pro_bill | text | Carrier Pro Bill number or Load ID number
 rate_confirmation | text | Rate confirmation identifier number used to validate haulage agreement 
 rate_pay | text | Rate paid to carrier for haulage
+requirements | text |  Set a value to require a signature and document scan for a lading (see "Requirement Values")
 seal_number | text | Customer customs or bonding seal to secure a load for transport
 shipment_number | text | Shipper / Customer designated reference number or purchase order to track load
 shipper_contact_uuid | uuid | The UUID for the shipper contact #create-a-contact 
